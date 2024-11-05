@@ -866,7 +866,7 @@ After: [10, 28, 33, 37, 38, 38, 39, 40, 42, 54, 60, 71, 75, 78, 85, 86, 90, 95, 
 <h3>버블정렬의 시간측정<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(n\)</span>의 수가 100개, 1,000개, 10,000개, 100,000개일 때의 버블정렬 시간을 측정해보자.</p></li>
-<li><p>테스트해 본 결과 100개나 1,000개 데이터는 1초도 안걸린다. 10,000개 데이터는 10초 정도 걸린다. 그럼 100,000개는? 어차피 오래 걸리기 때문에 안해봤다. 버블 정렬의 시간복잡도는 <span class="math notranslate nohighlight">\( O(n^2) \)</span>이므로 백억(10,000,000,000)번의 비교가 이루어진다.</p></li>
+<li><p>테스트해 본 결과 100개나 1,000개 데이터는 1초도 안걸린다. 10,000개 데이터는 10초 정도 걸린다. 그럼 100,000개는? 10배가 아니라 100배가 늘어나고, 1,000초(약 16분 40초) 거린다. 버블 정렬의 시간복잡도는 <span class="math notranslate nohighlight">\( O(n^2) \)</span>이므로 50억번의 비교가 이루어진다.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
 
