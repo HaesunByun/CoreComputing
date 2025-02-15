@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>중간고사 &#8212; Core Computing_Thinking with Computers</title>
+    <title>Chapter 8. 알고리즘의 효율성과 탐색 &#8212; Core Computing_Thinking with Computers</title>
   
   
   
@@ -93,11 +93,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'CC_chapter8';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Chapter 9. 탐색 알고리즘" href="CC_chapter9.html" />
-    <link rel="prev" title="Chapter 7. 파일입출력과 예외처리" href="CC_chapter7.html" />
+    <link rel="next" title="Chapter 9. 정렬 알고리즘" href="CC_chapter9.html" />
+    <link rel="prev" title="중간평가" href="CC_chapter7.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -192,19 +194,21 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter0.html">Chapter 0. 프로그래밍 언어와 파이썬</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter1.html">Chapter 1. 기본자료형과 입출력</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter2.html">Chapter 2. 제어문과 복합자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter2.html">Chapter 2. 복합자료형과 제어문</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter3.html">Chapter 3. 모듈과 함수</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter4.html">Chapter 4. 재귀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter4.html">Chapter 4. 재귀함수</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter5.html">Chapter 5. 클래스와 객체</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter6.html">Chapter 6. 자료구조와 추상화</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter7.html">Chapter 7. 파일입출력과 예외처리</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">중간고사</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter9.html">Chapter 9. 탐색 알고리즘</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter10.html">Chapter 10. 정렬 알고리즘</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter11.html">Chapter 11. 트리</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter12.html">Chapter 12. 그래프</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter13.html">Chapter 13. 가중치 그래프</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter14.html">Chapter 14. 알고리즘 설계기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter7.html">중간평가</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 8. 알고리즘의 효율성과 탐색</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter9.html">Chapter 9. 정렬 알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter10.html">Chapter 10. 트리</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter11.html">Chapter 11. 그래프</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter12.html">Chapter 12. 가중치 그래프</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter13.html">Chapter 13. 알고리즘 설계 기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter14.html">Chapter 14. 알고리즘 설계 기법 II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter15.html">기말평가</a></li>
 </ul>
 
     </div>
@@ -377,7 +381,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -388,11 +394,34 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>중간고사</h1>
+    <h1>Chapter 8. 알고리즘의 효율성과 탐색</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">알고리즘이란</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">알고리즘 기술 방법</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">알고리즘의 성능 분석 방법</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">시간복잡도</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">빅오표기법</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">공간복잡도</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">탐색</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">순차 탐색</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">이진 탐색</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">마무리</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -402,14 +431,437 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
-<h1>중간고사<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+  <hr class="docutils" />
+<font color='Blue' size="4">
+F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking with Computers)</font>
+<hr class="docutils" />
+<div class="tex2jax_ignore mathjax_ignore section" id="chapter-8">
+<h1>Chapter 8. 알고리즘의 효율성과 탐색<a class="headerlink" href="#chapter-8" title="Permalink to this headline">#</a></h1>
 <div class="info admonition">
 <p class="admonition-title">학습목표와 기대효과</p>
 <ul class="simple">
-<li><p>학습목표</p></li>
-<li><p>기대효과</p></li>
+<li><p>학습목표</p>
+<ul>
+<li><p>알고리즘의 정의와 기술방법을 익혀본다.</p></li>
+<li><p>알고리즘이 성능 분석 방법을 이해한다.</p></li>
+<li><p>탐색 알고리즘으로 순차탐색과 이진탐색 알고리즘을 이해한다.</p></li>
 </ul>
+</li>
+<li><p>기대효과</p>
+<ul>
+<li><p>알고리즘의 효율성을 고려하여 프로세스를 디자인해볼 수 있다.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>알고리즘이란<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>알고리즘이란 <strong>어떤 문제를 해결하기 위한 효율적인 방법과 절차</strong>를 말한다.</p></li>
+<li><p>예를 들어, 운동장에서 키 순서대로 학생들을 줄 세우는 것도 알고리즘의 한 종류이고, 이름 가나다 순으로 줄을 세우는 것도 알고리즘의 한 종류이다.</p></li>
+<li><p>즉, 어떤 하나의 문제를 해결하기 위해 여러 종류의 알고리즘이 존재할 수 있고 조건이 달라지면 문제를 해결하는 방법도 달라지게 된다.</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>알고리즘 기술 방법<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>알고리즘을 기술하는 방법으로는</p>
+<ul class="simple">
+<li><p>영어, 한국어와 같은 자연어으로 기술</p></li>
+<li><p>플로우차트(흐름도:flowchart)로 표현</p></li>
+<li><p>슈도코드(유사코드:pseudo-code)로 표현</p></li>
+<li><p>특정 프로그래밍 언어로 표현</p></li>
+</ul>
+<p>예를 들어, 최대값을 찾는 알고리즘을 기술하면,</p>
+<ol class="arabic simple">
+<li><p>자연어 예시</p></li>
+</ol>
+<ul class="simple">
+<li><p>리스트 A의 첫 번째 요소를 변수 max에 복사한다.</p></li>
+<li><p>리스트 A의 다음 요소들을 차례대로 max와 비교하여 더 크면 그 값을 max에 복사한다.</p></li>
+<li><p>리스트 A의 모든 요소들을 비교했다면 max를 반환한다.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>플로우차트 예시</p></li>
+</ol>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/search1.png" width=200 height=244></div>
+<ol class="arabic simple" start="3">
+<li><p>슈도코드 예시</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">배열</span> <span class="n">A에</span> <span class="mi">10</span><span class="n">개의</span> <span class="n">숫자가</span> <span class="n">있다고</span> <span class="n">가정</span>
+<span class="nb">max</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span> <span class="n">to</span> <span class="mi">10</span> <span class="o">//</span> <span class="mi">1</span> <span class="o">~</span> <span class="mi">9</span><span class="n">까지</span> <span class="n">차례로</span> <span class="n">i에</span> <span class="n">대입</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nb">max</span><span class="p">)</span>
+        <span class="nb">max</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="k">return</span> <span class="nb">max</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>특정 프로그래밍 예시</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="n">A</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">findMax</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+  <span class="nb">max</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="nb">max</span><span class="p">):</span>
+      <span class="nb">max</span> <span class="o">=</span> <span class="n">i</span>
+
+  <span class="k">return</span> <span class="nb">max</span>
+
+<span class="n">findMax</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>알고리즘의 성능 분석 방법<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>어떤 문제를 해결하기 위해 알고리즘을 설계했다면 그 알고리즘이 얼마나 효율적인 알고리즘인가를 검증해야 한다.</p></li>
+<li><p>효율적인 알고리즘이란 실행시간이 빠르고 필요로 하는 메모리를 적게 사용하는 알고리즘이다.</p></li>
+<li><p>알고리즘의 효율성을 평가하기 위해서 직접 프로그래밍을 해서 알고리즘의 실행 시간이나 사용되는 메모리를 측정하고 검사할 수 있겠지만 모든 알고리즘을 직접 프로그래밍 해서 실행하여 측정하기에는 많은 제약이 있다.</p></li>
+<li><p>알고리즘을 직접 프로그래밍으로 구현하지 않고 대략적인 효율성을 살펴보는 것을 <strong>알고리즘 복잡도 분석</strong>(complexity analysis)라고 한다. 복잡도 분석에는</p>
+<ul>
+<li><p>알고리즘의 실행시간을 분석하는 <strong>시간복잡도</strong>(Time complexity) 분석</p></li>
+<li><p>알고리즘이 사용하는 메모리를 분석하는 <strong>공간복잡도</strong>(space complexity) 분석이 있다.</p></li>
+</ul>
+</li>
+<li><p>보통 알고리즘의 복잡도를 이야기 할 때 대개는 시간복잡도를 의미한다.</p></li>
+</ul>
+<div class="section" id="id4">
+<h3>시간복잡도<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>알고리즘의 실행시간을 분석하는 시간복잡도에서는 절대적인 실행 시간이 아니라 알고리즘을 이루고 있는 연산들이 몇 번이나 실행되는지를 계산한다. 즉, 계산량을 구하는 기본 단위는 산술, 대입, 비교 등의 명령문을 실행하는 연산의 횟수이다.</p></li>
+<li><p>알고리즘을 실행하는데 필요한 연산의 수는 보통 주어지는 입력의 개수 <span class="math notranslate nohighlight">\(n\)</span>에 영향을 받는다.</p></li>
+<li><p>이를 시간복잡도 함수인 <span class="math notranslate nohighlight">\( T(n) \)</span>으로 나타내는데, <span class="math notranslate nohighlight">\(n\)</span>개의 크기에 대해 <span class="math notranslate nohighlight">\( T(n) \)</span>의 시간이 소요된다는 의미로 시간복잡도(Time complexity)를 계산할 때 이와 같이 표현한다.</p></li>
+<li><p>예를 들어 <span class="math notranslate nohighlight">\(n^2\)</span>을 구하는 세 개의 알고리즘이 있다고 하자.</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>알고리즘 A: 연산 횟수는 2이다.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="n">n</span>  <span class="c1"># 곱셉과 대입 연산</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>알고리즘 B: 연산 횟수는 2n + 1이다.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># 대입 연산 1</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+  <span class="nb">sum</span> <span class="o">+=</span> <span class="n">n</span> <span class="c1"># 덧셈연산 n번, 대입연산 n번</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>알고리즘 C: 연산 횟수는 <span class="math notranslate nohighlight">\( 2n^2\)</span> + 1이다.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># 대입 연산 1</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="nb">sum</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># 덧셈연산 n번, 대입연산 n번에 대해 반복 2번</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>위 알고리즘을 <span class="math notranslate nohighlight">\( T(n) \)</span>으로 표현하면</p>
+<ul>
+<li><p>알고리즘 A: <span class="math notranslate nohighlight">\( T(n) \)</span> = 2</p></li>
+<li><p>알고리즘 B: <span class="math notranslate nohighlight">\( T(n) \)</span> = 2n + 1</p></li>
+<li><p>알고리즘 C: <span class="math notranslate nohighlight">\( T(n) \)</span> =  <span class="math notranslate nohighlight">\( 2n^2\)</span> + 1 이다.</p></li>
+</ul>
+</li>
+<li><p>시간복잡도 함수인 <span class="math notranslate nohighlight">\( T(n) \)</span>은 <span class="math notranslate nohighlight">\(n\)</span>의 개수에 영향을 많이 받는다.</p></li>
+<li><p>즉, n이 커질수록  <span class="math notranslate nohighlight">\( T(n) \)</span>에서 <strong>차수가 가장 큰 항의 영향이 절대적</strong>이고 다른 항들과 계수는 무시해도 될 정도로 작아진다.</p></li>
+<li><p>따라서 시간복잡도 분석에서는 함수의 전체 항이 아니라 최고차항만을 고려한다.</p></li>
+</ul>
+<div class="section" id="id5">
+<h4>빅오표기법<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>시간복잡도 함수에서 불필요한 모든 항과 모든 계수를 제거하여 알고리즘 분석을 쉽게 할 목적으로 시간 복잡도를 표기하는 방법을 <strong>빅오 표기법</strong>(Big-O notation)이라고 한다.</p></li>
+<li><p>빅오표기법으로 표기하는 방법은 최고차항을 제외한 나머지 모든 항과 모든 계수를 제거하고 남은 시간을 대문자 <span class="math notranslate nohighlight">\(O()\)</span> 괄호안에 넣어준다.</p></li>
+<li><p>즉, 알고리즘 A는 <span class="math notranslate nohighlight">\(O(1)\)</span>, 알고리즘 B는 <span class="math notranslate nohighlight">\(O(n)\)</span>, 알고리즘 C는 <span class="math notranslate nohighlight">\(O(n^2)\)</span>와 같이 표기한다. 읽을 때에는 <span class="math notranslate nohighlight">\(O(n)\)</span>이라면 Order of n이라고 읽는다.</p></li>
+<li><p>아래 그래프는 <span class="math notranslate nohighlight">\(n\)</span>이 증가할 때 시간 복잡도 함수가 얼마나 증가하는지 보여준다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/search2.png" height=300 style="width:600px;"></div>
+<p><a class="reference external" href="https://www.bigocheatsheet.com/">https://www.bigocheatsheet.com/</a></p>
+<p>😄 시간 복잡도 함수 <span class="math notranslate nohighlight">\(n^2 + 10n + 8\)</span>을 빅오표기법으로 표기하시오.</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>공간복잡도<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>알고리즘이 필요로 하는 메모리의 양인 공간복잡도는 시간복잡도보다 중요도가 떨어진다. 왜일까?</p></li>
+<li><p>컴퓨터의 방대한 메모리와 발전덕분에 더 이상 고민하지 않아도 되서??? 아니다.!</p></li>
+<li><p>처리해야할 데이터의 양이 많아질 수록 실행시간이 중요하기 때문이다.</p></li>
+<li><p>여기, 동일한 작업을 하는 프로그램 A와 B가 있고, 프로그램 A의 시간복잡도는 <span class="math notranslate nohighlight">\(O(n^2)\)</span>, 프로그램 B의 시간복잡도는 <span class="math notranslate nohighlight">\(O(2^n)\)</span>을 갖는다고 가정해보자.</p></li>
+<li><p>입력 데이터의 개수가 n일 때 프로그램 A와 B의 실행시간이 시간복잡도에 비례하여 커진다고 가정하면 아래와 같이 실행시간의 차이가 발생한다.</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p><span class="math notranslate nohighlight">\(n\)</span>의 개수</p></th>
+<th class="text-left head"><p>프로그램A: <span class="math notranslate nohighlight">\(n^2\)</span></p></th>
+<th class="text-left head"><p>프로그램B: <span class="math notranslate nohighlight">\(2^n\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>n=10</p></td>
+<td class="text-left"><p>100s</p></td>
+<td class="text-left"><p>1024s</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>n=100</p></td>
+<td class="text-left"><p>10000s</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\( 2^{100} \)</span> = <span class="math notranslate nohighlight">\(4 * 10^{22}\)</span> 년</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>탐색<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h2>
+<p>문제를 해결하고자 할 때 중요한 팩터 가운데 하나는 연산의 속도이다. 얼마나 효율적으로 연산할 것인가하는 계산의 효율성은 아무리 강조해도 지나치지 않을 만큼 중요한 팩터이다.</p>
+<p>알고리즘의 계산의 속도에 대해 얘기하기 위해 가장 먼저 탐색에 대해서 알아보자.<br />
+<strong>탐색</strong>이란 여러 개의 자료 중에서 원하는 자료를 찾는 작업이다. 컴퓨터가 가장 많이 하는 작업 중의 하나이므로 탐색을 효율적으로 수행하는 것은 매우 중요하다.</p>
+<div class="section" id="id8">
+<h3>순차 탐색<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>순차 탐색(Linear Search)은 정렬되지 않은 리스트를 처음부터 마지막까지 하나씩 검사하는 방법이다.</p></li>
+<li><p>첫 번째 자료부터 하나씩 비교하면서 같은 값이 나오면 그 위치를 결과로 반환하고, 끝까지 찾아도 같은 값이 나오지 않으면 -1을 반환한다.</p></li>
+</ul>
+<ul class="simple">
+<li><p>먼저, 순차탐색을 위한 데이터 20개를 0부터 100 사이의 임의의 숫자로 만들어 변수 r에 저장하자.</p></li>
+<li><p>데이터가 랜덤으로 들어가 있는 경우 사실 효율적인 방법이라는 것이 없다. 처음부터 끝까지 순서대로 다 들여다 보는 것이 가장 효율적인 방법이다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">r</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+  <span class="n">r</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[33, 81, 28, 94, 61, 20, 97, 51, 33, 58, 81, 9, 16, 14, 42, 81, 75, 47, 24, 7]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>파이썬에서는 <code class="docutils literal notranslate"><span class="pre">in</span></code>연산자를 이용해서 탐색값이 있는지 없는지 바로 확인가능하다.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">15</span> <span class="ow">in</span> <span class="n">r</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">73</span> <span class="ow">in</span> <span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>순차탐색 알고리즘을 코드로 표현해 보자.</p>
+<ul>
+<li><p>첫 번째 자료부터 하나씩 비교하면서 같은 값이 나오면 그 위치를 결과로 반환하고, 끝까지 찾아도 같은 값이 나오지 않으면 -1을 반환한다.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sequentialSearch</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+
+
+
+
+<span class="n">x</span><span class="o">=</span><span class="mi">73</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sequentialSearch</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-2-4c37f747d643&gt;&quot;</span><span class="gt">, line </span><span class="mi">6</span>
+    <span class="n">x</span><span class="o">=</span><span class="mi">73</span>
+    <span class="o">^</span>
+<span class="ne">IndentationError</span>: expected an indented block
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>순차 탐색에서는 탐색 데이터가 리스트의 앞에 있다면 비교적 빨리 찾을 것이고, 탐색 데이터가 뒷 쪽에 있다면 많은 비교후에 찾게 될 것이다.</p></li>
+<li><p>이와 같이 경우에 따라 계산 횟수가 다를 때에는 <strong>최선의 경우, 평균적인 경우, 최악의 경우</strong>로 나누어서 시간복잡도를 계산하기도 한다.</p></li>
+<li><p>최악의 경우로 봤을 때, 순차 탐색으로 20개의 데이터 중에서 어떤 값을 찾으려면 비교를 최대 20번 해야 하고, 100개의 데이터라면 비교를 최대 100번 해야한다. 데이터가 5천만개라면 최대 5천만번 해야 한다.</p></li>
+<li><p>즉, 순차 탐색은 데이터의 갯수 n에 비례해서 연산수가 선형적으로 증가하기 때문에 최악의 경우 시간 복잡도는 <span class="math notranslate nohighlight">\(O(n)\)</span>이다.</p></li>
+<li><p>순차 탐색의 비교횟수는 탐색값의 위치에 따라 다르다. 맨 앞에 있으면 1번, 두 번째에 있으면 2번, <span class="math notranslate nohighlight">\(k\)</span>번째에 있으면 <span class="math notranslate nohighlight">\(k\)</span>번 비교한다.</p></li>
+<li><p><strong>평균 비교 횟수</strong>는 <span class="math notranslate nohighlight">\((1+2+3+ ...+n)/n\)</span>으로 탐색에 성공했을 때는 <span class="math notranslate nohighlight">\( (n+1)/2 \)</span>번 비교한다.</p>
+<ul>
+<li><p>예를 들어, n이 5일 때, 평균비교횟수는 3이다.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\((1+2+3+ ...+n)/n\)</span> ===&gt; <span class="math notranslate nohighlight">\((1+2+3+4+5)/5\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( (n+1)/2 \)</span> ===&gt; (5+1)/2</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>😄 탐색값이 나오는 모든 위치를 리스트로 반환하도록 sequentialSearch()함수의 알고리즘을 수정하세요.</p>
+</div>
+<div class="section" id="id9">
+<h3>이진 탐색<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>데이터가 <code class="docutils literal notranslate"><span class="pre">정렬</span> <span class="pre">되어</span> <span class="pre">있다</span></code>이라는 가정을 넣어보면 순차탐색보다 효율적으로 데이터를 찾는 방법이 여럿 존재한다.</p></li>
+<li><p>그 중에 하나가 이진탐색(Binary Search)이다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 10, 14, 25, 29, 33, 33, 35, 45, 45, 49, 54, 61, 64, 67, 71, 73, 78, 85, 98]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>이진탐색</strong>은 리스트의 중앙에 있는 값을 탐색한다. 이때 탐색값을 찾으면 끝내지만, 탐색값이 아니라면 찾고자 하는 탐색값이 왼쪽 또는 오른쪽 부분 리스트에 있는지를 알아내어 탐색의 범위를 반으로 줄여가며 탐색을 진행한다.</p></li>
+<li><p>예를 들어, 20개의 캔에 0부터 19까지 번호가 적혀있고 각 캔 안에는 데이터(숫자)가 들어있는데 오름차순으로 정렬되어 들어있다고 가정해보자. 이 리스트에서 탐색값 449를 이진탐색으로 찾아보자.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/search3.png" style="width:600px;"></div><ul class="simple">
+<li><p>중앙에 있는 번호인 9번 캔의 데이터를 탐색한다.</p></li>
+<li><p>9번 캔의 숫자는 558이고 탐색값 449가 아니다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/search4.png" style="width:600px;"></div><ul class="simple">
+<li><p>탐색값 449는 558보다 작다. 10번 캔부터 19번 캔까지는 558보다 더 큰 숫자들만 들어 있으므로 탐색할 필요가 없다.</p></li>
+<li><p>따라서 0번 캔부터 8번 캔으로 탐색 범위를 좁힌다.</p></li>
+<li><p>이때 0과 8의 중앙값인 4를 탐색한다.</p></li>
+<li><p>4번 캔의 숫자는 177이고 탐색값 449가 아니다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/search5.png" style="width:600px;"></div><ul class="simple">
+<li><p>탐색값 449는 177보다 크다. 0번 캔부터 3번 캔까지는 177보다 더 작은 숫자들만 들어 있으므로 탐색할 필요가 없다.</p></li>
+<li><p>따라서 5번 캔부터 8번 캔으로 탐색 범위를 좁힌다.이때 5과 8의 중앙값인 6를 탐색한다.</p></li>
+<li><p>6번 캔의 숫자는 338이고 탐색값 449가 아니다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/search6.png" style="width:600px;"></div><ul class="simple">
+<li><p>탐색값 449는 338보다 크다. 따라서 5번 캔은 탐색할 필요가 없다.</p></li>
+<li><p>따라서 7번 캔부터 8번 캔으로 탐색 범위를 좁힌다.이때 중앙값인 7를 탐색한다.</p></li>
+<li><p>7번 캔의 숫자는 385이고 탐색값 449가 아니다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/search7.png" style="width:600px;"></div><ul class="simple">
+<li><p>8번 캔으로 탐색 범위를 좁힌다.</p></li>
+<li><p>탐색값 449이다. 다섯번의 탐색으로 449를 찾았다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/search8.png" style="width:600px;"></div><ul class="simple">
+<li><p>이진탐색의 슈도코드</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">배열</span> <span class="n">r에</span> <span class="mi">1</span><span class="n">부터</span> <span class="mi">100</span> <span class="n">사이의</span> <span class="mi">20</span><span class="n">개의</span> <span class="n">임의의</span> <span class="n">숫자가</span> <span class="n">정렬되어</span> <span class="n">있다고</span> <span class="n">가정한다</span><span class="o">.</span>
+<span class="mf">2.</span> <span class="n">탐색</span> <span class="n">데이터</span> <span class="n">x가</span> <span class="n">있다</span><span class="o">.</span>
+<span class="mf">3.</span> <span class="n">r의</span> <span class="n">맨</span> <span class="n">앞</span> <span class="n">인덱스를</span> <span class="n">low로</span><span class="p">,</span> <span class="n">맨</span> <span class="n">뒤</span> <span class="n">인덱스를</span> <span class="n">high로</span> <span class="n">초기값을</span> <span class="n">설정한다</span><span class="o">.</span>
+<span class="mf">4.</span> <span class="n">low와</span> <span class="n">high를</span> <span class="n">이용하여</span> <span class="n">중앙</span> <span class="n">인덱스를</span> <span class="n">계산한다</span><span class="o">.</span>
+<span class="mf">5.</span> <span class="n">중앙</span> <span class="n">인덱스에</span> <span class="n">들어있는</span> <span class="n">데이터가</span> <span class="n">탐색데이터이면</span> <span class="n">그</span> <span class="n">인덱스를</span> <span class="n">반환하고</span> <span class="n">프로그램을</span> <span class="n">종료한다</span><span class="o">.</span>
+<span class="mf">6.</span> <span class="n">아니라면</span> <span class="n">low와</span> <span class="n">high를</span> <span class="n">수정한다</span><span class="o">.</span>
+  <span class="o">-</span> <span class="n">r</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span><span class="n">보다</span> <span class="n">x가</span> <span class="n">크다면</span> <span class="n">low를</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="n">로</span> <span class="n">바꾼다</span><span class="o">.</span>
+  <span class="o">-</span> <span class="n">r</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span><span class="n">보다</span> <span class="n">x가</span> <span class="n">작다면</span> <span class="n">high를</span> <span class="n">mid</span><span class="o">-</span><span class="mi">1</span><span class="n">로</span> <span class="n">바꾼다</span><span class="o">.</span>
+<span class="mf">7.</span> <span class="mi">4</span><span class="n">로</span> <span class="n">돌아가</span> <span class="n">중앙</span> <span class="n">인덱스를</span> <span class="n">계산하는</span> <span class="n">작업을</span> <span class="n">반복한다</span><span class="o">.</span>
+<span class="mf">8.</span> <span class="n">low가</span> <span class="n">high보다</span> <span class="n">크면</span> <span class="n">탐색에</span> <span class="n">실패하여</span> <span class="o">-</span><span class="mi">1</span><span class="n">을</span> <span class="n">반환하고</span> <span class="n">프로그램을</span> <span class="n">종료한다</span><span class="o">.</span>
+
+</pre></div>
+</div>
+<p>😄 위 슈도코드를 보고 참고하여 binarySearch() 함수를 작성하시오.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">r</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 6, 14, 22, 25, 29, 33, 37, 46, 49, 53, 54, 58, 66, 75, 76, 79, 83, 95, 99]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># binary_search를 구현해보세요.</span>
+<span class="k">def</span> <span class="nf">binarySearch</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+  <span class="c1">#Todo</span>
+  <span class="k">pass</span>
+
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">29</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">binarySearch</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>이진탐색에서는 한번 탐색이 이루어질 때마다 비교 횟수는 1이 늘고, 탐색 범위는 ½로 줄어든다.</p></li>
+<li><p>비교횟수를 <span class="math notranslate nohighlight">\(k\)</span>라 하고, 데이터 집합의 크기를 <span class="math notranslate nohighlight">\(n\)</span>이라 했을 때</p>
+<ul>
+<li><p>k=1, 탐색범위는 <span class="math notranslate nohighlight">\(\frac{n}{2}\)</span>,</p></li>
+<li><p>k=2, 탐색범위는 <span class="math notranslate nohighlight">\(\frac{n}{2^2}\)</span> = <span class="math notranslate nohighlight">\(\frac{n}{4}\)</span>,</p></li>
+<li><p>k=3, 탐색범위는 <span class="math notranslate nohighlight">\(\frac{n}{2^3}\)</span> =<span class="math notranslate nohighlight">\(\frac{n}{8}\)</span>
+,  ……,</p></li>
+<li><p>k번 비교횟수에 대해, 탐색범위는 <span class="math notranslate nohighlight">\(\frac{n}{2^k}\)</span>으로 줄어든다.</p></li>
+</ul>
+</li>
+<li><p>따라서 최악의 경우, <span class="math notranslate nohighlight">\(\frac{n}{2^k}\)</span> = 1이 될 때까지 즉, 탐색범위가 1이 될 때까지 탐색이 이루어진다.</p></li>
+<li><p>이진탐색의 비교횟수 <span class="math notranslate nohighlight">\(k= log_2 n+1\)</span>이며, 이진탐색의 시간복잡도는 <span class="math notranslate nohighlight">\(O(log\)</span> <span class="math notranslate nohighlight">\(n)\)</span>이다.</p></li>
+</ul>
+<ul class="simple">
+<li><p>파이썬에서는 모듈 bisect의 bisect()함수를 통해 이진탐색을 할 수 있다.</p></li>
+<li><p>bisect()는 이진탐색의 확장버전으로 생각할 수 있는데, bisect() 괄호안에 데이터와 탐색값을 전달인자로 주면 탐색값을 끼워 넣을 위치를 반환한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bisect</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">bisect</span><span class="o">.</span><span class="n">bisect</span><span class="p">(</span> <span class="n">r</span><span class="p">,</span> <span class="mi">72</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="mi">72</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">36</span>
+<span class="n">r</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span> <span class="n">bisect</span><span class="o">.</span><span class="n">bisect</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">x</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>😄 bisect.bisect() 함수처럼 동작하도록 binarySearch() 함수를 수정하시오.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Todo</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">24</span>
+<span class="n">r</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">binarySearch</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">x</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>마무리<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>이 장에서는 알고리즘의 정의, 기술방법, 알고리즘의 성능 분석 방법에 대해서 알아보았다.</p></li>
+<li><p>알고리즘의 성능 분석은 알고리즘의 실행시간을 분석하는 시간복잡도와 알고리즘이 필요로 하는 메모리의 양인 공간복잡도가 있다.</p></li>
+<li><p>보통 알고리즘의 복잡도를 이야기 할 때 대개는 시간복잡도를 의미한다.</p></li>
+<li><p>탐색이란 여러 개의 자료 중에서 원하는 자료를 찾는 작업으로 순차탐색과 이진탐색에 대해 알아보았다.</p></li>
+<li><p>순차 탐색은 정렬되지 않은 리스트에서 처음부터 마지막까지 하나씩 검사하는 방법이다.</p></li>
+<li><p>이진 탐색은 정렬된 리스트에서 검색 범위를 줄여 나가면서 검색 값을 찾는 알고리즘이다.</p></li>
+<li><p>이진 탐색은 정렬된 리스트에만 사용할 수 있다는 단점이 있지만, 검색이 반복될 때마다 검색 범위가 절반으로 줄기 때문에 속도가 빠르다는 장점이 있다.</p></li>
+</ul>
+<hr class="docutils" />
+<font color='Grey' size="4">
+F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking with Computers)</font>
+<hr class="docutils" />
+<p>서울대학교 학부대학<br>
+교수 변해선</p>
 </div>
 </div>
 
@@ -447,7 +899,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Chapter 7. 파일입출력과 예외처리</p>
+        <p class="prev-next-title">중간평가</p>
       </div>
     </a>
     <a class="right-next"
@@ -455,7 +907,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Chapter 9. 탐색 알고리즘</p>
+        <p class="prev-next-title">Chapter 9. 정렬 알고리즘</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -465,6 +917,35 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">알고리즘이란</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">알고리즘 기술 방법</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">알고리즘의 성능 분석 방법</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">시간복잡도</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">빅오표기법</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">공간복잡도</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">탐색</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">순차 탐색</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">이진 탐색</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">마무리</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

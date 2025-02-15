@@ -93,10 +93,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'CC_chapter1';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Chapter 2. 제어문과 복합자료형" href="CC_chapter2.html" />
+    <link rel="next" title="Chapter 2. 복합자료형과 제어문" href="CC_chapter2.html" />
     <link rel="prev" title="Chapter 0. 프로그래밍 언어와 파이썬" href="CC_chapter0.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -192,19 +194,21 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter0.html">Chapter 0. 프로그래밍 언어와 파이썬</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 1. 기본자료형과 입출력</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter2.html">Chapter 2. 제어문과 복합자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter2.html">Chapter 2. 복합자료형과 제어문</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter3.html">Chapter 3. 모듈과 함수</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter4.html">Chapter 4. 재귀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter4.html">Chapter 4. 재귀함수</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter5.html">Chapter 5. 클래스와 객체</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter6.html">Chapter 6. 자료구조와 추상화</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter7.html">Chapter 7. 파일입출력과 예외처리</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter8.html">중간고사</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter9.html">Chapter 9. 탐색 알고리즘</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter10.html">Chapter 10. 정렬 알고리즘</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter11.html">Chapter 11. 트리</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter12.html">Chapter 12. 그래프</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter13.html">Chapter 13. 가중치 그래프</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter14.html">Chapter 14. 알고리즘 설계기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter7.html">중간평가</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter8.html">Chapter 8. 알고리즘의 효율성과 탐색</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter9.html">Chapter 9. 정렬 알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter10.html">Chapter 10. 트리</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter11.html">Chapter 11. 그래프</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter12.html">Chapter 12. 가중치 그래프</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter13.html">Chapter 13. 알고리즘 설계 기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter14.html">Chapter 14. 알고리즘 설계 기법 II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter15.html">기말평가</a></li>
 </ul>
 
     </div>
@@ -377,7 +381,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -393,6 +399,46 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">기본 자료형</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">숫자 데이터</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">정수형 데이터</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">실수형 데이터</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">산술 연산자</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">복합 연산자</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">문자열 데이터</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">문자열 데이터 표현</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escape-characters">Escape characters</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f-string">f-string</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">문자열 연산자</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable">변수(Variable)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">변수명 짓는 규칙</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">변수에 데이터 저장하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">다수의 변수 정의 및 활용</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#print">print() 함수</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input">input() 함수</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#split">.split()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#join">.join()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ast-literal-eval">➕ast.literal_eval()</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-type">Data type 확인과 형 변환</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comment">comment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">마무리</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -402,26 +448,1257 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-1">
+  <hr class="docutils" />
+<font color='Blue' size="4">
+F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking with Computers)</font>
+<hr class="docutils" />
+<div class="tex2jax_ignore mathjax_ignore section" id="chapter-1">
 <h1>Chapter 1. 기본자료형과 입출력<a class="headerlink" href="#chapter-1" title="Permalink to this headline">#</a></h1>
 <div class="info admonition">
 <p class="admonition-title">학습목표와 기대효과</p>
 <ul class="simple">
 <li><p>학습목표</p>
 <ul>
-<li><p>기본자료형을 알아보자.</p></li>
-<li><p>산술연산자, 복합연산자를 이용하여 수식을 표현해보자.</p></li>
-<li><p>문자열 데이터의 특징과 인덱싱, 슬라이싱을 알아보자.</p></li>
-<li><p>데이타를 입력받고, 출력해보자.</p></li>
+<li><p>기본자료형, 연산자, 변수를 빠르게 훑어본다.</p></li>
+<li><p>입력과 출력을 빠르게 훑어본다.</p></li>
+<li><p><strong>문자열로 표현된 표현식을 읽어 들여 파이썬 데이터 타입으로 반환하는 함수인 ast 모듈의 literal_eval()과 eava()함수를 익혀보자.</strong></p></li>
 </ul>
 </li>
 <li><p>기대효과</p>
 <ul>
-<li><p>파이썬으로 산술연산을 위한 표현식을 작성할 수 있다.</p></li>
-<li><p>정수, 실수, 문자열 자료를 입력받고 출력할 수 있다.</p></li>
+<li><p>파이썬으로 기본자료형을 익히고, 연산자, 변수를 활용하여 입출력을 할 수 있다.</p></li>
+<li><p>문자열로 표현된 표현식을 파이썬 자료형으로 변환할 수 있다.</p></li>
 </ul>
 </li>
 </ul>
+</div>
+<div class="section" id="id1">
+<h2>기본 자료형<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>파이썬은 다양한 데이터 타입(자료형, Data Type)을 지원하고 있다.<br />
+<strong>데이터 타입</strong>은 데이터가 가지고 있는 속성을 의미하며, 데이터 타입에 따라 지원하는 연산이 다르다.<br />
+파이썬이 지원하는 몇 가지 주요 데이터 타입을 알아보고, 그에 따른 지원 연산을 알아보자.</p>
+<div class="section" id="id2">
+<h3>숫자 데이터<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<div class="section" id="id3">
+<h4>정수형 데이터<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<p><strong>정수형 데이터</strong>는 0을 포함한 자연수이다. 예를들어, …, -100, -10, 0, 1, 10, 100, … 등이 정수형 데이터이다.
+python에서는 정수데이타를 표현할 수 있는 범위의 한계는 없다. 즉, 엄청 큰 양의 정수, 엄청 작은 음의 정수를 버림없이 표현이 가능하다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">123456789012345678901234567890</span> <span class="o">*</span> <span class="mi">1234556677</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>152414403196171593319617159331809301530
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h4>실수형 데이터<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
+<p><strong>실수형 데이터</strong>는 소수점을 가진 수로 -5.432, 0.0, 5.0, 9.5, … 등이 실수형 데이터이다.</p>
+<p>컴퓨터에서 실수를 표현하는 방법은 정수에 비해 훨씬 복잡하다.</p>
+<p>실수를 표현하는 방법은 고정된 자릿수의 소수를 표현하는 <strong>고정소수점</strong> 방식과, 소수점의 위치를 고정하지 않는 <strong>부동소수점</strong> 방식이 있다.</p>
+<p>그러나 고정소수점 방식은 제한된 자릿수로 인해 표현할 수 있는 범위가 매우 작아 컴퓨터에서는 일반적으로 부동소수점 방식을 이용한다. 부동소수점 방식은 실수를 표현할 때 지수부와 가수부로 나누는데, 아래의 수식을 이용하여 매우 큰 실수까지도 표현할 수 있다.</p>
+<blockquote>
+<div><p><strong><span class="math notranslate nohighlight">\( ±(1.가수부)×2^{(지수부-127)} \)</span></strong></p>
+</div></blockquote>
+<p>실수형(부동소수점) 데이터 표기법</p>
+<p>컴퓨터에서 표준화된 <strong>실수형 데이터 표기법</strong>은 크게 두 가지가 있다.</p>
+<p>첫 번째는 0.12, 1.12345678 등과 같이 우리가 흔히 아는 <strong>소수점 표현 방식</strong>이다.
+실수의 경우 표현할 수 있는 유효한 자리수의 한계가 존재한다. 파이썬에서의 소수점 표현 방식의 유효한 자리수의 한계는 소수점 16자리이다.</p>
+<ul class="simple">
+<li><p>소수점 표현 방식의 유효한 자리수 한계를 확인해보자. 소수점 17자리에서 반올림되어 소수점 16자리까지 표현되는 것을 확인할 수 있다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mf">1.12345678901234567890123456789</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1234567890123457
+</pre></div>
+</div>
+</div>
+</div>
+<p>두 번째는 <strong>지수 표현 방식</strong>이다. 지수(Exponential)는 로마자 <em>E</em> 또는 <em>e</em>로 표기하는데 과학이나 공학에서 아주 큰 숫자를 간단하게 표기할 때 사용하며, 의미는 10^이다.
+예를들어, 지수 표현 방식으로 1.23e+5은 <span class="math notranslate nohighlight">\(1.23 * 10^5\)</span>이며, 123000.0과 같다. 1.23e-4는 <span class="math notranslate nohighlight">\(1.23 * 10^{-4}\)</span>이며 0.000123과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">1.23e+5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>123000.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">1.23e-4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.000123
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>지수 표현 방식도 유효한 자리수의 한계가 있다. 예를 들어, <span class="math notranslate nohighlight">\(1.23 * 10^{308}\)</span>은 지수표현 방식으로 표현이 가능하다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(1.23 * 10^{309}\)</span>의 경우 지수 표현 방식에서 유효한 자리수의 한계를 넘어가서 <strong>inf</strong>(infinity)로 나온다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">1.23e+308</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.23e+308
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">1.23e+309</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inf
+</pre></div>
+</div>
+</div>
+</div>
+<div class="info admonition">
+<p class="admonition-title">부동소수점 방식의 한계  </p>
+<p>부동 소수점 방식은 유효한 자리수의 한계로 실수를 표현하는데 오차가 발생한다. 그 이유는 위에서 언급한 수식때문이다. 이 수식을 사용하면 표현할 수 있는 범위는 늘어나지만, 10진수를 정확하게 표현할 수는 없게 된다.</p>
+<p>예를 들어, 0.1 + 0.2를 계산하면 0.30000000000000004으로 0.3과 같은지를 확인하면 False가 나온다.</p>
+<p>컴퓨터에서는 숫자를 비트로 표현하는데 예를 들어, 1부터 10까지 정수는 10개지만 실수는 무한히 많다. 무수히 많은 실수를 유한개의 비트로 정확하게 표현할 수가 없다. 따라서 실수는 유한개의 비트를 사용하여 근사치를 표현한다. 즉, 0.1과 0.2는 이진 부동소수점 표현에서 무한 소수가 되어 근사값으로 저장되며 0.30000000000000004와 같은 근사값으로 나온다.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">+</span><span class="mf">0.2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.30000000000000004
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">==</span> <span class="mf">0.3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="info admonition">
+<p class="admonition-title">➕엡실론 판단법  </p>
+<ul class="simple">
+<li><p>실수를 표현하는데 오차가 발생할 수 있는데 금융, 회계 등 정확한 계산이 필요한 경우에는 소수점을 정확하게 표현해야 한다. 파이썬에서는 다음을 이용하여 부동소수점 문제를 정확하게 표현할 수 있다.</p>
+<ul>
+<li><p>연산한 값과 비교할 값의 차이의 절대값을 구한 뒤 sys.float_info.epsilon보다 작거나 같으면 동일값으로 판단한다.</p></li>
+<li><p>두 실수가 같은지 판단하기 위해 isclose()함수도 제공하고 있다.</p></li>
+<li><p>Decimal은 소수점을 정확하게 표현하기 위해 사용하는 Python 자료형이다.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## 1</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mf">0.3</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)</span>
+
+<span class="c1">## 2</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">))</span>
+
+<span class="c1">## 3</span>
+<span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0.1&#39;</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;0.2&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+True
+0.3
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h4>산술 연산자<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h4>
+<p>정수형, 실수형 데이터는 다음과 같은 산술연산자를 사용하여 연산이 가능하다.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>연산 기호</p></th>
+<th class="text-left head"><p>의미</p></th>
+<th class="text-center head"><p>예시</p></th>
+<th class="text-center head"><p>실행 결과</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td class="text-left"><p>덧셈(Addition)</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">2</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td class="text-left"><p>뺄셈(Subtraction)</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">2.0</span> <span class="pre">-</span> <span class="pre">2.0</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td class="text-left"><p>곱셈(Multiplication)</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">*</span> <span class="pre">3</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">6</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+<td class="text-left"><p>나눗셈(Division)</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">6</span> <span class="pre">/</span> <span class="pre">3</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">2.0</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">//</span></code></p></td>
+<td class="text-left"><p>버림나눗셈,몫(Floor division)</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">//</span> <span class="pre">2</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">5</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<td class="text-left"><p>나머지(Remainder)</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">%</span> <span class="pre">2</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
+<td class="text-left"><p>제곱(Square)</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">**</span> <span class="pre">3</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">8</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="warning admonition">
+<p class="admonition-title">주의</p>
+<p>파이썬에서는 대괄호[ ], 중괄호{ }가 특정 의미를 갖고 있으므로 수식을 묶을 때에는 소괄호( )만 사용할 수 있다.</p>
+<p>또한 제곱연산자의 경우 ^로 표기하지 않도록 주의하자.</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h4>복합 연산자<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h4>
+<p>복합 연산자는 산술연산을 좀 더 축약하여 표현할 수 있는 방법이다.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>연산 기호</p></th>
+<th class="text-left head"><p>의미</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">a+=b</span></code></p></td>
+<td class="text-left"><p>a에 b를 더해서 a에 저장</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">a-=b</span></code></p></td>
+<td class="text-left"><p>a에서 b를 빼서 a에 저장</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">a*=b</span></code></p></td>
+<td class="text-left"><p>a에 b를 곱해 a에 저장</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">a/=b</span></code></p></td>
+<td class="text-left"><p>a 나누기 b한 결과를 a에 저장</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">a//=b</span></code></p></td>
+<td class="text-left"><p>a 나누기 b한 몫을 a에 저장</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">a%=b</span></code></p></td>
+<td class="text-left"><p>a 나누기 b한 나머지를 a에 저장</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">a**=b</span></code></p></td>
+<td class="text-left"><p>a에 b 제곱한 결과를 a에 저장</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>문자열 데이터<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<div class="section" id="id8">
+<h4>문자열 데이터 표현<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h4>
+<p>문자열은 텍스트의 묶음으로 <strong>홑 따옴표, 쌍 따옴표, 트리플 따옴표</strong>로 묶어준다. 즉 코드에서 이들 기호를 만나면 문자열의 시작 또는 끝을 나타내는 기호로 인식한다. 문자열이 한줄인 경우에는 홑 따옴표, 쌍 따옴표, 트리플 따옴표 구분없이 사용 가능하다. 문자열이 여러줄인 경우, 이를 멀티라인 스트링(multi-line string)이라 부르는데, 이때에는 트리플 따옴표만 사용 가능하다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;파이썬은 재밌어&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;안녕</span>
+<span class="s2">반가워</span>
+<span class="s2">파이썬</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hello
+Hello World
+파이썬은 재밌어
+안녕
+반가워
+파이썬
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>문자열은 문자뿐만 아니라 공백, 숫자, 특수문자를 포함할 수 있다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;7 apples, 14 oranges, 3 lemons&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;10%2&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;2*6=12&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7 apples, 14 oranges, 3 lemons
+10%2
+2*6=12
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>홑따옴표(‘)나 쌍따옴표(“)기호를 출력해야 할 때가 있다. 이럴때는 상반된 기호로 써준다.</p></li>
+<li><p>홑따옴표(‘)나 쌍따옴표(“)기호가 모두 들어가 있을 때에는 고민할 필요없이 멀티라인 스트링으로 써준다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;그녀는 &quot;블랙홀&quot;이라고 말했다.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;그녀는 &#39;블랙홀&#39;이라고 생각했어!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;그녀는 &#39;블랙홀&#39;을 생각하면서 &quot;충치가 깊네요&quot; 라고 말했다.&#39;&#39;&#39;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>그녀는 &quot;블랙홀&quot;이라고 말했다.
+그녀는 &#39;블랙홀&#39;이라고 생각했어!
+그녀는 &#39;블랙홀&#39;을 생각하면서 &quot;충치가 깊네요&quot; 라고 말했다.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="escape-characters">
+<h4>Escape characters<a class="headerlink" href="#escape-characters" title="Permalink to this headline">#</a></h4>
+<p>이스케이프 문자(Escape Character)는 역슬래시(<code class="docutils literal notranslate"><span class="pre">\</span></code>)와 특정 문자를 결합한 것으로 <code class="docutils literal notranslate"><span class="pre">\</span></code> 다음에 나오는 문자가 특수 기능을 가지고 있는 문자임을 알리기 위해 사용한다.
+한글글꼴에서는 <code class="docutils literal notranslate"><span class="pre">\</span></code>대신에 통화기호(₩)로 표시된다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">\n</span></code>: 줄바꿈 기능</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\t</span></code>: 탭 기능</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\'</span></code>: 홑 따옴표 문자 표현</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\&quot;</span></code>: 쌍 따옴표 문자 표현</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\\</span></code>: 역슬래시 문자</p></li>
+<li><p>… 등이 있다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;그녀는 </span><span class="se">\&#39;</span><span class="s1">블랙홀</span><span class="se">\&#39;</span><span class="s1">을 생각하면서 </span><span class="se">\n</span><span class="s1"> </span><span class="se">\&quot;</span><span class="s1">충치가 깊네요</span><span class="se">\&quot;</span><span class="s1"> </span><span class="se">\t</span><span class="s1"> 라고 말했다. &#39;&#39;&#39;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>그녀는 &#39;블랙홀&#39;을 생각하면서 
+ &quot;충치가 깊네요&quot; 	 라고 말했다. 
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>한줄의 문자열인데 길어서 일부러 줄을 바꾸고 싶을 때는 역슬래시(\) 기호를 넣어준다. 이는 주로 문자열의 길이가 화면을 넘어갈 때 가독성을 위해 사용한다. 코드에서 줄바꿈이 있는 것과는 달리 실행 결과는 줄바꿈 없이 한 줄로 출력된다는 것이 멀티라인 스트링과 다르다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;토트넘 홋스퍼의 손흥민이 19일(현지시간) 영국 런던의 토트넘 홋스퍼 스타디움에서 </span><span class="se">\</span>
+<span class="s1">열린 2022~23시즌 잉글랜드 프리미어리그(EPL) 24라운드 웨스트햄 유나이티드와의 경기 후반 </span><span class="se">\</span>
+<span class="s1">27분 해리 케인의 도움으로 팀의 두 번째 골(리그 5호)을 넣고 있다. 손흥민은 후반 교체 출전해 </span><span class="se">\</span>
+<span class="s1">4분 만에 득점포를 가동했으며 토트넘은 2-0으로 승리하며 4위를 탈환했다.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>토트넘 홋스퍼의 손흥민이 19일(현지시간) 영국 런던의 토트넘 홋스퍼 스타디움에서 열린 2022~23시즌 잉글랜드 프리미어리그(EPL) 24라운드 웨스트햄 유나이티드와의 경기 후반 27분 해리 케인의 도움으로 팀의 두 번째 골(리그 5호)을 넣고 있다. 손흥민은 후반 교체 출전해 4분 만에 득점포를 가동했으며 토트넘은 2-0으로 승리하며 4위를 탈환했다.
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>이스케이프 문자앞에 \를 한번 더 써주면 특수기능이 해제되면서 문자열 자체로 인식한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;충치가 </span><span class="se">\\</span><span class="s1">n 깊네요&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>충치가 \n 깊네요
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="f-string">
+<h4>f-string<a class="headerlink" href="#f-string" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>f-string은 문자열 포맷팅(string formatting)에 사용하는 기능으로 문자열 보간(string interpolation)기능 중에 하나이다.</p></li>
+<li><p>문자열 앞에 f를 붙이면 변수, 수식, 함수에 해당되는 값을 유동적으로 문자열에 넣어서 문자열을 만들 수 있다. 이때 변수, 수식, 함수를 중괄호{ }로 묶어준다.</p></li>
+<li><p>f-string은 주로 print()함수와 함께 많이 사용된다. f-string과 함께 사용하면 띄어쓰기, 데이터타입 등을 고민 할 필요없이 수월하게 출력할 수 있다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;민지&quot;</span>
+<span class="n">age</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">는 </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s1">살이야&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>민지는 20살이야
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Five plus ten is </span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="si">}</span><span class="s1"> and not </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Five plus ten is 15 and not 30.
+</pre></div>
+</div>
+</div>
+</div>
+<p>여기를 클릭하면 <a class="reference external" href="https://haesunbyun.github.io/Core-Computing-Ver.2/CC_chapter1-1.html">문자열 포맷팅(string formatting)</a>에 대한 더 자세한 내용을 학습할 수 있다.</p>
+</div>
+<div class="section" id="id9">
+<h4>문자열 연산자<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h4>
+<p>문자열도 +, * 연산자를 사용하는 것이 가능하다. 단, 문자열에서 +연산자는 문자열의 나열을 의미하며, *연산자는 문자열의 반복을 의미한다.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>연산 기호</p></th>
+<th class="text-left head"><p>의미</p></th>
+<th class="text-center head"><p>예시</p></th>
+<th class="text-center head"><p>실행 결과</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td class="text-left"><p>덧셈(Addition)</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">'hello'</span> <span class="pre">+</span> <span class="pre">'world'</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">helloworld</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td class="text-left"><p>곱셈(Multiplication)</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">'hello'</span> <span class="pre">*</span> <span class="pre">3</span></code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">hellohellohello</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>그러나 문자와 숫자간 덧셈(+) 연산은 불가능하다. 에러가 나온다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;hello!&#39;</span> <span class="o">+</span> <span class="mi">5</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="variable">
+<h2>변수(Variable)<a class="headerlink" href="#variable" title="Permalink to this headline">#</a></h2>
+<p>숫자가 숫자로만 존재하거나, 문자가 문자로만 남아있다면 활용성이 떨어진다. 프로그래밍에서는 숫자, 문자 등의 값(value)를 변수에 저장해 놓으면 훨씬 활용성을 높일 수 있다.</p>
+<p><strong>변수</strong>란 값을 저장하기 위한 이름을 가진 저장공간이며, <strong>대입 연산자</strong> 기호인 =를 이용하여 값을 저장한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;반지름 </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s1">의 원의 넓이(S)는, </span><span class="si">{</span><span class="n">S</span><span class="si">}</span><span class="s1">입니다.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>반지름 10의 원의 넓이(S)는, 314.0입니다.
+</pre></div>
+</div>
+</div>
+</div>
+<p>변수는 필요한 만큼 여러개를 만들어 사용할 수 있다. 단 변수명을 지을때는 몇 가지 규칙이 있다.</p>
+<div class="section" id="id10">
+<h3>변수명 짓는 규칙<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>대소문자를 서로 다른 변수로 구별한다.</p></li>
+<li><p>문자, 숫자, _(under bar)로 이루어진다.</p></li>
+<li><p>변수명에 공백이 들어갈 수 없다.</p></li>
+<li><p>숫자로 시작할 수 없다.</p></li>
+<li><p>예약어는 사용할 수 없다.</p></li>
+</ul>
+<p><strong>예약어</strong>란 파이썬에서 내장되어 이미 사용하기로 정의된 키워드를 의미한다. 참고로 아래 코드를 통해 파이썬의 예약어와 개수를 확인해보자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">keyword</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">kwlist</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keyword</span><span class="o">.</span><span class="n">kwlist</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;False&#39;, &#39;None&#39;, &#39;True&#39;, &#39;and&#39;, &#39;as&#39;, &#39;assert&#39;, &#39;async&#39;, &#39;await&#39;, &#39;break&#39;, &#39;class&#39;, &#39;continue&#39;, &#39;def&#39;, &#39;del&#39;, &#39;elif&#39;, &#39;else&#39;, &#39;except&#39;, &#39;finally&#39;, &#39;for&#39;, &#39;from&#39;, &#39;global&#39;, &#39;if&#39;, &#39;import&#39;, &#39;in&#39;, &#39;is&#39;, &#39;lambda&#39;, &#39;nonlocal&#39;, &#39;not&#39;, &#39;or&#39;, &#39;pass&#39;, &#39;raise&#39;, &#39;return&#39;, &#39;try&#39;, &#39;while&#39;, &#39;with&#39;, &#39;yield&#39;]
+35
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vaild names</p>
+<pre><code>myvar = "Byun"
+my_var = "Byun"
+_my_var = "Byun"
+myVar = "Byun"
+MYVAR = "Byun"
+myvar2 = "Byun"
+</code></pre>
+<p>Invaild names</p>
+<pre><code>2myvar = "Byun" #숫자로 시작할 수 없다.
+my-var = "Byun" #_이외의 특수문자가 들어갈 수 없다.
+my var = "Byun" # 공백이 들어갈 수 없다.
+if = "Byun" #예약어는 사용할 수 없다.
+</code></pre><p>파이썬에는 미리 기능을 만들어 놓은 내장함수들, 클래스들이 매우 많다.(예, print(), input(), str(), int(), …)</p>
+<ul class="simple">
+<li><p>내장함수명이나 클래스명을 변수명으로 사용하면, 예를들어</p>
+<ul>
+<li><p>print=’hello’</p></li>
+<li><p>input=input()</p></li>
+<li><p>str=’hello’
+str(42) 등과 같이 작성하면 기존에 정의된 기능이 동작하지 않게 된다.</p></li>
+</ul>
+</li>
+</ul>
+<div class="warning admonition">
+<p class="admonition-title">내장함수명, 클래스명을 변수명으로 만들어 실행시켰다면!</p>
+<p>내장함수명, 클래스명을 변수명 만들어 실행시켰다면 당황하지 말고,</p>
+<ul class="simple">
+<li><p>메뉴 <code class="docutils literal notranslate"><span class="pre">런타임</span> <span class="pre">&gt;&gt;</span> <span class="pre">세션</span> <span class="pre">다시</span> <span class="pre">시작</span></code>을 하면 된다.</p></li>
+<li><p>세션 다시 시작은 <code class="docutils literal notranslate"><span class="pre">모든</span> <span class="pre">로컬</span> <span class="pre">변수를</span> <span class="pre">포함한</span> <span class="pre">런타임</span> <span class="pre">상태가</span> <span class="pre">삭제됩니다.</span></code>라는 경고 문구와 같이 현재 만들어 놓은 변수 등을 초기화 시킨다는 의미이다.</p></li>
+<li><p>따라서 올바르지 않은 변수명도 초기화 되어 기존의 내장함수나 클래스의 기능이 원래대로 복구된다.</p></li>
+<li><p>문제를 일으킨 변수명은 바로 삭제하는 것이 좋다.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id11">
+<h3>변수에 데이터 저장하기<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<p>변수에 값을 저장해보자. 이를 프로그래밍에서는 변수에 값을 <strong>할당한다</strong>라고 말한다.
+변수에 값을 할당하려면 대입연산자 기호인 =를 기준으로 왼쪽에는 변수명, 오른쪽에는 값 또는 표현식을 적는다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">won</span> <span class="o">=</span> <span class="s1">&#39;원!&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">num</span><span class="si">}{</span><span class="n">won</span><span class="si">}</span><span class="s1"> 입니다.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000원! 입니다.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">변수와 객체(object)  </p>
+<p>변수에 값을 저장하면 실제 컴퓨터에서는 어떻게 동작할까?
+예를들어, 변수 a에 100을 저장했다면 100이라는 값이 메모리에 할당되는데 이를 <strong>객체</strong>라고 한다.</p>
+<p><strong>객체</strong>는 id, value, type을 갖고 있다. <strong>id</strong>는 메모리상에서의 객체의 주소이며, <strong>value</strong>는 메모리에 저장된 객체가 가지고 있는 값, <strong>type</strong>은 객체가 지원하는 연산을 정의하고 있는 객체의 타입을 의미한다.
+그리고 변수가 그 객체를 가르킨다.</p>
+<p>변수 역시 메모리의 어딘가에 할당되는 공간인데, 그 공간에는 객체의 메모리 주소가 저장된다. 즉, 변수 a의 공간에는 100이 저장되어 있는 객체의 메모리 주소가 저장되어 있고, 변수를 통해 실제 객체에 접근할 수 있게 된다.</p>
+</div>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/variable.png" width=500></div>
+</div>
+<div class="section" id="id12">
+<h3>다수의 변수 정의 및 활용<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>변수 여러개를 한 줄에 정의하고 싶다면,</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10 20
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>변수에 저장된 데이터를 동시에 교환(swap)하려면,</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">y</span><span class="o">=</span><span class="mi">20</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span><span class="n">x</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20 10
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>변수 여러개를 동일한 값으로 초기화를 하려면,</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="n">b</span><span class="o">=</span><span class="n">c</span><span class="o">=</span><span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 0 0
+0 0 0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">주의</p>
+<p>이와 같이 작성하면 에러가 난다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<ul class="simple">
+<li><p>파이썬에서 * 기호는 여러가지 의미로 쓰인다.
+수식에서 * 기호는 곱셈연산자 이지만 변수앞에 *를 붙이면 가변적인 갯수를 가진 변수로 정의한다는 의미이다.</p></li>
+<li><p>a,b,*c=1,2,3,4,5 이 코드에서 a=1, b=2, 그리고 남은 데이터 3,4,5는 c에 리스트로 저장된다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="o">*</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+[3, 4, 5]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>print(c)는 리스트형태로 출력 해주지만 print(*c)는 리스트변수 안의 아이템들만 출력해준다. 리스트안의 값만 출력할때 매우 유용하다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 4, 5]
+3 4 5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">주의</p>
+<p>단, 단독으로 변수를 정의할 때 변수앞에 *를 붙여서 정의할 수는 없다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">x</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">300</span>
+<span class="o">---------------------------------------------------------------------------</span>
+ <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-1-004397f380fb&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span>
+    <span class="o">*</span><span class="n">x</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">300</span>
+    <span class="o">^</span>
+<span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">starred</span> <span class="n">assignment</span> <span class="n">target</span> <span class="n">must</span> <span class="n">be</span> <span class="ow">in</span> <span class="n">a</span> <span class="nb">list</span> <span class="ow">or</span> <span class="nb">tuple</span>
+</pre></div>
+</div>
+<p>또한, f-string에서 *를 변수앞에 붙여서 데이터만 출력할 수 없다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="o">*</span><span class="n">c</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-7-f994aa4d5bc2&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="o">*</span><span class="n">c</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+     <span class="o">^</span>
+<span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">f</span><span class="o">-</span><span class="n">string</span><span class="p">:</span> <span class="n">cannot</span> <span class="n">use</span> <span class="n">starred</span> <span class="n">expression</span> <span class="n">here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="print">
+<h2>print() 함수<a class="headerlink" href="#print" title="Permalink to this headline">#</a></h2>
+<p>print()는 문자열, 변수, 연산의 결과를 표준출력장치인 화면에 출력하는 함수이다.</p>
+<ul class="simple">
+<li><p>출력하기 위해서는 출력하고자 하는 내용을 print() 함수의 괄호안에 넣어주면 된다.</p></li>
+<li><p>print() 괄호안에 아무런 내용없다면 한 줄 공백을 출력한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">5</span><span class="o">+</span><span class="mi">8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">50</span><span class="o">/</span><span class="mi">9</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello! &#39;</span> <span class="o">+</span> <span class="s1">&#39;sunny&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello! &#39;&#39;sunny&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;무야호~&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;무야</span><span class="se">\</span>
+<span class="s1">호~&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="p">)</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;sunny&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello! &#39;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello! &#39;</span> <span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;Hello world</span>
+<span class="s1">How are you?</span>
+<span class="s1">Nice to meet you&#39;&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>123
+hello
+13
+5.555555555555555
+hello! sunny
+hello! sunny
+무야호~
+무야호~
+
+sunny
+hello! sunny
+hello!  sunny
+Hello world
+How are you?
+Nice to meet you
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Tip</p>
+<ul class="simple">
+<li><p>소수점 이하 원하는 자릿수까지만 표현하기 위한 두 가지 방법을 소개한다.</p>
+<ul>
+<li><p>round(value, <em>n</em>), <em>n</em>은 자릿수이다. <em>n</em>을 생략하면 반올림하여 정수로 출력한다.</p></li>
+<li><p>f’{value:.<em>n</em>f}’, <em>n</em>은 자릿수이며 생략할 수 없다. 정수로 출력하고 싶다면 <em>n</em>자리에 0을 넣는다.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;소수점 3자리까지 출력: &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="mf">3.141592</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;정수로 출력:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="mf">3.141592</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;정수로 출력:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="mf">3.541592</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>소수점 3자리까지 출력:  3.142
+정수로 출력: 3
+정수로 출력: 4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;소수점 3자리까지 출력: </span><span class="si">{</span><span class="mf">3.141592</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;정수로 출력: </span><span class="si">{</span><span class="mf">3.141592</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>소수점 3자리까지 출력: 3.142
+정수로 출력: 3
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>여러개의 결과를 나열하여 출력하려면 콤마(,)로 구분한다. 콤마는 문자열과 숫자를 동시에 출력할 때 매우 유용하다. print() 괄호안에 콤마가 있으면 콤마 자리마다 기본으로 한칸 띄어쓰기(공백)가 된다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;내 나이는&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;살이야&#39;</span><span class="p">)</span>
+<span class="n">age</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;10년 후의 나이는&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;살이야&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>내 나이는 20 살이야
+10년 후의 나이는 30 살이야
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>한칸 띄어쓰기를 없애고 싶으면 옵션 sep을 변경하면 된다.</p></li>
+<li><p>sep는 seperation의 약자로 결과를 분리시킨다는 의미이다.</p></li>
+<li><p>한칸 띄어쓰기 대신에 다른 구분자를 넣을때도 sep 옵션을 사용할 수 있다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;내 나이는&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;살이야&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">2323</span><span class="p">,</span><span class="mi">18549</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;010&#39;</span><span class="p">,</span><span class="s1">&#39;1234&#39;</span><span class="p">,</span><span class="s1">&#39;5678&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>내 나이는20살이야
+2323-18549
+010-1234-5678
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>print() 함수는 줄바꿈(\n) 기능이 포함되어 있다. 줄바꿈 기능을 바꾸고 싶다면 옵션 end를 변경하면 된다. \t는 일정한 간격으로 분리해주는 tab 기능이다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;나&#39;</span><span class="p">,</span><span class="s1">&#39;너&#39;</span><span class="p">,</span><span class="s1">&#39;우리&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;나&#39;</span><span class="p">,</span><span class="s1">&#39;너&#39;</span><span class="p">,</span><span class="s1">&#39;우리&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;^^;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>나
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 너 우리	나 너 우리^^;
+</pre></div>
+</div>
+</div>
+</div>
+<p>➕ 출력결과를 파일에 저장할 수도 있다. 형식은 아래와 같다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(value,</span> <span class="pre">file=open(파일명,</span> <span class="pre">모드))</span></code></p>
+<ul class="simple">
+<li><p>파일명: 데이터를 저장할 파일 이름으로 문자열로 준다.</p></li>
+<li><p>모드: 파일 사용 방식을 문자열로 지정한다.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">r</span></code>: 읽기 모드. 파일의 내용을 읽기 위해 파일을 오픈한다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">w</span></code>: 쓰기 모드. 파일에 쓰기 위해 파일을 오픈한다. 이때 파일이 존재하지 않으면 새로운 파일이 생성되며, 이미 같은 이름의 파일이 존재하면 그 파일의 내용은 모두 지워진 후 오픈된다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code>: 추가 모드. 기존 파일에 내용을 덧붙이기 위해 오픈한다. 기존 파일의 내용을 삭제하지 않고 새로운 내용을 마지막에 추가하고자 할때 사용한다.</p></li>
+</ul>
+</li>
+</ul>
+<p>하나의 예를 들면, 아래와 같이 작성할 수 있다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;코딩은 즐거워&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;file.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="input">
+<h2>input() 함수<a class="headerlink" href="#input" title="Permalink to this headline">#</a></h2>
+<p>input() 함수는 프로그램 실행 중에 표준입력장치인 키보드로부터 데이터를 입력받는 함수이다. 프로그램 실행중에 input() 코드를 만나면 그 아래 입력박스가 생기면서 커서가 깜박이며 입력을 기다린다.
+그 박스안에 데이터를 입력하고 엔터를 치면된다.</p>
+<p>입력 받은 데이터는 일반적으로 변수에 저장한다.
+만약, 변수에 저장없이 input()만 있다면 데이터는 입력 받지만 저장되지는 않는다.</p>
+<p>아래의 코드를 실행시켜보자.</p>
+<ul class="simple">
+<li><p>‘Input your name.’을 출력한다.</p></li>
+<li><p>입력으로 ‘sunny’를 입력하면 변수 myName에 ‘sunny’가 저장된다.</p></li>
+<li><p>Welcome, sunny.가 출력된다.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Input your name.&#39;</span><span class="p">)</span>
+<span class="n">myName</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Welcome, </span><span class="si">{</span><span class="n">myName</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>사용자에게 무엇을 입력받을 때에는 다짜고짜 입력하라고 하지말고 무엇을 입력할것인지를 알려주는 것이 좋다. 즉, 질문을 주고 입력을 받아야 한다. 질문을 넣어주려면 input() 괄호안에 넣어주면 된다. 이때 입력박스는 질문 오른쪽에 생긴다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">myName</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Input your name.&#39;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Welcome, </span><span class="si">{</span><span class="n">myName</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>input() 함수에는 절대 잊어서는 안될 중요한 특징 하나가 있다. <font color='red'>입력받은 모든 데이터를 문자열로 처리된다는 것이다.</font> 숫자를 입력해도 문자열로 처리된다. 아래 코드에서 변수 age에는 문자열이 들어 있으므로 문자열과 변수를 더해도 에러가 발생하지 않는다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;How old are you? &#39;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;You are &#39;</span>  <span class="o">+</span> <span class="n">age</span> <span class="o">+</span> <span class="s1">&#39; years old.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>How old are you? 20
+You are 20 years old.
+</pre></div>
+</div>
+<div class="section" id="split">
+<h3>.split()<a class="headerlink" href="#split" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>문자열을 괄호안의 ‘분리기준’으로 분리하며, 괄호안에 분리기준이 없으면 공백을 기준으로 분리한다.</p></li>
+<li><p>분리되면서 분리기준은 제거된다.</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>사용 방법</p></th>
+<th class="text-left head"><p>의미</p></th>
+<th class="text-left head"><p>예시</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"> <span class="pre">문자열.split()</span></code></p></td>
+<td class="text-left"><p>공백(‘ ‘)을 기준으로 문자열을 나눠 리스트를 생성</p></td>
+<td class="text-left"><p>‘1 2 3 4 5’.split() → [‘1’, ‘2’, ‘3’, ‘4’, ‘5’]</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">문자열.split(분리기준)</span></code></p></td>
+<td class="text-left"><p>분리기준를 기준으로 문자열을 나눠 리스트를 생성</p></td>
+<td class="text-left"><p>‘1:2:3:4:5’.split(‘:’) → [‘1’, ‘2’, ‘3’, ‘4’, ‘5’]</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">item</span> <span class="o">=</span> <span class="s1">&#39;바나나, 딸기, 복숭아&#39;</span>
+<span class="n">fruit</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;바나나&#39;, &#39;딸기&#39;, &#39;복숭아&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;hello&#39;, &#39;world&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>입력값으로 바나나 딸기 복숭아를 공백으로 구분하여 넣어본 후, split() 해보자.</p></li>
+<li><p>기준이 되는 공백은 제거되면서 그 결과는 리스트로 만들어진다.</p></li>
+</ul>
+<p>Input Sample</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">바나나</span> <span class="n">딸기</span> <span class="n">복숭아</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruit</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">fruit</span><span class="p">))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>입력값으로 바나나, 딸기, 복숭아를 컴마와 공백으로 구분하여 넣어보자.</p></li>
+<li><p>기준이 되는 컴마와 공백은 제거되면서 이 또한 결과는 리스트로 만들어진다.</p></li>
+</ul>
+<p>Input Sample</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">바나나</span><span class="p">,</span> <span class="n">딸기</span><span class="p">,</span> <span class="n">복숭아</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruit</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="join">
+<h3>.join()<a class="headerlink" href="#join" title="Permalink to this headline">#</a></h3>
+<p>join() 메서드는 문자열을 합치는 메서드이다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;문자열&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">반복가능한</span> <span class="n">객체</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">}</span>
+<span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;^&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a^b^c
+a b c
+a b c
+c b a
+a b
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ast-literal-eval">
+<h3>➕ast.literal_eval()<a class="headerlink" href="#ast-literal-eval" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>**ast 모듈(Abstract Syntax Trees)**은 문법을 구조화 시켜주는 모듈이며, **literal_eval()**은 문자열로 표현된 표현식들을 일괄로 읽어 들여 원래의 파이썬 데이터 타입으로 결과를 반환하는 함수이다.</p></li>
+<li><p>입력값이 list,dict, set, tuple 모양의 문자열인 경우에는 ast 모듈의 literal_eval() 함수를 사용하면 된다.</p></li>
+</ul>
+<ul class="simple">
+<li><p>먼저, import로 ast 모듈을 불러와야 한다.</p></li>
+<li><p>현재 파일내에서 ast 모듈을 불러왔다면 다시 부를 필요는 없다.</p></li>
+<li><p>입력값으로 [“바나나”, “딸기”, “복숭아”]와 같이 리스트 데이터를 넣어보자.</p></li>
+<li><p>리스트 데이터를 넣었지만 input() 함수에 의해서 리스트 모양의 문자열로 처리된다.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ast</span>
+<span class="n">fruit_dict</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruit_dict</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">fruit_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>입력값으로 {“바나나”:9, “딸기”:10, “복숭아”: 15}와 같이 딕셔너리 데이터를 넣어보자.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruit_dict</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruit_dict</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">fruit_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>입력값으로 (“바나나”, “딸기”, “복숭아”)와 같이 튜플 데이터를 넣어보자.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruit_dict</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruit_dict</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">fruit_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>입력값으로 {“바나나”, “딸기”, “복숭아”}와 같이 set 데이터를 넣어보자.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruit_dict</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruit_dict</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">fruit_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>이와 같이 ast.literal_eval()은 문자열로 표현된 표현식들을 일괄로 읽어 들여 원래의 Python 데이터 타입으로 결과를 반환하는 아주 유용하고 강력한 기능을 갖고 있다.</p></li>
+<li><p>그렇다면 문자열로 표현된 수식도 계산이 가능할까?</p></li>
+</ul>
+<ul class="simple">
+<li><p>입력값으로 (2 * 5) / 2와 같이 수식을 넣어보자.</p></li>
+<li><p>에러가 나왔을 것이다. literal_eval()은 수식모양의 문자열을 수식으로 변환하지는 못한다.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>수식모양의 문자열을 수식으로 인식하게 하는 함수로 eval()이 있다.</p>
+<ul class="simple">
+<li><p>입력값으로 (2 * 5) / 2를 넣어보자.</p></li>
+<li><p>문자열을 수식으로 인식하여 계산 결과를 반환해 준다.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>eval()함수는 문자열로 된 함수도 실행할 만큼 매우 강력하다.</p></li>
+<li><p>입력값으로 최대값을 구하는 max([1, 2, 3, 4])를  넣어보자.</p></li>
+<li><p>이럴 수가!! 최대값이 출력된다.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">주의</p>
+<ul class="simple">
+<li><p>eval() 함수를 사용하는 것은 매우 강력하지만 한편으로는 매우 위험하다.</p></li>
+<li><p>악의적인 사용자가 시스템에 손상을 주는 함수호출을 입력값으로 넣는다던지 고의적으로 함수를 실행시킨다던지 등 보안상 문제를 일으킬 수 있으므로 신중히 사용하기 바란다.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="data-type">
+<h2>Data type 확인과 형 변환<a class="headerlink" href="#data-type" title="Permalink to this headline">#</a></h2>
+<p><strong>형 변환</strong>은 데이터의 타입을 변환하는 것으로, 형 변환이 필요한 이유는 데이터가 어떤 타입이냐에 따라 지원하는 연산도 다르기 때문이다. 예를 들어, input() 함수로 입력 받은 데이터는 문자열로 처리되는데 입력 받은 데이터와 숫자 연산을 하려면 데이터의  타입을 정수형 또는 실수형으로 변환해주어야 한다.</p>
+<p>입력받은 문자열을 원하는 데이터 타입으로 변경하는 방법을 배워보자.</p>
+<ul class="simple">
+<li><p>먼저 데이터의 타입을 확인해보자. type()함수는 데이터의 타입을 확인할 때 사용한다.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">height</span> <span class="o">=</span> <span class="mi">180</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
+<span class="nb">int</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">height</span> <span class="o">=</span> <span class="s1">&#39;180&#39;</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
+<span class="nb">str</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">height</span> <span class="o">=</span> <span class="mf">180.3</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
+<span class="nb">float</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>int(): 정수로 변환해주는 함수이다.</p></li>
+<li><p>그러나 int()함수는 정수모양이 아닌 문자열은 변환하지 못한다. 예를 들어, ‘3.5’나 ‘forty-two’를 변환하려고 하면 에러를 발생시킨다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">3.5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="s1">&#39;42&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+42
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>입력을 받은 값에 대해서 바로 형 변환을 하려면 int(input(‘체온을 입력하세요. ‘))와 같이 함수를 중첩하여 쓰면된다.</p></li>
+<li><p>아래 예제의 경우, 체온으로 정수 35를 입력했다면 정상적으로 실행된다.</p></li>
+<li><p>그러나 실수값 36.5를 입력했다면 input() 함수에 의해 실수값은 문자열 ‘36.5’가 되어 int()함수에 의해 에러가 발생한다.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;체온을 입력하세요. &#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>float(): 실수형으로 변환해주는 함수이다. int()와 달리 제약이 없다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="mi">42</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="mf">3.5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;3&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;3.6&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>42.0
+3.5
+3.0
+3.6
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>str(): 문자열로 변환해주는 함수이다. 이 또한 제약이 없다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">42</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mf">3.5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39;42&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39;3.5&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>42
+3.5
+42
+3.5
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="comment">
+<h2>comment<a class="headerlink" href="#comment" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><strong>주석</strong>은 프로그램 또는 소스코드의 부연 설명이다.</p>
+<ol class="arabic simple">
+<li><p>소스코드 한 줄을 주석으로 처리하기 위해서는 #(pound) 기호를 문장의 맨 앞에 붙인다.</p></li>
+<li><p>#기호를 문장의 중간에 붙이면 # 기호부터 그 줄의 마지막까지 주석으로 처리된다.</p></li>
+<li><p>주석으로 처리된 코드는 프로그램의 실행에 전혀 영향을 미치지 않으므로 소스코드의 일부를 실행시키고 싶지 않을 때도 사용한다.</p></li>
+<li><p>여러줄을 한꺼번에 주석처리 하려면 주석처리 할 여러 줄을 블럭설정한 후(드래그) <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">/</span></code>를 누른다. **ctrl + /**를 한번 더 누르면 주석이 해제된다.
+참고로 ctrl + a를 누르면 현재 셀의 모든 코드를 한꺼번에 블럭설정 할 수 있다.</p></li>
+<li><p>멀티라인 스트링 기호를 써서 여러 줄을 문자열로 묶어 주석처럼 사용하기도 한다.</p></li>
+</ol>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This program says hello and asks for my name.</span>
+<span class="c1"># print(&#39;Hello world!&#39;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Input your name. &#39;</span><span class="p">)</span> <span class="c1"># Ask your name</span>
+
+<span class="c1"># This program says hello and asks for my name.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello world!&#39;</span><span class="p">)</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">print(&#39;Input your name. &#39;)</span>
+<span class="sd">멀티라인 스트링 기호를 써서</span>
+<span class="sd">여러 줄을 주석으로 처리할 수도 있다.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Welcome!!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Input your name. 
+Hello world!
+Welcome!!
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>마무리<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>지금까지 우리는 정수형, 실수형, 문자열 데이터 타입과 이들 데이터 타입에서 사용할 수 있는 주요 연산자를 학습했다.</p></li>
+<li><p>또한 연산자를 활용하여 수식을 표현하는 방법을 배웠다.</p></li>
+<li><p>변수의 개념과 변수를 활용하는 연습을 해보았다.</p></li>
+<li><p>데이터를 출력하는 print()함수와 데이터를 입력받는 input()함수를 알아봤으며, 데이터의 타입을 변환하는 형변환 함수에 대해서 배웠다.</p></li>
+<li><p>ast 모듈의 literal_eval()은 문자열로 표현된 표현식들을 일괄로 읽어 들여 원래의 파이썬 데이터 타입으로 결과를 반환하는 함수이다.</p></li>
+</ul>
+<hr class="docutils" />
+<font color='Grey' size="4">
+F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking with Computers)</font>
+<hr class="docutils" />
+<p>서울대학교 학부대학<br>
+교수 변해선</p>
 </div>
 </div>
 
@@ -467,7 +1744,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Chapter 2. 제어문과 복합자료형</p>
+        <p class="prev-next-title">Chapter 2. 복합자료형과 제어문</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -477,6 +1754,52 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">기본 자료형</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">숫자 데이터</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">정수형 데이터</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">실수형 데이터</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">산술 연산자</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">복합 연산자</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">문자열 데이터</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">문자열 데이터 표현</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escape-characters">Escape characters</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f-string">f-string</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">문자열 연산자</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable">변수(Variable)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">변수명 짓는 규칙</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">변수에 데이터 저장하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">다수의 변수 정의 및 활용</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#print">print() 함수</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input">input() 함수</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#split">.split()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#join">.join()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ast-literal-eval">➕ast.literal_eval()</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-type">Data type 확인과 형 변환</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comment">comment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">마무리</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

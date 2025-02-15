@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 12. 그래프 &#8212; Core Computing_Thinking with Computers</title>
+    <title>Chapter 12. 가중치 그래프 &#8212; Core Computing_Thinking with Computers</title>
   
   
   
@@ -93,11 +93,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'CC_chapter12';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Chapter 13. 가중치 그래프" href="CC_chapter13.html" />
-    <link rel="prev" title="Chapter 11. 트리" href="CC_chapter11.html" />
+    <link rel="next" title="Chapter 13. 알고리즘 설계 기법" href="CC_chapter13.html" />
+    <link rel="prev" title="Chapter 11. 그래프" href="CC_chapter11.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -192,19 +194,20 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter0.html">Chapter 0. 프로그래밍 언어와 파이썬</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter1.html">Chapter 1. 기본자료형과 입출력</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter2.html">Chapter 2. 제어문과 복합자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter2.html">Chapter 2. 복합자료형과 제어문</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter3.html">Chapter 3. 모듈과 함수</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter4.html">Chapter 4. 재귀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter4.html">Chapter 4. 재귀함수</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter5.html">Chapter 5. 클래스와 객체</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter6.html">Chapter 6. 자료구조와 추상화</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter7.html">Chapter 7. 파일입출력과 예외처리</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter8.html">중간고사</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter9.html">Chapter 9. 탐색 알고리즘</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter10.html">Chapter 10. 정렬 알고리즘</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter11.html">Chapter 11. 트리</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 12. 그래프</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter13.html">Chapter 13. 가중치 그래프</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter14.html">Chapter 14. 알고리즘 설계기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter7.html">중간평가</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter8.html">Chapter 8. 알고리즘의 효율성과 탐색</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter9.html">Chapter 9. 정렬 알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter10.html">Chapter 10. 트리</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter11.html">Chapter 11. 그래프</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 12. 가중치 그래프</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter13.html">Chapter 13. 알고리즘 설계 기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter14.html">Chapter 14. 알고리즘 설계 기법 II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter15.html">기말평가</a></li>
 </ul>
 
     </div>
@@ -377,7 +380,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -388,11 +393,46 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Chapter 12. 그래프</h1>
+    <h1>Chapter 12. 가중치 그래프</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mst-minimum-spanning-tree">최소비용 신장트리(MST: minimum spanning tree)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kruskal-s">Kruskal’s 알고리즘</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Kruskal’s 알고리즘 동작 예</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prim-s">Prim’s 알고리즘</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Prim’s 알고리즘 동작 예</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shortest-path">최단경로(shortest path)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dijkstra-s">Dijkstra’s 알고리즘</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Dijkstra’s 알고리즘 동작 예</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bellman-ford">Bellman-Ford 알고리즘</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Bellman-Ford 알고리즘 동작 예</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floyd-warshall">Floyd-Warshall 알고리즘</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Floyd-Warshall 알고리즘 동작 예</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">최단 경로 알고리즘의 주요 차이점 요약</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">마무리</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -402,14 +442,1920 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-12">
-<h1>Chapter 12. 그래프<a class="headerlink" href="#chapter-12" title="Permalink to this headline">#</a></h1>
+  <hr class="docutils" />
+<font color='Blue' size="4">
+F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking with Computers)</font>
+<hr class="docutils" />
+<div class="tex2jax_ignore mathjax_ignore section" id="chapter-12">
+<h1>Chapter 12. 가중치 그래프<a class="headerlink" href="#chapter-12" title="Permalink to this headline">#</a></h1>
 <div class="info admonition">
 <p class="admonition-title">학습목표와 기대효과</p>
 <ul class="simple">
-<li><p>학습목표</p></li>
-<li><p>기대효과</p></li>
+<li><p>학습목표</p>
+<ul>
+<li><p>가중치 그래프에서 최소비용 신장트리를 만들기 위한 크루스칼 알고리즘과 프림 알고리즘을 학습한다.</p></li>
+<li><p>가중치 그래프에서 최단경로를 찾기 위한 다익스트라 알고리즘, 밸만-포드 알고리즘, 플로이드-와샬 알고리즘을 학습한다.</p></li>
 </ul>
+</li>
+<li><p>기대효과</p>
+<ul>
+<li><p>다양한 알고리즘의 이해하고, 복잡한 문제를 그래프 형태로 모델링하고, 주어진 문제에 따라 최적의 알고리즘을 선택할 수 있는 능력을 향상 시킬 수 있다.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p><strong>그래프</strong>는 요소들이 서로 복잡하게 연결되어 있는 관계를 표현하는 자료구조이다. 우리는 지난 수업에서 그래프를 표현하는 방법(인접행렬, 인접리스트)과 그래프를 탐색하는 알고리즘( DFS, BFS)을 학습했다.</p>
+<p>오늘은 가중치 그래프에 대해 알아보고, 최소비용 신장 트리 알고리즘과 최단경로  알고리즘을 학습해본다.</p>
+<ul class="simple">
+<li><p>가중치(Weighted) 그래프: 간선에 가중치가 부여된 그래프로 가중치는 두 정점 사이의 거리, 시간 등이 될 수 있다.</p></li>
+<li><p>가중치 그래프 G = (V, E, w)로 표현된다.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(V(G)\)</span>는 그래프 <span class="math notranslate nohighlight">\(G\)</span>의 정점들의 집합</p></li>
+<li><p><span class="math notranslate nohighlight">\(E(G)\)</span>는 그래프 <span class="math notranslate nohighlight">\(G\)</span>의 간선들의 집합</p></li>
+<li><p><span class="math notranslate nohighlight">\(w(e)\)</span>는 간선 <span class="math notranslate nohighlight">\(e\)</span>의 가중치(weight), 비용(cost), 길이(length)</p></li>
+</ul>
+</li>
+<li><p>경로 p=(<span class="math notranslate nohighlight">\(v_1\)</span>, <span class="math notranslate nohighlight">\(v_2\)</span>, <span class="math notranslate nohighlight">\(v_3\)</span>, …, <span class="math notranslate nohighlight">\(v_k\)</span>)일 때 <span class="math notranslate nohighlight">\(w(p)\)</span>는</p></li>
+</ul>
+<center>
+$w(p) = \displaystyle\sum_{i=1}^{k}{w(v_{i-1}, v_i)}$</center>
+<ul>
+<li><p>가중치 그래프 응용분야</p>
+<ul class="simple">
+<li><p>컴퓨터 네트워크에서 가장 빠른 패킷 경로</p></li>
+</ul>
+</li>
+<li><p>아래 예는 가중치 그래프와 인접 행렬로 표현한 예를 보여준다.</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph26.PNG" width=300></div>
+</li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>A</p></th>
+<th class="head"><p>B</p></th>
+<th class="head"><p>C</p></th>
+<th class="head"><p>D</p></th>
+<th class="head"><p>E</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>A</strong></p></td>
+<td><p>0</p></td>
+<td><p>4</p></td>
+<td><p>2</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>B</strong></p></td>
+<td><p>4</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>10</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>C</strong></p></td>
+<td><p>2</p></td>
+<td><p>5</p></td>
+<td><p>0</p></td>
+<td><p>3</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>D</strong></p></td>
+<td><p>0</p></td>
+<td><p>10</p></td>
+<td><p>3</p></td>
+<td><p>0</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>E</strong></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>7</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="mst-minimum-spanning-tree">
+<h2>최소비용 신장트리(MST: minimum spanning tree)<a class="headerlink" href="#mst-minimum-spanning-tree" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>우리가 앞서 배웠던 트리는 싸이클이 없는 그래프이며,그래프의 모든 정점들을 싸이클없이 연결하는 부분그래프를 신장트리라고 한다.</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>신장트리</strong>(spanning tree)는 그래프내의 모든 정점을 포함하는 트리이다.</p>
+<ul>
+<li><p>사이클이 없어야 하며, 그래프에 있는 n개의 정점을 (n-1)개의 간선으로 연결한다.</p></li>
+<li><p>신장 트리는 깊이 우선이나 너비 우선 탐색 도중에 사용된 간선들만 모으면 된다.</p></li>
+</ul>
+</li>
+<li><p><strong>최소비용 신장트리</strong>(MST: minimum spanning tree)는 가중치가 있는 무향 그래프를 적용하여 모든 정점들을 가장 적은 비용으로 연결하는 신장트리</p>
+<ul>
+<li><p>목적: 전체 연결성을 보장하면서 비용을 최소화하는 것이 중요!!</p></li>
+</ul>
+</li>
+<li><p>최소비용 신장트리를 구하는 알고리즘으로는</p>
+<ul>
+<li><p>Kruskal’s Algorithm: 모든 간선을 가중치 순으로 정렬한 후, 사이클을 형성하지 않는 간선을 하나씩 추가해 나가는 방식.</p></li>
+<li><p>Prim’s Algorithm: 시작 정점에서부터 인접한 간선 중 최소 가중치를 가지는 간선을 선택해 나가는 방식.</p></li>
+</ul>
+</li>
+<li><p>적용 예: 도로 및 철도 건설, 네트워크 설계, 클러스터링, 레이아웃 문제, 전력망 설계, 비용 최소화 및 자원 최적화 등, 최소 비용 신장 트리를 만드는 이유는 주어진 그래프의 모든 노드를 연결하되, 그 연결에 드는 비용(가중치)을 최소화하기 위해서이다.</p></li>
+</ul>
+<div class="section" id="kruskal-s">
+<h3>Kruskal’s 알고리즘<a class="headerlink" href="#kruskal-s" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><strong>크루스칼 알고리즘</strong>은 알고리즘 설계 기법의 하나인 탐욕 알고리즘(Greedy algorithm)을 사용한다. 즉, 어떤 선택을 할때마다 <strong>그 순간에 최적</strong>인 것을 선택하는 방법이다.</p></li>
+<li><p>물론 매 순간 최적이 최종적으로 최적이라는 보장은 없다. 다행히 크루스칼 알고리즘은 최적의 해답을 주는 것으로 증명되어 있다.</p></li>
+<li><p><strong>크루스칼 알고리즘으로 최소비용 신장트리를 만드는 방법</strong>은 다음과 같다.</p>
+<ol class="arabic simple">
+<li><p>그래프의 모든 간선을 가중치에 따라 오름차순으로 정렬한다.</p></li>
+<li><p>가장 가중치가 작은 간선 e를 뽑는다.</p></li>
+<li><p>e를 넣어 신장트리에 사이클이 생기면 넣지 않고, 2번으로 이동한다.</p></li>
+<li><p>사이클이 생기지 않으면 최소 신장 트리에 삽입한다.</p></li>
+<li><p>n-1개의 간선이 삽입될 때 까지 2번으로 이동한다.</p></li>
+</ol>
+</li>
+</ul>
+<div class="section" id="id1">
+<h4>Kruskal’s 알고리즘 동작 예<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p><strong>Step 0</strong>: 간선들을 가중치의 오름차순으로 정렬</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph27.PNG" width=500></div>
+<center>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Step-1</p></th>
+<th class="text-center head"><p>Step-2</p></th>
+<th class="text-center head"><p>Step-3</p></th>
+<th class="text-center head"><p>Step-4</p></th>
+<th class="text-center head"><p>Step-5</p></th>
+<th class="text-center head"><p>Step-6</p></th>
+<th class="text-center head"><p>Step-7</p></th>
+<th class="text-center head"><p>Step-8</p></th>
+<th class="text-center head"><p>Step-9</p></th>
+<th class="text-center head"><p>Step-10</p></th>
+<th class="text-center head"><p>Step-11</p></th>
+<th class="text-center head"><p>Step-12</p></th>
+<th class="text-center head"><p>Step-13</p></th>
+<th class="text-center head"><p>Step-14</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>(h, g)</p></td>
+<td class="text-center"><p>(i, c)</p></td>
+<td class="text-center"><p>(g, f)</p></td>
+<td class="text-center"><p>(a, b)</p></td>
+<td class="text-center"><p>(c, f)</p></td>
+<td class="text-center"><p>(i, g)</p></td>
+<td class="text-center"><p>(c, d)</p></td>
+<td class="text-center"><p>(h, i)</p></td>
+<td class="text-center"><p>(a, h)</p></td>
+<td class="text-center"><p>(b, c)</p></td>
+<td class="text-center"><p>(d, e)</p></td>
+<td class="text-center"><p>(f, e)</p></td>
+<td class="text-center"><p>(b, h)</p></td>
+<td class="text-center"><p>(d, f)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>14</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<br>
+<ul class="simple">
+<li><p><strong>Step 1</strong>: 간선 (h,g) 선택. 사이클이 없으므로 MST 간선에 삽입</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph28.PNG" width=500></div>
+<center>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p><font color='red'><strong>Step-1</p></th>
+<th class="text-center head"><p>Step-2</p></th>
+<th class="text-center head"><p>Step-3</p></th>
+<th class="text-center head"><p>Step-4</p></th>
+<th class="text-center head"><p>Step-5</p></th>
+<th class="text-center head"><p>Step-6</p></th>
+<th class="text-center head"><p>Step-7</p></th>
+<th class="text-center head"><p>Step-8</p></th>
+<th class="text-center head"><p>Step-9</p></th>
+<th class="text-center head"><p>Step-10</p></th>
+<th class="text-center head"><p>Step-11</p></th>
+<th class="text-center head"><p>Step-12</p></th>
+<th class="text-center head"><p>Step-13</p></th>
+<th class="text-center head"><p>Step-14</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>(h, g)</p></td>
+<td class="text-center"><p>(i, c)</p></td>
+<td class="text-center"><p>(g, f)</p></td>
+<td class="text-center"><p>(a, b)</p></td>
+<td class="text-center"><p>(c, f)</p></td>
+<td class="text-center"><p>(i, g)</p></td>
+<td class="text-center"><p>(c, d)</p></td>
+<td class="text-center"><p>(h, i)</p></td>
+<td class="text-center"><p>(a, h)</p></td>
+<td class="text-center"><p>(b, c)</p></td>
+<td class="text-center"><p>(d, e)</p></td>
+<td class="text-center"><p>(f, e)</p></td>
+<td class="text-center"><p>(b, h)</p></td>
+<td class="text-center"><p>(d, f)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>14</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<br>
+<ul class="simple">
+<li><p><strong>Step 2</strong>: 간선 (i,c) 선택. 사이클이 없으므로 MST 간선에 삽입</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph29.PNG" width=500></div>
+<center>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Step-1</p></th>
+<th class="text-center head"><p><font color='red'><strong>Step-2</p></th>
+<th class="text-center head"><p>Step-3</p></th>
+<th class="text-center head"><p>Step-4</p></th>
+<th class="text-center head"><p>Step-5</p></th>
+<th class="text-center head"><p>Step-6</p></th>
+<th class="text-center head"><p>Step-7</p></th>
+<th class="text-center head"><p>Step-8</p></th>
+<th class="text-center head"><p>Step-9</p></th>
+<th class="text-center head"><p>Step-10</p></th>
+<th class="text-center head"><p>Step-11</p></th>
+<th class="text-center head"><p>Step-12</p></th>
+<th class="text-center head"><p>Step-13</p></th>
+<th class="text-center head"><p>Step-14</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>(h, g)</p></td>
+<td class="text-center"><p>(i, c)</p></td>
+<td class="text-center"><p>(g, f)</p></td>
+<td class="text-center"><p>(a, b)</p></td>
+<td class="text-center"><p>(c, f)</p></td>
+<td class="text-center"><p>(i, g)</p></td>
+<td class="text-center"><p>(c, d)</p></td>
+<td class="text-center"><p>(h, i)</p></td>
+<td class="text-center"><p>(a, h)</p></td>
+<td class="text-center"><p>(b, c)</p></td>
+<td class="text-center"><p>(d, e)</p></td>
+<td class="text-center"><p>(f, e)</p></td>
+<td class="text-center"><p>(b, h)</p></td>
+<td class="text-center"><p>(d, f)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>14</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<br><ul class="simple">
+<li><p><strong>Step 3</strong>: 간선 (g,f) 선택. 사이클이 없으므로 MST 간선에 삽입</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph30.PNG" width=500></div>
+<center>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Step-1</p></th>
+<th class="text-center head"><p>Step-2</p></th>
+<th class="text-center head"><p><font color='red'><strong>Step-3</p></th>
+<th class="text-center head"><p>Step-4</p></th>
+<th class="text-center head"><p>Step-5</p></th>
+<th class="text-center head"><p>Step-6</p></th>
+<th class="text-center head"><p>Step-7</p></th>
+<th class="text-center head"><p>Step-8</p></th>
+<th class="text-center head"><p>Step-9</p></th>
+<th class="text-center head"><p>Step-10</p></th>
+<th class="text-center head"><p>Step-11</p></th>
+<th class="text-center head"><p>Step-12</p></th>
+<th class="text-center head"><p>Step-13</p></th>
+<th class="text-center head"><p>Step-14</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>(h, g)</p></td>
+<td class="text-center"><p>(i, c)</p></td>
+<td class="text-center"><p>(g, f)</p></td>
+<td class="text-center"><p>(a, b)</p></td>
+<td class="text-center"><p>(c, f)</p></td>
+<td class="text-center"><p>(i, g)</p></td>
+<td class="text-center"><p>(c, d)</p></td>
+<td class="text-center"><p>(h, i)</p></td>
+<td class="text-center"><p>(a, h)</p></td>
+<td class="text-center"><p>(b, c)</p></td>
+<td class="text-center"><p>(d, e)</p></td>
+<td class="text-center"><p>(f, e)</p></td>
+<td class="text-center"><p>(b, h)</p></td>
+<td class="text-center"><p>(d, f)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>14</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<br>
+<ul class="simple">
+<li><p><strong>Step 4</strong>: 간선 (a,b) 선택. 사이클이 없으므로 MST 간선에 삽입</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph31.PNG" width=500></div>
+<center>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Step-1</p></th>
+<th class="text-center head"><p>Step-2</p></th>
+<th class="text-center head"><p>Step-3</p></th>
+<th class="text-center head"><p><font color='red'><strong> Step-4</p></th>
+<th class="text-center head"><p>Step-5</p></th>
+<th class="text-center head"><p>Step-6</p></th>
+<th class="text-center head"><p>Step-7</p></th>
+<th class="text-center head"><p>Step-8</p></th>
+<th class="text-center head"><p>Step-9</p></th>
+<th class="text-center head"><p>Step-10</p></th>
+<th class="text-center head"><p>Step-11</p></th>
+<th class="text-center head"><p>Step-12</p></th>
+<th class="text-center head"><p>Step-13</p></th>
+<th class="text-center head"><p>Step-14</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>(h, g)</p></td>
+<td class="text-center"><p>(i, c)</p></td>
+<td class="text-center"><p>(g, f)</p></td>
+<td class="text-center"><p>(a, b)</p></td>
+<td class="text-center"><p>(c, f)</p></td>
+<td class="text-center"><p>(i, g)</p></td>
+<td class="text-center"><p>(c, d)</p></td>
+<td class="text-center"><p>(h, i)</p></td>
+<td class="text-center"><p>(a, h)</p></td>
+<td class="text-center"><p>(b, c)</p></td>
+<td class="text-center"><p>(d, e)</p></td>
+<td class="text-center"><p>(f, e)</p></td>
+<td class="text-center"><p>(b, h)</p></td>
+<td class="text-center"><p>(d, f)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>14</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<br>
+<ul class="simple">
+<li><p><strong>Step 5</strong>: 간선 (c,f) 선택. 사이클이 없으므로 MST 간선에 삽입</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph32.PNG" width=500></div>
+<center>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Step-1</p></th>
+<th class="text-center head"><p>Step-2</p></th>
+<th class="text-center head"><p>Step-3</p></th>
+<th class="text-center head"><p>Step-4</p></th>
+<th class="text-center head"><p><font color='red'><strong>Step-5</p></th>
+<th class="text-center head"><p>Step-6</p></th>
+<th class="text-center head"><p>Step-7</p></th>
+<th class="text-center head"><p>Step-8</p></th>
+<th class="text-center head"><p>Step-9</p></th>
+<th class="text-center head"><p>Step-10</p></th>
+<th class="text-center head"><p>Step-11</p></th>
+<th class="text-center head"><p>Step-12</p></th>
+<th class="text-center head"><p>Step-13</p></th>
+<th class="text-center head"><p>Step-14</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>(h, g)</p></td>
+<td class="text-center"><p>(i, c)</p></td>
+<td class="text-center"><p>(g, f)</p></td>
+<td class="text-center"><p>(a, b)</p></td>
+<td class="text-center"><p>(c, f)</p></td>
+<td class="text-center"><p>(i, g)</p></td>
+<td class="text-center"><p>(c, d)</p></td>
+<td class="text-center"><p>(h, i)</p></td>
+<td class="text-center"><p>(a, h)</p></td>
+<td class="text-center"><p>(b, c)</p></td>
+<td class="text-center"><p>(d, e)</p></td>
+<td class="text-center"><p>(f, e)</p></td>
+<td class="text-center"><p>(b, h)</p></td>
+<td class="text-center"><p>(d, f)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>14</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<br><ul class="simple">
+<li><p><strong>Step 6</strong>: 간선 (i,g) 선택. 사이클이 형성되므로 무시함</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph33.PNG" width=500></div>
+<center>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Step-1</p></th>
+<th class="text-center head"><p>Step-2</p></th>
+<th class="text-center head"><p>Step-3</p></th>
+<th class="text-center head"><p>Step-4</p></th>
+<th class="text-center head"><p>Step-5</p></th>
+<th class="text-center head"><p><font color='red'><strong>Step-6</p></th>
+<th class="text-center head"><p>Step-7</p></th>
+<th class="text-center head"><p>Step-8</p></th>
+<th class="text-center head"><p>Step-9</p></th>
+<th class="text-center head"><p>Step-10</p></th>
+<th class="text-center head"><p>Step-11</p></th>
+<th class="text-center head"><p>Step-12</p></th>
+<th class="text-center head"><p>Step-13</p></th>
+<th class="text-center head"><p>Step-14</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>(h, g)</p></td>
+<td class="text-center"><p>(i, c)</p></td>
+<td class="text-center"><p>(g, f)</p></td>
+<td class="text-center"><p>(a, b)</p></td>
+<td class="text-center"><p>(c, f)</p></td>
+<td class="text-center"><p>(i, g)</p></td>
+<td class="text-center"><p>(c, d)</p></td>
+<td class="text-center"><p>(h, i)</p></td>
+<td class="text-center"><p>(a, h)</p></td>
+<td class="text-center"><p>(b, c)</p></td>
+<td class="text-center"><p>(d, e)</p></td>
+<td class="text-center"><p>(f, e)</p></td>
+<td class="text-center"><p>(b, h)</p></td>
+<td class="text-center"><p>(d, f)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>14</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<br>
+<ul class="simple">
+<li><p><strong>Step 7</strong>: 간선 (c,d) 선택. 사이클이 없으므로 MST 간선에 삽입</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph34.PNG" width=500></div>
+<center>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Step-1</p></th>
+<th class="text-center head"><p>Step-2</p></th>
+<th class="text-center head"><p>Step-3</p></th>
+<th class="text-center head"><p>Step-4</p></th>
+<th class="text-center head"><p>Step-5</p></th>
+<th class="text-center head"><p>Step-6</p></th>
+<th class="text-center head"><p><font color='red'><strong>Step-7</p></th>
+<th class="text-center head"><p>Step-8</p></th>
+<th class="text-center head"><p>Step-9</p></th>
+<th class="text-center head"><p>Step-10</p></th>
+<th class="text-center head"><p>Step-11</p></th>
+<th class="text-center head"><p>Step-12</p></th>
+<th class="text-center head"><p>Step-13</p></th>
+<th class="text-center head"><p>Step-14</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>(h, g)</p></td>
+<td class="text-center"><p>(i, c)</p></td>
+<td class="text-center"><p>(g, f)</p></td>
+<td class="text-center"><p>(a, b)</p></td>
+<td class="text-center"><p>(c, f)</p></td>
+<td class="text-center"><p>(i, g)</p></td>
+<td class="text-center"><p>(c, d)</p></td>
+<td class="text-center"><p>(h, i)</p></td>
+<td class="text-center"><p>(a, h)</p></td>
+<td class="text-center"><p>(b, c)</p></td>
+<td class="text-center"><p>(d, e)</p></td>
+<td class="text-center"><p>(f, e)</p></td>
+<td class="text-center"><p>(b, h)</p></td>
+<td class="text-center"><p>(d, f)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>14</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<br>
+<ul class="simple">
+<li><p><strong>Step 8</strong>: 간선 (h,i) 선택. 사이클이 형성되므로 무시함</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph35.PNG" width=500></div>
+<center>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Step-1</p></th>
+<th class="text-center head"><p>Step-2</p></th>
+<th class="text-center head"><p>Step-3</p></th>
+<th class="text-center head"><p>Step-4</p></th>
+<th class="text-center head"><p>Step-5</p></th>
+<th class="text-center head"><p>Step-6</p></th>
+<th class="text-center head"><p>Step-7</p></th>
+<th class="text-center head"><p><font color='red'><strong>Step-8</p></th>
+<th class="text-center head"><p>Step-9</p></th>
+<th class="text-center head"><p>Step-10</p></th>
+<th class="text-center head"><p>Step-11</p></th>
+<th class="text-center head"><p>Step-12</p></th>
+<th class="text-center head"><p>Step-13</p></th>
+<th class="text-center head"><p>Step-14</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>(h, g)</p></td>
+<td class="text-center"><p>(i, c)</p></td>
+<td class="text-center"><p>(g, f)</p></td>
+<td class="text-center"><p>(a, b)</p></td>
+<td class="text-center"><p>(c, f)</p></td>
+<td class="text-center"><p>(i, g)</p></td>
+<td class="text-center"><p>(c, d)</p></td>
+<td class="text-center"><p>(h, i)</p></td>
+<td class="text-center"><p>(a, h)</p></td>
+<td class="text-center"><p>(b, c)</p></td>
+<td class="text-center"><p>(d, e)</p></td>
+<td class="text-center"><p>(f, e)</p></td>
+<td class="text-center"><p>(b, h)</p></td>
+<td class="text-center"><p>(d, f)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>14</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<br><ul class="simple">
+<li><p><strong>Step 9</strong>: 간선 (a,h) 선택. 사이클이 없으므로 MST 간선에 삽입</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph36.PNG" width=500></div>
+<center>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Step-1</p></th>
+<th class="text-center head"><p>Step-2</p></th>
+<th class="text-center head"><p>Step-3</p></th>
+<th class="text-center head"><p>Step-4</p></th>
+<th class="text-center head"><p>Step-5</p></th>
+<th class="text-center head"><p>Step-6</p></th>
+<th class="text-center head"><p>Step-7</p></th>
+<th class="text-center head"><p>Step-8</p></th>
+<th class="text-center head"><p><font color='red'><strong>Step-9</p></th>
+<th class="text-center head"><p>Step-10</p></th>
+<th class="text-center head"><p>Step-11</p></th>
+<th class="text-center head"><p>Step-12</p></th>
+<th class="text-center head"><p>Step-13</p></th>
+<th class="text-center head"><p>Step-14</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>(h, g)</p></td>
+<td class="text-center"><p>(i, c)</p></td>
+<td class="text-center"><p>(g, f)</p></td>
+<td class="text-center"><p>(a, b)</p></td>
+<td class="text-center"><p>(c, f)</p></td>
+<td class="text-center"><p>(i, g)</p></td>
+<td class="text-center"><p>(c, d)</p></td>
+<td class="text-center"><p>(h, i)</p></td>
+<td class="text-center"><p>(a, h)</p></td>
+<td class="text-center"><p>(b, c)</p></td>
+<td class="text-center"><p>(d, e)</p></td>
+<td class="text-center"><p>(f, e)</p></td>
+<td class="text-center"><p>(b, h)</p></td>
+<td class="text-center"><p>(d, f)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>14</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<br>
+<ul class="simple">
+<li><p><strong>Step 10</strong>: 간선 (b,c) 선택. 사이클이 형성되므로 무시함</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph37.PNG" width=500></div>
+<center>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Step-1</p></th>
+<th class="text-center head"><p>Step-2</p></th>
+<th class="text-center head"><p>Step-3</p></th>
+<th class="text-center head"><p>Step-4</p></th>
+<th class="text-center head"><p>Step-5</p></th>
+<th class="text-center head"><p>Step-6</p></th>
+<th class="text-center head"><p>Step-7</p></th>
+<th class="text-center head"><p>Step-8</p></th>
+<th class="text-center head"><p>Step-9</p></th>
+<th class="text-center head"><p><font color='red'><strong>Step-10</p></th>
+<th class="text-center head"><p>Step-11</p></th>
+<th class="text-center head"><p>Step-12</p></th>
+<th class="text-center head"><p>Step-13</p></th>
+<th class="text-center head"><p>Step-14</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>(h, g)</p></td>
+<td class="text-center"><p>(i, c)</p></td>
+<td class="text-center"><p>(g, f)</p></td>
+<td class="text-center"><p>(a, b)</p></td>
+<td class="text-center"><p>(c, f)</p></td>
+<td class="text-center"><p>(i, g)</p></td>
+<td class="text-center"><p>(c, d)</p></td>
+<td class="text-center"><p>(h, i)</p></td>
+<td class="text-center"><p>(a, h)</p></td>
+<td class="text-center"><p>(b, c)</p></td>
+<td class="text-center"><p>(d, e)</p></td>
+<td class="text-center"><p>(f, e)</p></td>
+<td class="text-center"><p>(b, h)</p></td>
+<td class="text-center"><p>(d, f)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>14</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<br>
+<ul class="simple">
+<li><p><strong>Step 11</strong>: 간선 (d,e) 선택. 사이클이 없으므로 MST 간선에 삽입</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph38.PNG" width=500></div>
+<center>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Step-1</p></th>
+<th class="text-center head"><p>Step-2</p></th>
+<th class="text-center head"><p>Step-3</p></th>
+<th class="text-center head"><p>Step-4</p></th>
+<th class="text-center head"><p>Step-5</p></th>
+<th class="text-center head"><p>Step-6</p></th>
+<th class="text-center head"><p>Step-7</p></th>
+<th class="text-center head"><p>Step-8</p></th>
+<th class="text-center head"><p>Step-9</p></th>
+<th class="text-center head"><p>Step-10</p></th>
+<th class="text-center head"><p><font color='red'><strong>Step-11</p></th>
+<th class="text-center head"><p>Step-12</p></th>
+<th class="text-center head"><p>Step-13</p></th>
+<th class="text-center head"><p>Step-14</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>(h, g)</p></td>
+<td class="text-center"><p>(i, c)</p></td>
+<td class="text-center"><p>(g, f)</p></td>
+<td class="text-center"><p>(a, b)</p></td>
+<td class="text-center"><p>(c, f)</p></td>
+<td class="text-center"><p>(i, g)</p></td>
+<td class="text-center"><p>(c, d)</p></td>
+<td class="text-center"><p>(h, i)</p></td>
+<td class="text-center"><p>(a, h)</p></td>
+<td class="text-center"><p>(b, c)</p></td>
+<td class="text-center"><p>(d, e)</p></td>
+<td class="text-center"><p>(f, e)</p></td>
+<td class="text-center"><p>(b, h)</p></td>
+<td class="text-center"><p>(d, f)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>14</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<br><ul class="simple">
+<li><p><strong>Step 12</strong>: 간선 (f,e) 선택. 사이클이 형성되므로 무시함</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph40.PNG" width=500></div>
+<center>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Step-1</p></th>
+<th class="text-center head"><p>Step-2</p></th>
+<th class="text-center head"><p>Step-3</p></th>
+<th class="text-center head"><p>Step-4</p></th>
+<th class="text-center head"><p>Step-5</p></th>
+<th class="text-center head"><p>Step-6</p></th>
+<th class="text-center head"><p>Step-7</p></th>
+<th class="text-center head"><p>Step-8</p></th>
+<th class="text-center head"><p>Step-9</p></th>
+<th class="text-center head"><p>Step-10</p></th>
+<th class="text-center head"><p>Step-11</p></th>
+<th class="text-center head"><p><font color='red'><strong>Step-12</p></th>
+<th class="text-center head"><p>Step-13</p></th>
+<th class="text-center head"><p>Step-14</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>(h, g)</p></td>
+<td class="text-center"><p>(i, c)</p></td>
+<td class="text-center"><p>(g, f)</p></td>
+<td class="text-center"><p>(a, b)</p></td>
+<td class="text-center"><p>(c, f)</p></td>
+<td class="text-center"><p>(i, g)</p></td>
+<td class="text-center"><p>(c, d)</p></td>
+<td class="text-center"><p>(h, i)</p></td>
+<td class="text-center"><p>(a, h)</p></td>
+<td class="text-center"><p>(b, c)</p></td>
+<td class="text-center"><p>(d, e)</p></td>
+<td class="text-center"><p>(f, e)</p></td>
+<td class="text-center"><p>(b, h)</p></td>
+<td class="text-center"><p>(d, f)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>14</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<br>
+<ul class="simple">
+<li><p><strong>Step 13</strong>: 간선 (b,h) 선택. 사이클이 형성되므로 무시함</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph41.PNG" width=500></div>
+<center>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Step-1</p></th>
+<th class="text-center head"><p>Step-2</p></th>
+<th class="text-center head"><p>Step-3</p></th>
+<th class="text-center head"><p>Step-4</p></th>
+<th class="text-center head"><p>Step-5</p></th>
+<th class="text-center head"><p>Step-6</p></th>
+<th class="text-center head"><p>Step-7</p></th>
+<th class="text-center head"><p>Step-8</p></th>
+<th class="text-center head"><p>Step-9</p></th>
+<th class="text-center head"><p>Step-10</p></th>
+<th class="text-center head"><p>Step-11</p></th>
+<th class="text-center head"><p>Step-12</p></th>
+<th class="text-center head"><p><font color='red'><strong>Step-13</p></th>
+<th class="text-center head"><p>Step-14</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>(h, g)</p></td>
+<td class="text-center"><p>(i, c)</p></td>
+<td class="text-center"><p>(g, f)</p></td>
+<td class="text-center"><p>(a, b)</p></td>
+<td class="text-center"><p>(c, f)</p></td>
+<td class="text-center"><p>(i, g)</p></td>
+<td class="text-center"><p>(c, d)</p></td>
+<td class="text-center"><p>(h, i)</p></td>
+<td class="text-center"><p>(a, h)</p></td>
+<td class="text-center"><p>(b, c)</p></td>
+<td class="text-center"><p>(d, e)</p></td>
+<td class="text-center"><p>(f, e)</p></td>
+<td class="text-center"><p>(b, h)</p></td>
+<td class="text-center"><p>(d, f)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>14</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<br>
+<ul class="simple">
+<li><p><strong>Step 14</strong>: 간선 (d,f) 선택. 사이클이 형성되므로 무시함</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph39.PNG" width=500></div>
+<center>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Step-1</p></th>
+<th class="text-center head"><p>Step-2</p></th>
+<th class="text-center head"><p>Step-3</p></th>
+<th class="text-center head"><p>Step-4</p></th>
+<th class="text-center head"><p>Step-5</p></th>
+<th class="text-center head"><p>Step-6</p></th>
+<th class="text-center head"><p>Step-7</p></th>
+<th class="text-center head"><p>Step-8</p></th>
+<th class="text-center head"><p>Step-9</p></th>
+<th class="text-center head"><p>Step-10</p></th>
+<th class="text-center head"><p>Step-11</p></th>
+<th class="text-center head"><p>Step-12</p></th>
+<th class="text-center head"><p>Step-13</p></th>
+<th class="text-center head"><p><font color='red'><strong>Step-14</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>(h, g)</p></td>
+<td class="text-center"><p>(i, c)</p></td>
+<td class="text-center"><p>(g, f)</p></td>
+<td class="text-center"><p>(a, b)</p></td>
+<td class="text-center"><p>(c, f)</p></td>
+<td class="text-center"><p>(i, g)</p></td>
+<td class="text-center"><p>(c, d)</p></td>
+<td class="text-center"><p>(h, i)</p></td>
+<td class="text-center"><p>(a, h)</p></td>
+<td class="text-center"><p>(b, c)</p></td>
+<td class="text-center"><p>(d, e)</p></td>
+<td class="text-center"><p>(f, e)</p></td>
+<td class="text-center"><p>(b, h)</p></td>
+<td class="text-center"><p>(d, f)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>14</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<br><ul class="simple">
+<li><p><strong>Final</strong>: 최종 선택된 간선 집합</p></li>
+</ul>
+<center>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Step-1</p></th>
+<th class="text-center head"><p>Step-2</p></th>
+<th class="text-center head"><p>Step-3</p></th>
+<th class="text-center head"><p>Step-4</p></th>
+<th class="text-center head"><p>Step-5</p></th>
+<th class="text-center head"><p>Step-6</p></th>
+<th class="text-center head"><p>Step-7</p></th>
+<th class="text-center head"><p>Step-8</p></th>
+<th class="text-center head"><p>Step-9</p></th>
+<th class="text-center head"><p>Step-10</p></th>
+<th class="text-center head"><p>Step-11</p></th>
+<th class="text-center head"><p>Step-12</p></th>
+<th class="text-center head"><p>Step-13</p></th>
+<th class="text-center head"><p>Step-14</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><font color='red'><strong>(h, g)</p></td>
+<td class="text-center"><p><font color='red'><strong>(i, c)</p></td>
+<td class="text-center"><p><font color='red'><strong>(g, f)</p></td>
+<td class="text-center"><p><font color='red'><strong>(a, b)</p></td>
+<td class="text-center"><p><font color='red'><strong>(c, f)</p></td>
+<td class="text-center"><p>(i, g)</p></td>
+<td class="text-center"><p><font color='red'><strong>(c, d)</p></td>
+<td class="text-center"><p>(h, i)</p></td>
+<td class="text-center"><p><font color='red'><strong>(a, h)</p></td>
+<td class="text-center"><p>(b, c)</p></td>
+<td class="text-center"><p><font color='red'><strong>(d, e)</p></td>
+<td class="text-center"><p>(f, e)</p></td>
+<td class="text-center"><p>(b, h)</p></td>
+<td class="text-center"><p>(d, f)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>14</p></td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<br></div>
+</div>
+<div class="section" id="prim-s">
+<h3>Prim’s 알고리즘<a class="headerlink" href="#prim-s" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><strong>프림 알고리즘</strong>은 시작 정점에서부터 현재까지 만들어진 트리에 인접한 정점들 중에서 간선의 가중치가 가장 적은 정점을 선택하여 트리를 확장해 나가는 방법이다.</p></li>
+<li><p><strong>프림 알고리즘으로 최소비용 신장트리를 만드는 방법</strong>은 다음과 같다.</p>
+<ol class="arabic simple">
+<li><p>그래프에서 시작 정점을 선택하여 초기 트리를 만든다.</p></li>
+<li><p>현재 트리의 정점들과 인접한 정점들 중에서 간선의 가중치가 가장 작은 정점 v를 선택한다.</p></li>
+<li><p>이 정점 v와 이때의 간선을 트리에 추가한다.</p></li>
+<li><p>모든 정점이 삽입될 때 까지 2번으로 이동한다.</p></li>
+</ol>
+</li>
+</ul>
+<div class="section" id="id2">
+<h4>Prim’s 알고리즘 동작 예<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p><strong>Step 0</strong>: 시작 정점 a를 선택하고 정점 a를 트리에 넣는다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph50.PNG" width=500></div>
+<ul class="simple">
+<li><p><strong>Step 1</strong>: 트리와 이웃한 정점 b, h중에서 간선의 가중치가 작은 b를 선택하고 정점 b와 간선 (a,b)를 트리에 넣는다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph51.PNG" width=500></div>
+<ul class="simple">
+<li><p><strong>Step 2</strong>: 트리와 이웃한 정점 c, h중에서 간선의 가중치가 작은 c를 선택하고 정점 c와 간선 (b,c)를 트리에 넣는다. 동일한 가중치를 가지고 있을때(예,(a,h)와 (b,c))에는 임의 선택한다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph52.PNG" width=500></div><ul class="simple">
+<li><p><strong>Step 3</strong>: 트리와 이웃한 정점 i, d, f, h중에서 간선의 가중치가 작은 i를 선택하고 정점 i와 간선 (c,i)를 트리에 넣는다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph53.PNG" width=500></div>
+<ul class="simple">
+<li><p><strong>Step 4</strong>: 트리와 이웃한 정점 d,f,h중에서 간선의 가중치가 작은 f를 선택하고 정점 f와 간선 (c,f)를 트리에 넣는다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph54.PNG" width=500></div>
+<ul class="simple">
+<li><p><strong>Step 5</strong>: 트리와 이웃한 정점 g,d,e,h중에서 간선의 가중치가 작은 g를 선택하고 정점 g와 간선 (f,g)를 트리에 넣는다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph55.PNG" width=500></div><ul class="simple">
+<li><p><strong>Step 6</strong>: 트리와 이웃한 정점 d,e,h중에서 간선의 가중치가 작은 h를 선택하고 정점 h와 간선 (h,g)를 트리에 넣는다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph56.PNG" width=500></div>
+<ul class="simple">
+<li><p><strong>Step 7</strong>: 트리와 이웃한 정점 d,e중에서 간선의 가중치가 작은 d를 선택하고 정점 d와 간선 (c,d)를 트리에 넣는다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph57.PNG" width=500></div>
+<ul class="simple">
+<li><p><strong>Step 8</strong>: 트리와 이웃한 정점 e중에서 간선의 가중치가 작은 e를 선택하고 정점 e와 간선 (d,e)를 트리에 넣는다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph58.PNG" width=500></div>
+<ul class="simple">
+<li><p><strong>Final</strong>: 간선의 개수가 (n-1)이므로 끝낸다.</p></li>
+</ul>
+<p>[(‘a’, 0), (‘b’, 4), (‘c’, 8), (‘i’, 2), (‘f’, 4), (‘g’, 2), (‘h’, 1), (‘d’, 7), (‘e’, 9)]</p>
+</div>
+</div>
+</div>
+<div class="section" id="shortest-path">
+<h2>최단경로(shortest path)<a class="headerlink" href="#shortest-path" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><strong>최단 경로</strong>는 가중치 그래프에서 정점 u와 정점 v를 연결하는 경로중에서 간선들의 가중치 합이 최소가 되는 경로를 찾는 문제이다. 즉, 정점 u와 정점 v로 가는 경로들 중에서 전체 거리가 최소가 되는 경로를 찾는 것이다.</p>
+<ul>
+<li><p>목적: 가중치가 있는 방향성/무향성 그래프에서 특정 정점(또는 모든 정점) 간의 최단 경로를 찾는 것이다.</p></li>
+<li><p>다양한 문제상황</p>
+<ul>
+<li><p>한 지점에서 다른 한 지점까지의 최단 경로</p></li>
+<li><p>한 지점에서 다른 모든 지점까지의 최단 경로</p></li>
+<li><p>모든 지점에서 다른 모든 지점까지의 최단 경로</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>최단 경로를 구하는 알고리즘</strong>으로는</p>
+<ul>
+<li><p><strong>Dijkstra’s 알고리즘</strong>: 비음수 가중치 그래프에서 단일 시작점 최단 경로를 찾는 데 사용.</p></li>
+<li><p><strong>Bellman-Ford 알고리즘</strong>: 음수 가중치가 있는 그래프에서도 동작하며, 단일 시작점 최단 경로를 찾는 데 사용.</p></li>
+<li><p><strong>Floyd-Warshall 알고리즘</strong>: 모든 정점 쌍 간의 최단 경로를 찾는 데 사용.</p></li>
+</ul>
+</li>
+<li><p>적용 예: 네비게이션 시스템, 네트워크 라우팅, 로봇 경로 계획.</p></li>
+</ul>
+<div class="section" id="dijkstra-s">
+<h3>Dijkstra’s 알고리즘<a class="headerlink" href="#dijkstra-s" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>최단 거리를 구하는 다익스트라 알고리즘에 대해 알아보자.</p></li>
+<li><p><strong>다익스트라 알고리즘</strong>은 그래프에서 특정 정점에서 다른 모든 정점으로 가는 최단 경로를 찾는 알고리즘이다.</p></li>
+<li><p>이 알고리즘은 가중치가 있는 그래프에서 최단 경로를 찾는 데 유용하며, 주로 네트워크 라우팅 및 지리적 경로 찾기 등에 사용된다.</p></li>
+<li><p>단, 음의 간선이 없을때 정상적으로 동작한다.</p></li>
+<li><p>다익스트라 알고리즘을 이해하려면 그래프의 순회와 우선순위 큐를 알고 있어야 하고, 우선순위 큐를 알기 위해서는 이진 탐색트리를 알고 있어야 하고, 이진 탐색 트리를 이해하려면 이진 탐색과 트리 자료구조를 알고 있어야 한다.</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>다익스트라 알고리즘의 동작방법</strong>은 다음과 같다.</p>
+<ul>
+<li><p><strong>초기화</strong></p>
+<ul>
+<li><p>시작 정점를 설정하고, 그 정점까지의 거리를 0으로 설정한다.</p></li>
+<li><p>다른 모든 정점까지의 거리는 무한대(∞)로 설정한다.</p></li>
+<li><p>방문한 정점를 추적하기 위해서 방문하지 않은 정점 집합을 유지한다.</p></li>
+</ul>
+</li>
+<li><p><strong>정점 선택</strong></p>
+<ul>
+<li><p>현재 방문하지 않은 정점 중에서 가장 거리가 짧은 정점를 선택한다.</p></li>
+<li><p>이 정점를 현재 정점으로 설정하고, 방문한 정점 집합에 추가한다.</p></li>
+</ul>
+</li>
+<li><p><strong>거리 업데이트</strong></p>
+<ul>
+<li><p>현재 정점의 이웃 정점들을 확인한다.</p></li>
+<li><p>각 이웃 정점에 대해, 현재 정점를 거쳐서 가는 거리가 기존에 알고 있는 거리보다 짧으면 그 거리를 업데이트한다.</p></li>
+<li><p>업데이트할 때는 현재 정점까지의 거리 + 현재 정점와 이웃 정점 간의 거리로 계산한다.</p></li>
+</ul>
+</li>
+<li><p><strong>반복</strong></p>
+<ul>
+<li><p>방문하지 않은 정점이 남아 있는 동안 2~3 단계를 반복한다.</p></li>
+</ul>
+</li>
+<li><p><strong>종료</strong></p>
+<ul>
+<li><p>모든 정점를 방문하면 알고리즘을 종료한다.</p></li>
+<li><p>시작 정점로부터 각 정점까지의 최단 거리가 계산된다.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="id3">
+<h4>Dijkstra’s 알고리즘 동작 예<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<p>아래 그래프에서 정점은 <span class="math notranslate nohighlight">\(s,t,y,x,z\)</span>가 있고 각 간선에는 가중치가 적혀 있다. 이때 <strong>간선의 가중치는 반드시 양수어야 한다.</strong>
+시작정점 <span class="math notranslate nohighlight">\(s\)</span>부터의 모든 정점까지의 최단경로를 구해보자. 여기서 <span class="math notranslate nohighlight">\(dist(s)\)</span>는 시작정점으로부터 정점 <span class="math notranslate nohighlight">\(s\)</span>까지의 최단 거리값(dist)을 의미하고, <span class="math notranslate nohighlight">\(w(s,t)\)</span>는 간선<span class="math notranslate nohighlight">\((s,t)\)</span>의 가중치를 나타낸다.</p>
+<ul class="simple">
+<li><p><strong>Step 0</strong>: 시작정점 <span class="math notranslate nohighlight">\(S\)</span>부터 시작한다. 자신에서 자신으로 가는 간선의 가중치 <span class="math notranslate nohighlight">\(dist(s)\)</span>는 0으로 하고, 다른 모든 정점까지의 거리는 무한대로 설정한다. 이 정보는 인접행렬을 통해서 나타내며, 여기서 <span class="math notranslate nohighlight">\(Q\)</span>가 인접행렬 테이블이며, <span class="math notranslate nohighlight">\(S\)</span>는 방문한 정점들의 집합이다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph60.PNG" width=500></div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(dist(s) = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(t) = ∞\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(y) = ∞\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(x) = ∞\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(z) = ∞\)</span></p></li>
+</ul>
+<ul>
+<li><p><strong>Step 1</strong></p>
+<ul class="simple">
+<li><p>정점 선택:</p></li>
+</ul>
+<ul class="simple">
+<li><p>현재 방문하지 않은 정점중에서 가장 거리가 짧은 정점 <span class="math notranslate nohighlight">\(s\)</span>를 선택한다.</p></li>
+<li><p>이 정점을 현재 정점으로 설정하고, 방문한 정점 집합 <span class="math notranslate nohighlight">\(S\)</span>에 정점 <span class="math notranslate nohighlight">\(s\)</span>를 추가한다.</p>
+<ul>
+<li><p>거리 업데이트:</p></li>
+</ul>
+</li>
+<li><p>현재 정점 <span class="math notranslate nohighlight">\(s\)</span>로부터 인접한 정점 <span class="math notranslate nohighlight">\(t, y\)</span>가 있다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(t, y\)</span>에 대해, 현재 정점 <span class="math notranslate nohighlight">\(s\)</span>를 거쳐서 가는 거리가 기존에 알고 있는 거리보다 짧으면 그 거리를 업데이트 한다.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(dist(s) = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(t) = dist(s) + w(s,t) = 10\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(y) = dist(s) + w(s,y) = 5\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(x) = ∞\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(z) = ∞\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph61.PNG" width=500></div>
+<ul>
+<li><p><strong>Step 2</strong></p>
+<ul class="simple">
+<li><p>정점 선택</p></li>
+</ul>
+<ul class="simple">
+<li><p>현재 방문하지 않은 정점중에서 가장 거리가 짧은 정점 <span class="math notranslate nohighlight">\(y\)</span>를 선택한다.</p></li>
+<li><p>이 정점을 현재 정점으로 설정하고, 방문한 정점 집합 <span class="math notranslate nohighlight">\(S\)</span>에 정점 <span class="math notranslate nohighlight">\(y\)</span>를 추가한다.</p>
+<ul>
+<li><p>거리 업데이트</p></li>
+</ul>
+</li>
+<li><p>현재 정점 <span class="math notranslate nohighlight">\(y\)</span>로부터 인접한 정점 <span class="math notranslate nohighlight">\(t, x, z\)</span>가 있다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(t, x, z\)</span>에 대해, 현재 정점 <span class="math notranslate nohighlight">\(y\)</span>를 거쳐서 가는 거리가 기존에 알고 있는 거리보다 짧으면 그 거리를 업데이트 한다.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(dist(s) = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(t) = dist(y) + w(y,t) = 5 + 3 = 8\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(y) = 5\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(x) = dist(y) + w(y,x) = 5 + 9 = 14\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(z) = dist(y) + w(y,z) = 5 + 2 = 7\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph62.PNG" width=500><br>
+<정점 선택></div>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph63.PNG" width=500><br>
+<거리 업데이트></div><ul>
+<li><p><strong>Step 3</strong></p>
+<ul class="simple">
+<li><p>정점 선택</p></li>
+</ul>
+<ul class="simple">
+<li><p>현재 방문하지 않은 정점중에서 가장 거리가 짧은 정점 <span class="math notranslate nohighlight">\(z\)</span>를 선택한다.</p></li>
+<li><p>이 정점을 현재 정점으로 설정하고, 방문한 정점 집합 <span class="math notranslate nohighlight">\(S\)</span>에 정점 <span class="math notranslate nohighlight">\(z\)</span>를 추가한다.</p>
+<ul>
+<li><p>거리 업데이트</p></li>
+</ul>
+</li>
+<li><p>현재 정점  <span class="math notranslate nohighlight">\(z\)</span>로부터 인접한 정점  <span class="math notranslate nohighlight">\(x\)</span>가 있다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x\)</span>에 대해, 현재 정점 <span class="math notranslate nohighlight">\(z\)</span>를 거쳐서 가는 거리가 기존에 알고 있는 거리보다 짧으면 그 거리를 업데이트 한다.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(dist(s) = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(t) = 8\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(y) = 5\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(x) = dist(z) + w(z,x) = 7+6 = 13\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(z) = 7\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph64-1.PNG" width=500><br>
+<정점 선택></div>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph64.PNG" width=500><br><거리 업데이트></div>
+<ul>
+<li><p><strong>Step 4</strong></p>
+<ul class="simple">
+<li><p>정점 선택</p></li>
+</ul>
+<ul class="simple">
+<li><p>현재 방문하지 않은 정점중에서 가장 거리가 짧은 정점 <span class="math notranslate nohighlight">\(t\)</span>를 선택한다.</p></li>
+<li><p>이 정점을 현재 정점으로 설정하고, 방문한 정점 집합 <span class="math notranslate nohighlight">\(S\)</span>에 정점 <span class="math notranslate nohighlight">\(t\)</span>를 추가한다.</p>
+<ul>
+<li><p>거리 업데이트</p></li>
+</ul>
+</li>
+<li><p>현재 정점  <span class="math notranslate nohighlight">\(t\)</span>로부터 인접한 정점  <span class="math notranslate nohighlight">\(x\)</span>가 있다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x\)</span>에 대해, 현재 정점 <span class="math notranslate nohighlight">\(t\)</span>를 거쳐서 가는 거리가 기존에 알고 있는 거리보다 짧으면 그 거리를 업데이트 한다.</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(dist(s) = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(t) = 8\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(y) = 5\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(x) = dist(t) + w(t,x) = 8+1 = 9\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(z) = 7\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph65.PNG" width=500><br><정점 선택></div>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph66.PNG" width=500><br><거리 업데이트></div>
+<ul>
+<li><p><strong>Step 5</strong></p>
+<ul class="simple">
+<li><p>정점 선택</p></li>
+</ul>
+<ul class="simple">
+<li><p>현재 방문하지 않은 정점중에서 가장 거리가 짧은 정점 <span class="math notranslate nohighlight">\(x\)</span>를 선택한다.</p></li>
+<li><p>이 정점을 현재 정점으로 설정하고, 방문한 정점 집합 <span class="math notranslate nohighlight">\(S\)</span>에 정점 <span class="math notranslate nohighlight">\(x\)</span>를 추가한다.</p></li>
+<li><p>모든 정점을 방문했으므로 알고리즘을 종료한다.</p></li>
+<li><p>시작 정점으로부터 각 정점까지의 최단 거리가 계산된다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(s) = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(t) = 8\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(y) = 5\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(x) = 9\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dist(z) = 7\)</span></p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph67.PNG" width=500></div></li>
+</ul>
+</div>
+</div>
+<div class="section" id="bellman-ford">
+<h3>Bellman-Ford 알고리즘<a class="headerlink" href="#bellman-ford" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><strong>밸만-포드 알고리즘</strong>은 다익스트라 알고리즘과 같이 그래프에서 주어진 시작 정점로부터 다른 모든 정점까지의 최단 경로를 찾는 알고리즘이다. 다익스트라 알고리즘과 달리 <strong>음의 가중치를 가진 간선이 포함된 그래프에서도 동작</strong>할 수 있다.</p></li>
+<li><p>음의 가중치를 가진 간선을 포함한 그래프의 예</p>
+<ul>
+<li><p>환율 차익 거래: 여러 통화 간의 환율을 그래프의 간선 가중치로 표현하고 음의 가중치를 탐지함으로써, 환율 차익 거래 기회를 찾는데 사용할 수 있다.
+예를 들어, 통화 A에서 B로 가는 환율이 0.95, B에서 C로 가는 환율이 0.90, C에서 다시 A로 가는 환율이 1.20이라면, A -&gt; B -&gt; C -&gt; A를 통해 이익을 얻을 수 있다.</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph49.PNG" width=300></div>
+통화 A 100원을 통화 B로 환전하면 95, 95을 통화 C로 환전하면 85.5, 85.5을 통화 A로 다시 환전하면 102.6원이다. 이때 0.95나 0.90을 음의 가중치로 표현할 수 있다.
+<ul class="simple">
+<li><p>프로젝트 일정 관리: 프로젝트의 활동과 활동 간의 종속성을 그래프로 표현하고 각 활동의 소요 시간을 간선 가중치로 나타낼 때 프로젝트의 최단 완료 시간을 계산할 수 있다.</p></li>
+</ul>
+<ul>
+<li><p><strong>밸만-포드 알고리즘의 동작과정</strong>은 다음과 같다.</p>
+<ol class="arabic simple">
+<li><p>초기화:</p></li>
+</ol>
+<ul class="simple">
+<li><p>시작 정점를 설정하고, 시작 정점의 거리를 0으로 설정한다.</p></li>
+<li><p>다른 모든 정점의 거리는 무한대로 설정한다.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>간선 완화(Relaxation) 작업: 현재 알고 있는 경로보다 더 짧은 경로가 발견되었을 때 그 정보를 업데이트하는 과정</p></li>
+</ol>
+<ul class="simple">
+<li><p>모든 간선을 여러 번 반복해서 검사한다.</p></li>
+<li><p>각 간선을 검사하면서, 간선을 통해 더 짧은 경로가 발견되면 경로를 업데이트한다.</p></li>
+<li><p>이 과정을 V-1번 반복한다.</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>음수 사이클 검출:</p></li>
+</ol>
+<ul class="simple">
+<li><p>모든 간선을 한 번 더 검사한다.</p></li>
+<li><p>만약 어떤 간선을 통해 거리가 더 줄어든다면, 이는 음수 사이클이 존재함을 의미한다.</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="id4">
+<h4>Bellman-Ford 알고리즘 동작 예<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
+<p>시작정점 <span class="math notranslate nohighlight">\(s\)</span>부터의 모든 정점까지의 최단경로를 구해보자.</p>
+<ul class="simple">
+<li><p><strong>Step 0:</strong></p>
+<ul>
+<li><p>시작정점 <span class="math notranslate nohighlight">\(s\)</span>부터 시작한다. 자신에서 자신으로 가는 간선의 가중치 <span class="math notranslate nohighlight">\(dist(s)\)</span>는 0으로 하고, 다른 모든 정점까지의 거리는 무한대로 설정한다.</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph70.PNG" width=300>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>dist(v)</p></th>
+<th class="head"><p>value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>dist(s)</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>dist(t)</p></td>
+<td><p>∞</p></td>
+</tr>
+<tr class="row-even"><td><p>dist(y)</p></td>
+<td><p>∞</p></td>
+</tr>
+<tr class="row-odd"><td><p>dist(x)</p></td>
+<td><p>∞</p></td>
+</tr>
+<tr class="row-even"><td><p>dist(z)</p></td>
+<td><p>∞</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p><strong>Step 1:</strong></p>
+<ul>
+<li><p>그래프의 모든 **간선(edge)**을 대상으로, 만약 간선 (u, v)의 가중치 w를 통해 정점 v로 가는 거리가 현재 기록된 거리보다 더 짧다면, 더 짧은 거리로 업데이트한다.</p>
+<ul>
+<li><p>즉, distance[v] &gt; distance[u] + w이면, distance[v] = distance[u] + w로 갱신.</p></li>
+</ul>
+</li>
+<li><p>이 과정을 <span class="math notranslate nohighlight">\(V-1\)</span>번 반복한다.</p></li>
+</ul>
+</li>
+<li><p><strong>Step 1:Iteration 1</strong></p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph71.PNG" width=300>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>dist(v)</p></th>
+<th class="head"><p>value</p></th>
+<th class="head"><p>➜</p></th>
+<th class="head"><p>dist(v)</p></th>
+<th class="head"><p>value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>dist(s)</p></td>
+<td><p>0</p></td>
+<td><p></p></td>
+<td><p>dist(s)</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>dist(t)</p></td>
+<td><p>∞</p></td>
+<td><p><font color='red'> ➜ </font></p></td>
+<td><p>dist(t)</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>dist(y)</p></td>
+<td><p>∞</p></td>
+<td><p><font color='red'> ➜ </font></p></td>
+<td><p>dist(y)</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p>dist(x)</p></td>
+<td><p>∞</p></td>
+<td><p></p></td>
+<td><p>dist(x)</p></td>
+<td><p>∞</p></td>
+</tr>
+<tr class="row-even"><td><p>dist(z)</p></td>
+<td><p>∞</p></td>
+<td><p></p></td>
+<td><p>dist(z)</p></td>
+<td><p>∞</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Updated</span> <span class="n">distance</span> <span class="n">of</span> <span class="n">t</span> <span class="n">to</span> <span class="mi">6</span> <span class="n">using</span> <span class="n">edge</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">t</span> <span class="k">with</span> <span class="n">weight</span> <span class="mi">6</span>
+<span class="n">Updated</span> <span class="n">distance</span> <span class="n">of</span> <span class="n">y</span> <span class="n">to</span> <span class="mi">7</span> <span class="n">using</span> <span class="n">edge</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">y</span> <span class="k">with</span> <span class="n">weight</span> <span class="mi">7</span>
+</pre></div>
+</div>
+</div><div align="center"><img src="https://haesunbyun.github.io/common/images/graph72.PNG" width=300>
+<p>그림 바꿀것</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>dist(v)</p></th>
+<th class="head"><p>value</p></th>
+<th class="head"><p>➜</p></th>
+<th class="head"><p>dist(v)</p></th>
+<th class="head"><p>value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>dist(s)</p></td>
+<td><p>0</p></td>
+<td><p></p></td>
+<td><p>dist(s)</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>dist(t)</p></td>
+<td><p>6</p></td>
+<td><p></p></td>
+<td><p>dist(t)</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>dist(y)</p></td>
+<td><p>7</p></td>
+<td><p></p></td>
+<td><p>dist(y)</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p>dist(x)</p></td>
+<td><p>∞</p></td>
+<td><p><font color='red'> ➜ </font></p></td>
+<td><p>dist(x)</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-even"><td><p>dist(z)</p></td>
+<td><p>∞</p></td>
+<td><p><font color='red'> ➜ </font></p></td>
+<td><p>dist(z)</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Updated</span> <span class="n">distance</span> <span class="n">of</span> <span class="n">x</span> <span class="n">to</span> <span class="mi">11</span> <span class="n">using</span> <span class="n">edge</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="k">with</span> <span class="n">weight</span> <span class="mi">5</span>
+<span class="n">Updated</span> <span class="n">distance</span> <span class="n">of</span> <span class="n">z</span> <span class="n">to</span> <span class="mi">2</span> <span class="n">using</span> <span class="n">edge</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">z</span> <span class="k">with</span> <span class="n">weight</span> <span class="o">-</span><span class="mi">4</span>
+<span class="n">t</span> <span class="o">-&gt;</span> <span class="n">y</span> <span class="n">Not</span> <span class="n">updated</span>
+</pre></div>
+</div>
+</div><div align="center"><img src="https://haesunbyun.github.io/common/images/graph72.PNG" width=300>  
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>dist(v)</p></th>
+<th class="head"><p>value</p></th>
+<th class="head"><p>➜</p></th>
+<th class="head"><p>dist(v)</p></th>
+<th class="head"><p>value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>dist(s)</p></td>
+<td><p>0</p></td>
+<td><p></p></td>
+<td><p>dist(s)</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>dist(t)</p></td>
+<td><p>6</p></td>
+<td><p></p></td>
+<td><p>dist(t)</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>dist(y)</p></td>
+<td><p>7</p></td>
+<td><p></p></td>
+<td><p>dist(y)</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p>dist(x)</p></td>
+<td><p>11</p></td>
+<td><p><font color='red'> ➜ </font></p></td>
+<td><p>dist(x)</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>dist(z)</p></td>
+<td><p>2</p></td>
+<td><p></p></td>
+<td><p>dist(z)</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Updated</span> <span class="n">distance</span> <span class="n">of</span> <span class="n">x</span> <span class="n">to</span> <span class="mi">4</span> <span class="n">using</span> <span class="n">edge</span> <span class="n">y</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="k">with</span> <span class="n">weight</span> <span class="o">-</span><span class="mi">3</span>
+<span class="n">y</span> <span class="o">-&gt;</span> <span class="n">z</span> <span class="n">Not</span> <span class="n">updated</span>
+</pre></div>
+</div>
+</div>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph73.PNG" width=300>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>dist(v)</p></th>
+<th class="head"><p>value</p></th>
+<th class="head"><p>➜</p></th>
+<th class="head"><p>dist(v)</p></th>
+<th class="head"><p>value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>dist(s)</p></td>
+<td><p>0</p></td>
+<td><p></p></td>
+<td><p>dist(s)</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>dist(t)</p></td>
+<td><p>6</p></td>
+<td><p><font color='red'> ➜ </font></p></td>
+<td><p>dist(t)</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>dist(y)</p></td>
+<td><p>7</p></td>
+<td><p></p></td>
+<td><p>dist(y)</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p>dist(x)</p></td>
+<td><p>11</p></td>
+<td><p></p></td>
+<td><p>dist(x)</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>dist(z)</p></td>
+<td><p>2</p></td>
+<td><p></p></td>
+<td><p>dist(z)</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Updated</span> <span class="n">distance</span> <span class="n">of</span> <span class="n">t</span> <span class="n">to</span> <span class="mi">2</span> <span class="n">using</span> <span class="n">edge</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">t</span> <span class="k">with</span> <span class="n">weight</span> <span class="o">-</span><span class="mi">2</span>
+
+</pre></div>
+</div>
+</div><div align="center"><img src="https://haesunbyun.github.io/common/images/graph73.PNG" width=300>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>dist(v)</p></th>
+<th class="head"><p>value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>dist(s)</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>dist(t)</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>dist(y)</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p>dist(x)</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>dist(z)</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="n">Not</span> <span class="n">updated</span>
+<span class="n">z</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="n">Not</span> <span class="n">updated</span>
+</pre></div>
+</div>
+</div><ul class="simple">
+<li><p><strong>Step 1: Iteration 2</strong></p>
+<ul>
+<li><p>모든 간선에 대해서 동일한 작업을 함.</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph74.PNG" width=300>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>dist(v)</p></th>
+<th class="head"><p>value</p></th>
+<th class="head"><p>➜</p></th>
+<th class="head"><p>dist(v)</p></th>
+<th class="head"><p>value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>dist(s)</p></td>
+<td><p>0</p></td>
+<td><p></p></td>
+<td><p>dist(s)</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>dist(t)</p></td>
+<td><p>2</p></td>
+<td><p></p></td>
+<td><p>dist(t)</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>dist(y)</p></td>
+<td><p>7</p></td>
+<td><p></p></td>
+<td><p>dist(y)</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p>dist(x)</p></td>
+<td><p>4</p></td>
+<td><p></p></td>
+<td><p>dist(x)</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>dist(z)</p></td>
+<td><p>2</p></td>
+<td><p><font color='red'> ➜ </font></p></td>
+<td><p>dist(z)</p></td>
+<td><p>-2</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Updated</span> <span class="n">distance</span> <span class="n">of</span> <span class="n">z</span> <span class="n">to</span> <span class="o">-</span><span class="mi">2</span> <span class="n">using</span> <span class="n">edge</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">z</span> <span class="k">with</span> <span class="n">weight</span> <span class="o">-</span><span class="mi">4</span>
+</pre></div>
+</div>
+</div><ul class="simple">
+<li><p><strong>Step 1: Iteration 3</strong>
+변화없음</p></li>
+<li><p><strong>Step 1: Iteration 4</strong>
+변화없음</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>Step 2:</strong></p>
+<ul>
+<li><p>음수 사이클 검출:</p>
+<ul>
+<li><p>모든 간선을 한 번 더 검사한다.</p></li>
+<li><p>만약 어떤 간선을 통해 거리가 더 줄어든다면, 이는 음수 사이클이 존재함을 의미한다.</p></li>
+<li><p>음수 사이클이 존재하는 경우, 해당 사이클을 반복해서 순환하면 무한히 작은 경로 비용을 만드는 오류가 발생한다.</p></li>
+<li><p>음수 사이클이 발생하면 최단 경로를 찾을 수 없다.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="floyd-warshall">
+<h3>Floyd-Warshall 알고리즘<a class="headerlink" href="#floyd-warshall" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>플로이드-와샬 알고리즘은 모든 노드 쌍 간의 최단 경로를 찾기 위해 사용하는 알고리즘이다.</p></li>
+<li><p>이 알고리즘은 <strong>음의 가중치를 가지는 간선도 처리</strong>할 수 있다.</p></li>
+<li><p>하지만 음의 가중치를 갖는 사이클이 존재하면 최단 경로를 찾을 수 없다.</p></li>
+</ul>
+<ul>
+<li><p><strong>플로이드-와샬 알고리즘의 동작 방법</strong>은 다음과 같다.</p>
+<ol class="arabic simple">
+<li><p>초기화:</p></li>
+</ol>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(dist[i][j]\)</span>를 <span class="math notranslate nohighlight">\(w(i,j)\)</span>로 설정한다.</p></li>
+<li><p>만약 <span class="math notranslate nohighlight">\(i\)</span>와 <span class="math notranslate nohighlight">\(j\)</span>가 동일한 노드라면 <span class="math notranslate nohighlight">\(dist[i][j]\)</span>=0으로 설정한다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(i\)</span>와 <span class="math notranslate nohighlight">\(j\)</span>사이에 간선이 없으면 <span class="math notranslate nohighlight">\(dist[i][j]\)</span>=<span class="math notranslate nohighlight">\(∞\)</span>로 설정한다.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>중간 노드 추가:</p></li>
+</ol>
+<ul class="simple">
+<li><p>각 정점 <span class="math notranslate nohighlight">\(k\)</span>를 중간 정점으로 사용하여 모든 정점 쌍(<span class="math notranslate nohighlight">\(i\)</span>,<span class="math notranslate nohighlight">\(j\)</span>)에 대해 경로를 업데이트 한다.</p></li>
+<li><p>만약 <span class="math notranslate nohighlight">\(dist[i][j]\)</span>가 <span class="math notranslate nohighlight">\(dist[i][k]\)</span> + <span class="math notranslate nohighlight">\(dist[k][j]\)</span>보다 크다면 <span class="math notranslate nohighlight">\(dist[i][j]\)</span>를 <span class="math notranslate nohighlight">\(dist[i][k]\)</span> + <span class="math notranslate nohighlight">\(dist[k][j]\)</span>로 업데이트한다.</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="id5">
+<h4>Floyd-Warshall 알고리즘 동작 예<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h4>
+<p>시작정점 <span class="math notranslate nohighlight">\(s\)</span>부터의 모든 정점까지의 최단경로를 구해보자.</p>
+<ul class="simple">
+<li><p><strong>Step 0</strong>:</p></li>
+<li><p><span class="math notranslate nohighlight">\(dist[i][j]\)</span>를 <span class="math notranslate nohighlight">\(w(i,j)\)</span>로 설정한다.</p></li>
+<li><p>만약 <span class="math notranslate nohighlight">\(i\)</span>와 <span class="math notranslate nohighlight">\(j\)</span>가 동일한 노드라면 <span class="math notranslate nohighlight">\(dist[i][j]=0\)</span>으로 설정한다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(i\)</span>와 <span class="math notranslate nohighlight">\(j\)</span>사이에 간선이 없으면 <span class="math notranslate nohighlight">\(dist[i][j]=∞\)</span>로 설정한다.</p></li>
+<li><p>아래와 같은 그래프를 인접행렬로 표현하면 아래 그림과 같다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph75.PNG" width=400></div>
+<ul class="simple">
+<li><p><strong>Step 1</strong>:</p>
+<ul>
+<li><p>각 정점 <span class="math notranslate nohighlight">\(k\)</span>를 중간 정점으로 사용하여 모든 정점 쌍<span class="math notranslate nohighlight">\((i,j)\)</span>에 대해 경로를 업데이트 한다.</p></li>
+<li><p>만약 <span class="math notranslate nohighlight">\(dist[i][j]\)</span>가 <span class="math notranslate nohighlight">\(dist[i][k] + dist[k][j]\)</span>보다 크다면 <span class="math notranslate nohighlight">\(dist[i][j]\)</span>를 <span class="math notranslate nohighlight">\(dist[i][k] + dist[k][j]\)</span>로 업데이트한다. <br>
+<br></p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Using node 1 as an intermediate node:</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph77.PNG" width=400>
+<ul class="simple">
+<li><p>Using node 2 as an intermediate node:</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph78.PNG" width=400>
+<ul class="simple">
+<li><p>Using node 3 as an intermediate node:</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph79.PNG" width=400>
+<ul class="simple">
+<li><p>Using node 4 as an intermediate node:</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph79-2.PNG" width=400>
+<ul class="simple">
+<li><p>Using node 5 as an intermediate node:</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph76.PNG" width=400>  
+</div>
+</div>
+<div class="section" id="id6">
+<h3>최단 경로 알고리즘의 주요 차이점 요약<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<ol class="arabic simple">
+<li><p>다익스트라 알고리즘</p></li>
+</ol>
+<ul class="simple">
+<li><p>동작 방식:</p>
+<ul>
+<li><p>출발점에서 시작해 가장 가까운 정점부터 최단 거리를 확정</p></li>
+</ul>
+</li>
+<li><p>특징:</p>
+<ul>
+<li><p>음수 가중치를 처리할 수 없음</p></li>
+<li><p>한 번 계산으로 <strong>출발점에서 다른 모든 정점까지의 최단 거리를 구함</strong></p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>밸만포드 알고리즘</p></li>
+</ol>
+<ul class="simple">
+<li><p>동작 방식:</p>
+<ul>
+<li><p>모든 간선을 반복적으로 완화(Relaxation)하여 최단 거리를 갱신
+최대</p></li>
+<li><p>V-1번 반복하며, 음수 가중치 순환이 있는지도 확인</p></li>
+</ul>
+</li>
+<li><p>특징:</p>
+<ul>
+<li><p>음수 가중치를 처리할 수 있음</p></li>
+<li><p><strong>한 번 계산으로 출발점에서 다른 모든 정점까지의 최단 거리를 구함</strong></p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>플로이드-와샬 알고리즘</p></li>
+</ol>
+<ul class="simple">
+<li><p>동작 방식:</p>
+<ul>
+<li><p><strong>모든 정점 쌍 사이의 최단 거리를 구함</strong></p></li>
+<li><p>중간 정점을 하나씩 추가하며 경로를 최적화함</p></li>
+</ul>
+</li>
+<li><p>특징:</p>
+<ul>
+<li><p>음수 가중치를 처리할 수 있지만, 음수 가중치 순환이 있으면 동작하지 않음</p></li>
+</ul>
+</li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>알고리즘</p></th>
+<th class="text-center head"><p>목적</p></th>
+<th class="text-left head"><p>음수 가중치</p></th>
+<th class="text-left head"><p>사용 사례</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>다익스트라</p></td>
+<td class="text-center"><p>한 정점에서 모든 정점까지 최단 거리</p></td>
+<td class="text-left"><p>불가능</p></td>
+<td class="text-left"><p>GPS, 네트워크 경로 설정</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>밸만-포드</p></td>
+<td class="text-center"><p>한 정점에서 모든 정점까지 최단 거리</p></td>
+<td class="text-left"><p>가능</p></td>
+<td class="text-left"><p>금융 모델(음수 순환 확인 포함)</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>플로이드-와샬</p></td>
+<td class="text-center"><p>모든 정점 쌍 사이 최단 거리</p></td>
+<td class="text-left"><p>가능</p></td>
+<td class="text-left"><p>모든 경로를 분석해야 하는 경우</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>마무리<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>특징</p></th>
+<th class="text-center head"><p>최소 비용 알고리즘</p></th>
+<th class="text-left head"><p>최단 경로 알고리즘</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>목적</p></td>
+<td class="text-center"><p>그래프 전체 연결 최소 비용</p></td>
+<td class="text-left"><p>특정 출발지에서 목적지까지 최단 거리</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>적용 대상</p></td>
+<td class="text-center"><p>모든 노드를 연결 (신장 트리)</p></td>
+<td class="text-left"><p>출발점에서 도착점까지의 경로</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>알고리즘 예시</p></td>
+<td class="text-center"><p>크루스칼, 프림</p></td>
+<td class="text-left"><p>다익스트라, 벨만-포드, 플로이드-와샬</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>초점</p></td>
+<td class="text-center"><p>간선의 가중치 합 최소화</p></td>
+<td class="text-left"><p>경로의 길이 최소화</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<font color='Grey' size="4">
+F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking with Computers)</font>
+<hr class="docutils" />
+<p>서울대학교 학부대학<br>
+교수 변해선</p>
 </div>
 </div>
 
@@ -447,7 +2393,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Chapter 11. 트리</p>
+        <p class="prev-next-title">Chapter 11. 그래프</p>
       </div>
     </a>
     <a class="right-next"
@@ -455,7 +2401,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Chapter 13. 가중치 그래프</p>
+        <p class="prev-next-title">Chapter 13. 알고리즘 설계 기법</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -465,6 +2411,47 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mst-minimum-spanning-tree">최소비용 신장트리(MST: minimum spanning tree)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kruskal-s">Kruskal’s 알고리즘</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Kruskal’s 알고리즘 동작 예</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prim-s">Prim’s 알고리즘</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Prim’s 알고리즘 동작 예</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shortest-path">최단경로(shortest path)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dijkstra-s">Dijkstra’s 알고리즘</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Dijkstra’s 알고리즘 동작 예</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bellman-ford">Bellman-Ford 알고리즘</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Bellman-Ford 알고리즘 동작 예</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floyd-warshall">Floyd-Warshall 알고리즘</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Floyd-Warshall 알고리즘 동작 예</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">최단 경로 알고리즘의 주요 차이점 요약</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">마무리</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -93,10 +93,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'CC_chapter6';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Chapter 7. 파일입출력과 예외처리" href="CC_chapter7.html" />
+    <link rel="next" title="중간평가" href="CC_chapter7.html" />
     <link rel="prev" title="Chapter 5. 클래스와 객체" href="CC_chapter5.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -192,19 +194,21 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter0.html">Chapter 0. 프로그래밍 언어와 파이썬</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter1.html">Chapter 1. 기본자료형과 입출력</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter2.html">Chapter 2. 제어문과 복합자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter2.html">Chapter 2. 복합자료형과 제어문</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter3.html">Chapter 3. 모듈과 함수</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter4.html">Chapter 4. 재귀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter4.html">Chapter 4. 재귀함수</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter5.html">Chapter 5. 클래스와 객체</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 6. 자료구조와 추상화</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter7.html">Chapter 7. 파일입출력과 예외처리</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter8.html">중간고사</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter9.html">Chapter 9. 탐색 알고리즘</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter10.html">Chapter 10. 정렬 알고리즘</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter11.html">Chapter 11. 트리</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter12.html">Chapter 12. 그래프</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter13.html">Chapter 13. 가중치 그래프</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter14.html">Chapter 14. 알고리즘 설계기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter7.html">중간평가</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter8.html">Chapter 8. 알고리즘의 효율성과 탐색</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter9.html">Chapter 9. 정렬 알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter10.html">Chapter 10. 트리</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter11.html">Chapter 11. 그래프</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter12.html">Chapter 12. 가중치 그래프</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter13.html">Chapter 13. 알고리즘 설계 기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter14.html">Chapter 14. 알고리즘 설계 기법 II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter15.html">기말평가</a></li>
 </ul>
 
     </div>
@@ -377,7 +381,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -393,6 +399,44 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">추상 데이터 타입의 개념</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stack-adt">스택(stack) ADT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">스택의 특징</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#values">스택의 값(values)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operations">스택의 동작(operations)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">스택의 구현</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#init"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#str"><code class="docutils literal notranslate"><span class="pre">__str__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#push-item"><code class="docutils literal notranslate"><span class="pre">push(item)</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#isempty"><code class="docutils literal notranslate"><span class="pre">isEmpty()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pop"><code class="docutils literal notranslate"><span class="pre">pop()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#peek"><code class="docutils literal notranslate"><span class="pre">peek()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#size"><code class="docutils literal notranslate"><span class="pre">size()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">스택의 활용</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#queue-adt">큐(Queue) ADT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">큐의 특징</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">큐의 값(values)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">큐의 동작(operations)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">큐의 구현</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">큐의 활용</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-3-vector-adt">Simple 3차원 벡터(vector) ADT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">벡터의 동작</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">마무리</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -402,14 +446,850 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-6">
+  <hr class="docutils" />
+<font color='Blue' size="4">
+F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking with Computers)</font>
+<hr class="docutils" />
+<div class="tex2jax_ignore mathjax_ignore section" id="chapter-6">
 <h1>Chapter 6. 자료구조와 추상화<a class="headerlink" href="#chapter-6" title="Permalink to this headline">#</a></h1>
 <div class="info admonition">
 <p class="admonition-title">학습목표와 기대효과</p>
 <ul class="simple">
-<li><p>학습목표</p></li>
-<li><p>기대효과</p></li>
+<li><p>학습목표</p>
+<ul>
+<li><p>추상 데이터 타입(Abstract Data Type)의 개념을 이해해보자</p></li>
+<li><p>추상 데이터 타입을 정의해보자.</p></li>
+<li><p>추상 데이터 타입을 구현해보자.</p></li>
 </ul>
+</li>
+<li><p>기대효과</p>
+<ul>
+<li><p>추상 데이터 타입을 정의하고 구체화시킬 수 있다.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>추상 데이터 타입의 개념<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>전반부에서는 어떤 문제를 해결하고자 할때
+순차적, 조건적, 반복적으로 생각하는 연습을 했고, 재귀를 통해 생각의 전환으로 문제를 해결하는 연습을 했다.
+이것은 주로 프로세스에 관한 관점이었다. 문제를 해결하는 방법에 있어서 흐름(flow), 즉 이를 <strong>프로세스</strong>라고 표현하는데 어떤 방식으로 흘러가면서 문제를 해결해야 할지에 대해 순서적 관점으로 생각하는 것이다.</p>
+<p>이러한 프로세스를 순서적, 절차적으로 바라보지 않고 다르게 바라보는 방법으로 클래스와 객체에 대해서도 다루었다.</p>
+<p>어떤 문제를 해결하기 위한 방법으로 프로세스뿐만 아니라 여러 가지 중요한 팩터들이 있다. 프로세스를 어떻게 디자인할 것인가도 중요한 팩터이지만 또 다른 관점으로 데이터를 어떻게 정의하고 조작할 것인가도 하나의 중요한 팩터이다.</p>
+<p>이번 장에서는 데이터를 어떻게 다룰 것인가의 관점에서 집중적으로 다뤄보고자 한다.</p>
+<p>지금까지 우리는 int, float, str, list, dict, tuple, set 등 다양한 데이터의 타입을 다뤄보았다. 이런 타입들은 원래부터 본질적으로 존재했던 것은 아니다. 실제 컴퓨터의 기계레벨에서는 0과 1 타입만 존재한다. 그 외의 타입들은 0과 1위에 덧붙여져서 만들어진 파생된(drived) 타입들이다.</p>
+<p>주로 프로그래밍 언어를 디자인하는 사람들이 설계해서 만들어 놓았고, 여러분들이 설계해서 만들어 놓을 수도 있다.</p>
+<p>실제로 <code class="docutils literal notranslate"><span class="pre">데이터타입을</span> <span class="pre">어떻게</span> <span class="pre">디자인하느냐</span></code> 하는 것은 문제를 해결하는 방법과 밀접한 연관이 있다.</p>
+<p>데이터타입을 디자인 하는데 있어서 아주 중요한 개념 하나가 <strong>추상 데이터 타입</strong>이다.
+추상 데이터 타입은 Abstract Data Type의 약자로 ADT라고 불린다. 1970년대부터 회자되기 시작하였으며, <code class="docutils literal notranslate"><span class="pre">데이터</span> <span class="pre">타입을</span> <span class="pre">정의하여</span> <span class="pre">문제를</span> <span class="pre">해결하는</span> <span class="pre">수단으로</span> <span class="pre">사용할</span> <span class="pre">수</span> <span class="pre">있다</span></code>는 것에 착안하여 나오기 시작하였다. (ADT의 개념이 먼저 나왔고 그 이후에 OOP가 등장하였다.)</p>
+<p>추상 데이터 타입의 정의는 다음과 같다.</p>
+<p>An abstract data type (ADT) is a mathematical model for data types. An abstract data type is defined by its behavior (semantics) from the point of view of a user, of the data, specifically in terms of possible <strong>values</strong>, possible <strong>operations</strong> on data of this type, and the behavior of these operations.</p>
+<p>추상 데이터 타입은 데이터 타입에 대한 수학적 모델이다. 말을 풀어보자면, 데이터를 사용하는 사용자의 입장에서 사용될 데이터가 무엇이고, 그 데이터가 어떤식으로 동작해야 할지에 대해 <strong>개념적으로 정의하는 것</strong>이다.</p>
+<p>이 개념에는 두 가지가 포함되어 있는데 바로 값(values)과 동작(operations)이다.
+ADT는 그 데이터 타입에 저장되는 데이터 즉, 데이터로 표현되는 구체적이고 실제적인 <strong>값</strong>(value)은 무엇인지, 그 데이터를 어떻게 만지작, 조작(manipulation)하여 작업할 수 있는지를 의미하는 <strong>동작</strong>(operations)을 개념적으로 정의(명시)하는 것을 의미한다.</p>
+<ul class="simple">
+<li><p>리스트를 예로 들어보자.</p></li>
+<li><p>리스트로 사용될 수 있는 데이터들은 숫자,문자,리스트,딕셔너리,튜플, 셋 등 다양한 데이터들을 값(values)으로 가질 수 있다.</p></li>
+<li><p>리스트의 동작으로는 데이터 추가, 데이터 삽입, 데이터 삭제, 데이터 합치기, 데이터 정렬 등의 동작을 가질 수 있다.</p></li>
+<li><p>이러한 값과 동작을 개념적으로 정의하면 ADT가 되는 것이고, 이를 실제 구현하면 <code class="docutils literal notranslate"><span class="pre">리스트</span></code>라는 자료구조(Data structure)가 되는 것이다.</p></li>
+</ul>
+</div>
+<div class="section" id="stack-adt">
+<h2>스택(stack) ADT<a class="headerlink" href="#stack-adt" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>ADT의 가장 대표적이고 기본적인 예로 언급되고 있는 것이 스택이다. 스택의 ADT을 정의해보자.</p></li>
+<li><p>스택은 ‘쌓아 올린다’는 의미로 데이터를 밑바닥부터 차례대로 쌓아올리는 구조이다.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)">https://en.wikipedia.org/wiki/Stack_(abstract_data_type)</a></p></li>
+</ul>
+<div class="section" id="id2">
+<h3>스택의 특징<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>스택 구조에서 무엇이 필요한지 특징을 먼저 나열해보자.</p>
+<ul>
+<li><p>스택은 위로 쌓아 올리는 것이므로 한 방향으로만 데이터를 넣는다.</p></li>
+<li><p>데이터를 뺄 때에도 가장 위에 있는 데이터부터 뺀다.</p></li>
+<li><p>쌓아올린 데이터 중간에 값을 끼워 넣을 수 없다.</p></li>
+<li><p>스택이 비어 있으면 빼낼 데이터가 없으므로 확인이 필요하다.</p></li>
+</ul>
+</li>
+<li><p>나중에 들어온 데이터가 가장 빨리 나가므로 후입선출방법(Last In First Out, LIFO)으로 데이터가 처리된다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/adt1.png" style="width:600px;"></div></div>
+<div class="section" id="values">
+<h3>스택의 값(values)<a class="headerlink" href="#values" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>스택에서 사용가능한 값(데이터)으로는 숫자, 문자, 데이터 묶음, 작업 등 무엇이든지 가능하다.</p></li>
+<li><p>스택이 활용될 수 있는 예로는 다음과 같은 작업이 있다.</p>
+<ul>
+<li><p><strong>브라우저에서 뒤로가기</strong>: 웹페이지 방문기록을 순서대로 저장해 둔 다음에 ‘뒤로가기’ 버튼을 누르면 이전 웹페이지를 보여준다.</p></li>
+<li><p><strong>실행취소</strong>: 실행한 작업을 순서대로 기록해 두었다가 ctrl+z, undo와 같이 실행취소, 되돌리기 버튼을 누르면 마지막에 실행된 것부터 실행을 취소한다.</p></li>
+<li><p><strong>역순 문자열 만들기</strong>: 맨 끝의 문자열부터 차례대로 만든다.</p></li>
+<li><p><strong>재귀적 알고리즘</strong>: 함수가 호출된 순서를 기록해 놓았다가 함수에서 탈출할 때 이전 함수로 되돌아간다.</p></li>
+</ul>
+</li>
+<li><p>위와 같은 작업에서 스택을 활용할 수 있으므로 이러한 작업에서 사용될 가능성이 있는 데이터가 값(values)이 된다.</p></li>
+</ul>
+</div>
+<div class="section" id="operations">
+<h3>스택의 동작(operations)<a class="headerlink" href="#operations" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>스택처럼 동작하려면 필요한 기본적인 연산이 무엇이 있는지 정의해보자.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">push(item)</span></code>: 아이템을 스택에 추가하는 함수(필수)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pop()</span></code>: 가장 위에 있는 아이템을 삭제하는 함수. 항상 가장 위에 있는 아이템을 제거하므로 아이템을 명시하지 않아도 된다.(필수)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">peek()</span></code>: 가장 위에 있는 아이템을 확인하려는 목적으로 아이템을 제거하지는 않고 값을 반환하는 함수</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">isEmpty()</span></code>: 스택이 비었는지 판단하는 함수</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">size()</span></code>: 스택의 아이템의 개수를 반환하는 함수</p></li>
+</ul>
+</li>
+<li><p>사족을 달자면, 스택구조는 리스트만큼 유연(flexible)하지는 않다. 파이썬에는 리스트라는 엄청 쓰기 좋은 데이터타입이 이미 있으므로 스택이라는 타입을 굳이 만들 필요는 없다. 그럼에도 불구하고 스택을 정의하는 이유는 프랙티컬(practical)한 이유보다는 개념적인 쪽에 훨씬 더 가깝다. 우리가 풀어야 할 여러 가지 문제 중에 이러한 스택이라는 추상화타입(abstract type)을 사용하면 문제를 풀기 편리한 경우가 많이 존재한다. 따라서 사용하기 편하고 불편하고의 문제가 아니라 개념적인 것에 가깝다는 것을 상기하자.</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>스택의 구현<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>개념적으로 스택이라는 ADT를 정의해 봤으니, 실제 구현하여 스택 자료구조로 만들어보자.</p></li>
+<li><p>파이썬뿐만 아니라 대부분의 프로그래밍 언어에서는 이와 같은 ADT를 구현하기 위한 language feature(언어적 특징, 개념, 기능)가 존재한다.</p></li>
+<li><p>파이썬에서는 ADT를 구현하기 위한 language feature가 바로 앞 서 다루었던 클래스(class)와 객체(object)이다.</p></li>
+<li><p>따라서 클래스 Stack을 정의하자.</p></li>
+</ul>
+<div class="section" id="init">
+<h4><code class="docutils literal notranslate"><span class="pre">__init__()</span></code><a class="headerlink" href="#init" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>먼저 스택 자료구조에서 초기화하기 위한 <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> 메서드를 정의해보자.</p></li>
+<li><p>Stack 객체를 만들면 초기화할 변수는</p>
+<ul>
+<li><p>스택의 top 위치</p></li>
+<li><p>데이터를 저장할 공간</p></li>
+</ul>
+</li>
+<li><p>여기서 데이터를 저장할 공간으로 리스트를 활용한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Stack</span><span class="p">:</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    새로운 Stack을 생성한다.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sList</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Stack object at 0x000001DFA456CEC8&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="str">
+<h4><code class="docutils literal notranslate"><span class="pre">__str__()</span></code><a class="headerlink" href="#str" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__str__()</span></code>를 활용하여 Stack을 출력했을 때 출력되는 형식을 추가해서 지정해보자.</p></li>
+<li><p>데이터 저장할 공간을 리스트로 만들고 있기 때문에 출력하면 리스트 형태로 출력된다. [],{},() 모두 리스트, 딕셔너리, 튜플로 각각 사용되고 있는 기호이므로 우리는 S&lt; &gt;S로 만들어보자.</p></li>
+<li><p>Stack 클래스에 아래의 <code class="docutils literal notranslate"><span class="pre">__str__()</span></code> 메서드를 추가하자.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">  Stack의 출력 형식을 S&lt;item1, item2, item3, ...&gt;S과 같이 출력한다.</span>
+<span class="sd">  &#39;&#39;&#39;</span>
+  <span class="n">value</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sList</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+  <span class="k">return</span> <span class="s2">&quot;S&lt;&quot;</span><span class="o">+</span><span class="n">value</span><span class="o">+</span><span class="s2">&quot;&gt;S&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="push-item">
+<h4><code class="docutils literal notranslate"><span class="pre">push(item)</span></code><a class="headerlink" href="#push-item" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>push(item) 메서드를 정의해보자.</p></li>
+<li><p>self.sList 리스트에 item을 추가한 후 아이템의 상단 위치인 top을 1 증가 시킨다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">  Stack에 item을 넣는다.</span>
+<span class="sd">  &#39;&#39;&#39;</span>
+  <span class="bp">self</span><span class="o">.</span><span class="n">sList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+  <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="isempty">
+<h4><code class="docutils literal notranslate"><span class="pre">isEmpty()</span></code><a class="headerlink" href="#isempty" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Stack에 isEmpty() 메서드를 정의해 보자. Stack에 item이 없으면 True를, 있으면 False를 반환한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">  Stack에 item이 없으면 True, 있으면 False를 반환한다.</span>
+<span class="sd">  &#39;&#39;&#39;</span>
+  <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+    <span class="k">return</span> <span class="kc">True</span>
+  <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pop">
+<h4><code class="docutils literal notranslate"><span class="pre">pop()</span></code><a class="headerlink" href="#pop" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Stack에 item이 있으면 item을 반환하고 Stack에서는 제거한다. 이는 리스트의 pop() 메서드가 동일한 기능을 제공하므로 이를 활용한다.</p></li>
+<li><p>만약 item이 없으면 ‘Stack is Empty’를 반환한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">  Stack에 item이 있으면 item을 반환하고 Stack에서는 제거한다.</span>
+<span class="sd">  Stack이 비어 있으면 &#39;Stack is Empty&#39;를 반환한다.</span>
+<span class="sd">  &#39;&#39;&#39;</span>
+  <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">()):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sList</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+  <span class="k">return</span> <span class="s1">&#39;Stack is Empty&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="peek">
+<h4><code class="docutils literal notranslate"><span class="pre">peek()</span></code><a class="headerlink" href="#peek" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>peek()은 맨 위에 아이템을 확인하기 위해 주로 사용한다. 맨 위에 아이템을 반환한다.(삭제는 하지 않는다.)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">  맨 위의 아이템을 반환한다.</span>
+<span class="sd">  &#39;&#39;&#39;</span>
+
+  <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">()):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sList</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="size">
+<h4><code class="docutils literal notranslate"><span class="pre">size()</span></code><a class="headerlink" href="#size" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Stack의 아이템의 개수를 반환한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sList</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>스택의 활용<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>구현한 스택자료구조를 활용하여 괄호 매칭 문제를 해결하는 수단으로 사용해 보자.</p></li>
+<li><p>함수나 연산식을 작성할 때 혹은 리스트나 딕셔너리와 같은 데이터 타입을 정의할 때도 대괄호, 중괄호, 소괄호가 사용된다. 이때 사용되는 괄호는 쌍이 맞아야 한다.</p></li>
+<li><p>괄호의 쌍이 맞다는 의미는</p>
+<ul>
+<li><p>여는 괄호의 종류, 개수와  닫는 괄호의 종류, 개수가 같아야 한다.</p></li>
+<li><p>가장 늦게 열린 괄호가 가장 먼저 닫혀야 한다.</p></li>
+<li><p>괄호가 열리기 전에 닫히면 안된다.</p></li>
+</ul>
+</li>
+<li><p>스택을 활용하여 괄호의 쌍이 올바른지 판단하는 함수 bracket()를 작성해보자.</p></li>
+</ul>
+<p>실행코드</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">bracket</span><span class="p">(</span><span class="s1">&#39;[{()]]&#39;</span><span class="p">))</span>  <span class="c1">#종류가 달라서 Invalid</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bracket</span><span class="p">(</span><span class="s1">&#39;[[[]]&#39;</span><span class="p">))</span> <span class="c1">#개수가 달라서 Invalid</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bracket</span><span class="p">(</span><span class="s1">&#39;[[]]&#39;</span><span class="p">))</span> <span class="c1">#Valid</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bracket</span><span class="p">(</span><span class="s1">&#39;([)]&#39;</span><span class="p">))</span> <span class="c1">#괄호의 순서가 잘못되어 Invalid</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bracket</span><span class="p">(</span><span class="s1">&#39;([])&#39;</span><span class="p">))</span> <span class="c1">#Valid</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bracket</span><span class="p">(</span><span class="s1">&#39;][&#39;</span><span class="p">))</span> <span class="c1">#괄호가 열리기 전에 닫혀 Invalid</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bracket</span><span class="p">(</span><span class="s1">&#39;[]&#39;</span><span class="p">))</span> <span class="c1">#Valid</span>
+</pre></div>
+</div>
+<p>Output Result</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+<span class="kc">False</span>
+<span class="kc">True</span>
+<span class="kc">False</span>
+<span class="kc">True</span>
+<span class="kc">False</span>
+<span class="kc">True</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Stack</span><span class="p">:</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    새로운 Stack을 생성한다.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sList</span> <span class="o">=</span> <span class="p">[]</span>
+
+  <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Stack의 출력 형식을 S&lt;item1, item2, item3, ...&gt;S과 같이 출력한다.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">value</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sList</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="s2">&quot;S&lt;&quot;</span><span class="o">+</span><span class="n">value</span><span class="o">+</span><span class="s2">&quot;&gt;S&quot;</span>
+
+  <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Stack에 item을 넣는다.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">+=</span> <span class="mi">1</span>
+
+  <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Stack에 item이 없으면 True, 있으면 False를 반환한다.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+      <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span>
+
+  <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Stack에 item이 있으면 item을 반환하고 Stack에서는 제거한다.</span>
+<span class="sd">    Stack이 비어 있으면 &#39;Stack is Empty&#39;를 반환한다.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">()):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">-=</span> <span class="mi">1</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sList</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="k">return</span> <span class="s1">&#39;Stack is Empty&#39;</span>
+
+  <span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    맨 위의 아이템을 반환한다.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">()):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sList</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+  <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sList</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bracket</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+  <span class="n">s</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
+  <span class="c1">#Todo</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="queue-adt">
+<h2>큐(Queue) ADT<a class="headerlink" href="#queue-adt" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>큐는 먼저 들어온 데이터가 먼저 나가는 구조이다. 선입선출(FIFO: First in First out)방법으로 데이터가 다루어진다.</p></li>
+</ul>
+<div class="section" id="id5">
+<h3>큐의 특징<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>큐는 후단(rear)으로만 데이터가 들어오고, 전단(front)으로만 데이터가 나간다.</p>
+<ul>
+<li><p>중간의 데이터를 끼워 넣거나 뺄 수 없다.</p></li>
+<li><p>큐가 비어 있으면 빼낼 데이터가 없으므로 확인이 필요하다.</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/adt6.png" width= 400 style="width:400px;"></div></div>
+<div class="section" id="id6">
+<h3>큐의 값(values)<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>큐의 접근방법을 사용하는 데이터(숫자, 문자, 데이터 묶음, 작업) 들은 무엇이든지 가능하다.</p></li>
+<li><p>큐가 활용될 수 있는 예로는 다음과 같은 작업이 있다.</p>
+<ul>
+<li><p><strong>매표소나 은행창구의 대기열</strong>: 먼저 온 사람이 먼저 서비스를 받는다.</p></li>
+<li><p><strong>통신에서의 데이터 패킷들의 모델링</strong>: 트래픽 조절과 혼잡 제어를 위한 큐잉 이론에 기저한 분석 모델링</p></li>
+<li><p><strong>프린터와 컴퓨터 사이의 버퍼링</strong>: 컴퓨터에서 인쇄로 보낸 문서 대기열 순서대로 서비스를 받는다.</p></li>
+</ul>
+</li>
+<li><p>위와 같은 작업에서 큐를 활용할 수 있으므로 이러한 작업에서 사용될 가능성이 있는 데이터가 값(values)이 된다.</p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h3>큐의 동작(operations)<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>큐처럼 동작하려면 필요한 기본적인 연산이 무엇이 있는지 정의해보자.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__()</span></code>: 큐를 초기화한다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enqueue(e)</span></code>: 주어진 아이템을 큐의 맨 뒤에 추가한다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dequeue()</span></code>: 큐가 비어있지 않으면 맨 앞 아이템을 삭제하고 반환한다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">isEmpty()</span></code>: 큐가 비어있으면 True를 아니면 False를 반환한다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">peek()</span></code>: 가장 앞에 있는 아이템을 확인하려는 목적으로 큐가 비어있지 않으면 맨 앞 요소를 삭제하지 않고 반환한다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">size()</span></code>: 큐의 아이템 개수를 반환한다.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h3>큐의 구현<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Queue</span><span class="p">:</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">qList</span> <span class="o">=</span> <span class="p">[]</span>
+
+  <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">value</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">qList</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Q&lt;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&gt;Q&quot;</span>
+
+  <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="ow">not</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">qList</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">qList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">()):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">qList</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">()):</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">qList</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+  <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">qList</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on class list in module builtins:
+
+class list(object)
+ |  list(iterable=(), /)
+ |  
+ |  Built-in mutable sequence.
+ |  
+ |  If no argument is given, the constructor creates a new empty list.
+ |  The argument must be an iterable if specified.
+ |  
+ |  Methods defined here:
+ |  
+ |  __add__(self, value, /)
+ |      Return self+value.
+ |  
+ |  __contains__(self, key, /)
+ |      Return key in self.
+ |  
+ |  __delitem__(self, key, /)
+ |      Delete self[key].
+ |  
+ |  __eq__(self, value, /)
+ |      Return self==value.
+ |  
+ |  __ge__(self, value, /)
+ |      Return self&gt;=value.
+ |  
+ |  __getattribute__(self, name, /)
+ |      Return getattr(self, name).
+ |  
+ |  __getitem__(...)
+ |      x.__getitem__(y) &lt;==&gt; x[y]
+ |  
+ |  __gt__(self, value, /)
+ |      Return self&gt;value.
+ |  
+ |  __iadd__(self, value, /)
+ |      Implement self+=value.
+ |  
+ |  __imul__(self, value, /)
+ |      Implement self*=value.
+ |  
+ |  __init__(self, /, *args, **kwargs)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  __iter__(self, /)
+ |      Implement iter(self).
+ |  
+ |  __le__(self, value, /)
+ |      Return self&lt;=value.
+ |  
+ |  __len__(self, /)
+ |      Return len(self).
+ |  
+ |  __lt__(self, value, /)
+ |      Return self&lt;value.
+ |  
+ |  __mul__(self, value, /)
+ |      Return self*value.
+ |  
+ |  __ne__(self, value, /)
+ |      Return self!=value.
+ |  
+ |  __repr__(self, /)
+ |      Return repr(self).
+ |  
+ |  __reversed__(self, /)
+ |      Return a reverse iterator over the list.
+ |  
+ |  __rmul__(self, value, /)
+ |      Return value*self.
+ |  
+ |  __setitem__(self, key, value, /)
+ |      Set self[key] to value.
+ |  
+ |  __sizeof__(self, /)
+ |      Return the size of the list in memory, in bytes.
+ |  
+ |  append(self, object, /)
+ |      Append object to the end of the list.
+ |  
+ |  clear(self, /)
+ |      Remove all items from list.
+ |  
+ |  copy(self, /)
+ |      Return a shallow copy of the list.
+ |  
+ |  count(self, value, /)
+ |      Return number of occurrences of value.
+ |  
+ |  extend(self, iterable, /)
+ |      Extend list by appending elements from the iterable.
+ |  
+ |  index(self, value, start=0, stop=9223372036854775807, /)
+ |      Return first index of value.
+ |      
+ |      Raises ValueError if the value is not present.
+ |  
+ |  insert(self, index, object, /)
+ |      Insert object before index.
+ |  
+ |  pop(self, index=-1, /)
+ |      Remove and return item at index (default last).
+ |      
+ |      Raises IndexError if list is empty or index is out of range.
+ |  
+ |  remove(self, value, /)
+ |      Remove first occurrence of value.
+ |      
+ |      Raises ValueError if the value is not present.
+ |  
+ |  reverse(self, /)
+ |      Reverse *IN PLACE*.
+ |  
+ |  sort(self, /, *, key=None, reverse=False)
+ |      Stable sort *IN PLACE*.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods defined here:
+ |  
+ |  __new__(*args, **kwargs) from builtins.type
+ |      Create and return a new object.  See help(type) for accurate signature.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  __hash__ = None
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+<span class="n">q</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">()</span>
+<span class="n">q</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span>
+<span class="n">q</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+<span class="n">q</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="n">q</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">peek</span><span class="p">())</span>
+<span class="n">q</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Q&lt;&#39;hi&#39;, &#39;hello&#39;, &#39;python&#39;&gt;Q
+Q&lt;&#39;hello&#39;, &#39;python&#39;&gt;Q
+hello
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3>큐의 활용<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>주어진 문장이 회문인지 아닌지 스택과 큐를 모두 활용하여 판별하는 ispalindrome() 함수를 정의하시오.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="simple-3-vector-adt">
+<h2>Simple 3차원 벡터(vector) ADT<a class="headerlink" href="#simple-3-vector-adt" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>벡터는 수학, 물리학, 공학에서 크기와 방향을 함께 갖는 물리량을 의미한다.</p></li>
+<li><p>프로그래밍에서 벡터는 한 가지 타입의 여러 개 원소를 변수에 저장하고, 원소의 개수에 따라 크기가 동적으로 변하는 배열을 의미한다.</p></li>
+<li><p>벡터화 연산은 벡터의 동일 인덱스에 위치한 원소들끼리 연산을 수행하는 기능이다.</p></li>
+<li><p>벡터는 크기가 동적으로 변하는 배열인 리스트의 특징을 가지고 있지만, 리스트는 벡터연산을 지원하지 않는다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">b</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6, 7, 8]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>파이썬에서는 Numpy 모듈에서 벡터연산을 지원한다. 따라서 벡터라는 데이터 타입 또한 굳이 만들 필요는 없다.</p></li>
+<li><p>그렇지만 개념적으로 3차원 벡터의 합, 벡터의 곱을 구하는 ADT를 정의하고 구현해보자.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 20,30, 40</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;벡터의 합:&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;벡터의 곱:&#39;</span><span class="p">,</span><span class="n">a</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">))</span> <span class="c1">#20*1 + 30*2 + 40*3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[20 30 40]
+[1 2 3]
+벡터의 합: [21 32 43]
+벡터의 곱: 200
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>벡터의 동작<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<p>벡터의 합과 벡터의 곱 연산만 정의해보자. 이때 예약메서드 가운데 덧셈 예약메서드 <code class="docutils literal notranslate"><span class="pre">__add__()</span></code>와 곱셈 예약메서드 <code class="docutils literal notranslate"><span class="pre">__mul__()</span></code> 메서드를 재정의 하여 사용해보자.</p>
+<p><span class="math notranslate nohighlight">\(v_1 = (20,30,40)\)</span></p>
+<p><span class="math notranslate nohighlight">\(v_2 = (1,2,3)\)</span></p>
+<p><span class="math notranslate nohighlight">\(v_3 = v_1 + v_2\)</span></p>
+<p><span class="math notranslate nohighlight">\(var = v_1 * v_2\)</span></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__add__()</span></code>: 동일 인덱스에 위치한 원소들끼리 덧셈 연산을 수행한다.</p></li>
+<li><p>vector 타입으로 반환한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">vector3</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">z</span>
+
+  <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">vector3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+
+<span class="n">v1</span> <span class="o">=</span> <span class="n">vector3</span><span class="p">(</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span> <span class="p">)</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">vector3</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span>
+<span class="n">v3</span> <span class="o">=</span> <span class="n">v1</span><span class="o">+</span><span class="n">v2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.vector3 object at 0x000001DFA4964F48&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>print(v3)를 했을 때 바로 결과가 나오도록 <code class="docutils literal notranslate"><span class="pre">__str__()</span></code>를 정의해보자.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">vector3</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">z</span>
+
+  <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">vector3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="si">}</span><span class="s1">&#39;</span>
+
+<span class="n">v1</span> <span class="o">=</span> <span class="n">vector3</span><span class="p">(</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span> <span class="p">)</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">vector3</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span>
+<span class="n">v3</span> <span class="o">=</span> <span class="n">v1</span><span class="o">+</span><span class="n">v2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>21 32 43
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__mul__()</span></code>: 벡터 곱셈 연산을 수행한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">vector3</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">z</span>
+
+  <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">vector3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="si">}</span><span class="s1">&#39;</span>
+
+  <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">*</span><span class="n">v</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">*</span><span class="n">v</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="o">*</span><span class="n">v</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+
+<span class="n">v1</span> <span class="o">=</span> <span class="n">vector3</span><span class="p">(</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span> <span class="p">)</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">vector3</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span>
+<span class="n">v3</span> <span class="o">=</span> <span class="n">v1</span><span class="o">+</span><span class="n">v2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v3</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">v1</span><span class="o">*</span><span class="n">v2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>21 32 43
+200
+</pre></div>
+</div>
+</div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>메서드</p></th>
+<th class="text-center head"><p>의미</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">__add__()</span></code></p></td>
+<td class="text-center"><p>덧셈(+)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">__sub__()</span></code></p></td>
+<td class="text-center"><p>뺄셈(-)</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">__mul__()</span></code></p></td>
+<td class="text-center"><p>곱셈(*)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">__truediv__()</span></code></p></td>
+<td class="text-center"><p>나눗셈(/)</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">__lt__()</span></code></p></td>
+<td class="text-center"><p>작다less than(&lt;)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">__gt__()</span></code></p></td>
+<td class="text-center"><p>크다greater than(&gt;)</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">__le__()</span></code></p></td>
+<td class="text-center"><p>작거나 같다less than or equals(&lt;=)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">__ge__()</span></code></p></td>
+<td class="text-center"><p>크거나 같다greater than or equals(&gt;=)</p></td>
+</tr>
+</tbody>
+</table>
+<p>그 밖의 메서드 이름은 아래의 문서를 참고하기 바란다. 아래 문서에 특수(special method)라는 이름으로 설명되어 있다.
+특수 매서드, 매직 매서드, 예약 매서드 등으로 불린다.</p>
+<p><a class="reference external" href="https://docs.python.org/ko/3.7/reference/datamodel.html#special-method-names">https://docs.python.org/ko/3.7/reference/datamodel.html#special-method-names</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">vector3</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">z</span>
+
+  <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="si">}</span><span class="s1">&#39;</span>
+
+  <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">v</span><span class="o">.</span><span class="n">x</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">v</span><span class="o">.</span><span class="n">y</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">+=</span> <span class="n">v</span><span class="o">.</span><span class="n">z</span>
+
+  <span class="k">def</span> <span class="nf">dotProduct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">*</span><span class="n">v</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">*</span><span class="n">v</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="o">*</span><span class="n">v</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
+
+<span class="n">v1</span> <span class="o">=</span> <span class="n">vector3</span><span class="p">(</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span> <span class="p">)</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">vector3</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v2</span><span class="o">.</span><span class="n">dotProduct</span><span class="p">(</span><span class="n">v1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>마무리<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Abstract Data Type은 데이터 타입에 대한 수학적 모델이다. 데이터를 사용하는 사용자의 입장에서 사용될 데이터가 무엇이고, 그 데이터가 어떤식으로 동작해야 할지에 대해 <strong>개념적으로 정의하는 것</strong>이다.</p></li>
+<li><p>ADT에서는 구현방법을 명시하지는 않고 개념적으로 정의한 것이다. 이를 실제 구현하면 자료구조(Data structure)가 된다.</p></li>
+<li><p>파이썬에서는 class를 통해 ADT를 구현할 수 있다.</p></li>
+<li><p>ADT를 구현해 놓으면 다양한 문제들을 해결하는 수단으로 활용할 수 있다.</p></li>
+</ul>
+<hr class="docutils" />
+<font color='Grey' size="4">
+F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking with Computers)</font>
+<hr class="docutils" />
+<p>서울대학교 학부대학<br>
+교수 변해선</p>
 </div>
 </div>
 
@@ -455,7 +1335,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Chapter 7. 파일입출력과 예외처리</p>
+        <p class="prev-next-title">중간평가</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -465,6 +1345,50 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">추상 데이터 타입의 개념</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stack-adt">스택(stack) ADT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">스택의 특징</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#values">스택의 값(values)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operations">스택의 동작(operations)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">스택의 구현</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#init"><code class="docutils literal notranslate"><span class="pre">__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#str"><code class="docutils literal notranslate"><span class="pre">__str__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#push-item"><code class="docutils literal notranslate"><span class="pre">push(item)</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#isempty"><code class="docutils literal notranslate"><span class="pre">isEmpty()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pop"><code class="docutils literal notranslate"><span class="pre">pop()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#peek"><code class="docutils literal notranslate"><span class="pre">peek()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#size"><code class="docutils literal notranslate"><span class="pre">size()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">스택의 활용</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#queue-adt">큐(Queue) ADT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">큐의 특징</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">큐의 값(values)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">큐의 동작(operations)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">큐의 구현</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">큐의 활용</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-3-vector-adt">Simple 3차원 벡터(vector) ADT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">벡터의 동작</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">마무리</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

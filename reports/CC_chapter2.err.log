@@ -1,0 +1,56 @@
+Traceback (most recent call last):
+  File "D:\users\anaconda3\lib\site-packages\jupyter_cache\executors\utils.py", line 64, in single_nb_execution
+    **kwargs,
+  File "D:\users\anaconda3\lib\site-packages\nbclient\client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "D:\users\anaconda3\lib\site-packages\nbclient\util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "D:\users\anaconda3\lib\site-packages\nbclient\util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "D:\users\anaconda3\lib\asyncio\base_events.py", line 579, in run_until_complete
+    return future.result()
+  File "D:\users\anaconda3\lib\site-packages\nbclient\client.py", line 664, in async_execute
+    cell, index, execution_count=self.code_cells_executed + 1
+  File "D:\users\anaconda3\lib\site-packages\nbclient\client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "D:\users\anaconda3\lib\site-packages\nbclient\client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+from PIL import Image
+
+# 이미지 로드
+
+image = Image.open('example.jpg')
+image_np = np.array(image)
+print(image_np)
+
+# 회색조 변환
+gray_image_np = np.mean(image_np, axis=2).astype(np.uint8)
+
+# 변환된 이미지 저장
+gray_image = Image.fromarray(gray_image_np)
+gray_image.save('example_gray.jpg')
+
+------------------
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[1;32m<ipython-input-20-55e1b738a268>[0m in [0;36m<module>[1;34m[0m
+[0;32m      4[0m [1;31m# 이미지 로드[0m[1;33m[0m[1;33m[0m[1;33m[0m[0m
+[0;32m      5[0m [1;33m[0m[0m
+[1;32m----> 6[1;33m [0mimage[0m [1;33m=[0m [0mImage[0m[1;33m.[0m[0mopen[0m[1;33m([0m[1;34m'example.jpg'[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0m[0;32m      7[0m [0mimage_np[0m [1;33m=[0m [0mnp[0m[1;33m.[0m[0marray[0m[1;33m([0m[0mimage[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0;32m      8[0m [0mprint[0m[1;33m([0m[0mimage_np[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+
+[1;32mD:\users\anaconda3\lib\site-packages\PIL\Image.py[0m in [0;36mopen[1;34m(fp, mode)[0m
+[0;32m   2764[0m [1;33m[0m[0m
+[0;32m   2765[0m     [1;32mif[0m [0mfilename[0m[1;33m:[0m[1;33m[0m[1;33m[0m[0m
+[1;32m-> 2766[1;33m         [0mfp[0m [1;33m=[0m [0mbuiltins[0m[1;33m.[0m[0mopen[0m[1;33m([0m[0mfilename[0m[1;33m,[0m [1;34m"rb"[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0m[0;32m   2767[0m         [0mexclusive_fp[0m [1;33m=[0m [1;32mTrue[0m[1;33m[0m[1;33m[0m[0m
+[0;32m   2768[0m [1;33m[0m[0m
+
+[1;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'example.jpg'
+FileNotFoundError: [Errno 2] No such file or directory: 'example.jpg'
+

@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 11. 트리 &#8212; Core Computing_Thinking with Computers</title>
+    <title>Chapter 11. 그래프 &#8212; Core Computing_Thinking with Computers</title>
   
   
   
@@ -93,11 +93,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'CC_chapter11';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Chapter 12. 그래프" href="CC_chapter12.html" />
-    <link rel="prev" title="Chapter 10. 정렬 알고리즘" href="CC_chapter10.html" />
+    <link rel="next" title="Chapter 12. 가중치 그래프" href="CC_chapter12.html" />
+    <link rel="prev" title="Chapter 10. 트리" href="CC_chapter10.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -192,19 +194,21 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter0.html">Chapter 0. 프로그래밍 언어와 파이썬</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter1.html">Chapter 1. 기본자료형과 입출력</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter2.html">Chapter 2. 제어문과 복합자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter2.html">Chapter 2. 복합자료형과 제어문</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter3.html">Chapter 3. 모듈과 함수</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter4.html">Chapter 4. 재귀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter4.html">Chapter 4. 재귀함수</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter5.html">Chapter 5. 클래스와 객체</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter6.html">Chapter 6. 자료구조와 추상화</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter7.html">Chapter 7. 파일입출력과 예외처리</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter8.html">중간고사</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter9.html">Chapter 9. 탐색 알고리즘</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter10.html">Chapter 10. 정렬 알고리즘</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 11. 트리</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter12.html">Chapter 12. 그래프</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter13.html">Chapter 13. 가중치 그래프</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter14.html">Chapter 14. 알고리즘 설계기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter7.html">중간평가</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter8.html">Chapter 8. 알고리즘의 효율성과 탐색</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter9.html">Chapter 9. 정렬 알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter10.html">Chapter 10. 트리</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 11. 그래프</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter12.html">Chapter 12. 가중치 그래프</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter13.html">Chapter 13. 알고리즘 설계 기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter14.html">Chapter 14. 알고리즘 설계 기법 II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter15.html">기말평가</a></li>
 </ul>
 
     </div>
@@ -377,7 +381,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -388,11 +394,44 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Chapter 11. 트리</h1>
+    <h1>Chapter 11. 그래프</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">그래프 용어</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">그래프 표현 방법</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">인접 행렬을 이용한 그래프 표현</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">인접 리스트를 이용한 그래프 표현</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">그래프 탐색 알고리즘</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfs-depth-first-search">깊이 우선 탐색(DFS, depth first search)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dfs">DFS 알고리즘: 스택을 활용한 구현</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">DFS 알고리즘 재귀적 구현</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bfs-breath-first-search">너비 우선 탐색(BFS, breath first search)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bfs">BFS 알고리즘: 큐를 활용한 구현</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">그래프 탐색의 응용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">스택을 이용한 DFS 크롤링 예제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">큐를 이용한 BFS 크롤링 예제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">스택을 이용한 DFS 시 탐색범위 제한</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">큐를 이용한 BFS 시 탐색범위 제한</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">마무리</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -402,14 +441,660 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-11">
-<h1>Chapter 11. 트리<a class="headerlink" href="#chapter-11" title="Permalink to this headline">#</a></h1>
+  <hr class="docutils" />
+<font color='Blue' size="4">
+F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking with Computers)</font>
+<hr class="docutils" />
+<div class="tex2jax_ignore mathjax_ignore section" id="chapter-11">
+<h1>Chapter 11. 그래프<a class="headerlink" href="#chapter-11" title="Permalink to this headline">#</a></h1>
 <div class="info admonition">
 <p class="admonition-title">학습목표와 기대효과</p>
 <ul class="simple">
-<li><p>학습목표</p></li>
-<li><p>기대효과</p></li>
+<li><p>학습목표</p>
+<ul>
+<li><p>그래프의 개념을 이해한다.</p></li>
+<li><p>그래프를 표현하는 2가지 방법을 이해한다.</p></li>
+<li><p>그래프의 탐색 방법을 이해한다.</p></li>
 </ul>
+</li>
+<li><p>기대효과</p>
+<ul>
+<li><p>그래프 탐색을 이용한 문제해결 능력을 배양할 수 있다.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p><strong>그래프</strong>는 요소들이 서로 복잡하게 연결되어 있는 관계를 표현하는 자료구조이다. 많은 역들이 어떻게 연결되어 있는지를 보여주는 지하철 노선도, 사람들의 복잡한 친구 관계를 보여주는 소셜네트워크 인맥지도, 어떤 지역에서 다른 지역으로 가는 가장 가까운 경로를 표현하는 경로 찾기 등이 그 예이다.</p>
+<p>그래프는 수학자 **오일러(Euler)**에 의해 처음 창안되었다. 오일러의 그래프 이론에서는 <strong>쾨니히스베르크의 다리 문제</strong>가 유명하다.</p>
+<p>쾨니히스베르크에는 프레겔강이 흐르고 있고, 이 강에는 큰 섬이 있다. 그리고 이 섬과 도시의 나머지 부분을 연결하는 7개의 다리가 있다. 이때 7개의 다리들을 한 번만 건너면서 처음 시작한 위치로 돌아오는 길이 있는가 하는 것이 문제이다.
+오일러는 모든 정점에 연결된 간선의 개수가 짝수일 때만 가능하다고 오일러의 정리를 증명하였다.</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph1-1.PNG" width=400></div>
+<p><a class="reference external" href="https://namu.wiki/w/%EC%BE%A8%EB%8B%88%ED%9E%88%EC%8A%A4%EB%B2%A0%EB%A5%B4%ED%81%AC%20%EB%8B%A4%EB%A6%AC%20%EA%B1%B4%EB%84%88%EA%B8%B0%20%EB%AC%B8%EC%A0%9C">나무위키</a></p>
+<p>여기에서는 그래프의 표현방법과 기본 알고리즘을 살펴보자.</p>
+<div class="section" id="id1">
+<h2>그래프 용어<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><strong>정점(Vertex 또는 Node)</strong>: 데이터를 저장하는 위치</p></li>
+<li><p><strong>간선(Edge)</strong>: 정점를 연결하는 선. 링크(Link) 또는 브랜치(branch) 로도 불린다.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">-</span> <span class="n">하나의</span> <span class="n">간선은</span> <span class="n">두</span> <span class="n">개의</span> <span class="n">정점을</span> <span class="n">연결한다</span><span class="o">.</span>
+  <span class="o">-</span> <span class="n">그래프</span> <span class="n">G는</span> <span class="n">G</span><span class="o">=</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">E</span><span class="p">)</span><span class="n">로</span> <span class="n">표현</span><span class="p">,</span> <span class="n">V는</span> <span class="n">정점의</span> <span class="n">집합이며</span><span class="p">,</span> <span class="n">E는</span> <span class="n">간선의</span> <span class="n">집합이다</span><span class="o">.</span>
+  <span class="o">-</span> <span class="n">정점</span> <span class="n">A와</span> <span class="n">B를</span> <span class="n">연결하는</span> <span class="n">간선을</span> <span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span><span class="n">로</span> <span class="n">표현한다</span><span class="o">.</span>
+  <span class="o">-</span> <span class="n">정점</span> <span class="n">A와</span> <span class="n">B로</span> <span class="n">간선의</span> <span class="n">방향이</span> <span class="n">있는</span> <span class="n">경우</span> <span class="o">&lt;</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="o">&gt;</span><span class="n">로</span> <span class="n">표현한다</span><span class="o">.</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>방향 그래프(Directed Graph)</strong>: 간선에 방향이 있는 그래프</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph2.PNG" width=200></div>
+- **무방향 그래프(Undirected Graph)**: 간선에 방향이 없는 그래프
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph3.PNG" width=200></div>
+<hr class="docutils" />
+<ul>
+<li><p>예) 그래프 G1</p>
+<p>V(G1) = [0,1,2,3]</p>
+<p>E(G1) = [(0,1),(0,2),(0,3),(1,2),(1,3),(2,3)]</p>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph5.PNG" width=200></div>
+<ul>
+<li><p>예) 그래프 G2</p>
+<p>V(G2) = [0,1,2]</p>
+<p>E(G2) = [&lt;0,1&gt;, &lt;1,0&gt;, &lt;1,2&gt;]</p>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph6.PNG" width=200></div>
+<ul>
+<li><p>예) 그래프 G3</p>
+<p>V(G3) = [0,1,2,3,4,5,6,7]</p>
+<p>E(G3) = [(0,1),(0,2),(0,3),(1,2),(1,3),(2,3),(4,5),(5,6),(6,7)]</p>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph7.PNG" width=200></div>
+<hr class="docutils" />
+<ul>
+<li><p><strong>차수(Degree)</strong>: 정점에 인접한 정점의 수</p>
+<ul class="simple">
+<li><p>방향 그래프에서는 정점으로 들어오는 차수를 진입 차수(In-degree), 정점에서 나가는 차수를 진출 차수(Out-degree)로 구분한다.</p></li>
+<li><p>방향 그래프는 진입 차수와 진출 차수가 다를 수 있다. &lt;<span class="math notranslate nohighlight">\(v_i, v_j\)</span>&gt; <span class="math notranslate nohighlight">\(\neq\)</span>  &lt;<span class="math notranslate nohighlight">\(v_j, v_i\)</span>&gt;</p></li>
+<li><p>무방향 그래프는 &lt;<span class="math notranslate nohighlight">\(v_i, v_j\)</span>&gt; = &lt;<span class="math notranslate nohighlight">\(v_j, v_i\)</span>&gt;이다.</p></li>
+</ul>
+</li>
+<li><p><strong>경로(Path)</strong>: 시작 정점 <span class="math notranslate nohighlight">\(u\)</span>부터 도착 정점 <span class="math notranslate nohighlight">\(v\)</span>까지의 정점들을 나열한 표현한다.</p>
+<ul class="simple">
+<li><p>단순경로: 경로 상의 정점들이 모두 다른 경로</p></li>
+<li><p>[A,B,D,C]: 시작 정점 A로부터 도착 정점 C까지의 단순 경로</p></li>
+</ul>
+</li>
+<li><p><strong>싸이클(Cycle)</strong>: 시작 정점과 도착 정점이 동일한 단순 경로</p>
+<ul class="simple">
+<li><p>[A,B,D,C,A]</p></li>
+</ul>
+</li>
+<li><p><strong>완전 그래프(Complete graph)</strong>: 그래프에서 간선의 수가 최대인 그래프</p>
+<ul class="simple">
+<li><p>무방향 그래프의 경우 <span class="math notranslate nohighlight">\(n\)</span>개의 정점이 있다면 간선의 수는 <span class="math notranslate nohighlight">\(n(n-1)/2\)</span></p>
+<ul>
+<li><p>(예)정점이 4개인 그래프에서 간선의 최대 개수는 6</p></li>
+</ul>
+</li>
+<li><p>방향 그래프의 경우 <span class="math notranslate nohighlight">\(n\)</span>개의 정점이 있다면 간선의 수는  <span class="math notranslate nohighlight">\(n(n-1)\)</span></p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph4.PNG" width=600></div></li>
+</ul>
+<ul class="simple">
+<li><p><strong>인접(adjacent)</strong>: 무방향 그래프에서 정점 a,b에 대하여 간선(a,b)가 있으면, 정점 a는 정점 b에 인접한다고 한다.</p></li>
+<li><p><strong>부속(incident)</strong>: 무방향 그래프에서 정점 a,b에 대하여 간선(a,b)가 있으면, 간선(a,b)는 정점 a와 b에 부속한다고 한다.</p></li>
+<li><p><strong>가중치(Weighted) 그래프</strong>: 간선에 가중치가 부여된 그래프</p>
+<ul>
+<li><p>가중치는 두 정점 사이의 거리, 시간 등이 될 수 있음</p></li>
+</ul>
+</li>
+<li><p>트리(Tree): 싸이클이 없는 그래프</p></li>
+<li><p>신장트리(Spanning Tree): 그래프의 모든 정점들을 싸이클없이 연결하는 부분그래프</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>그래프 표현 방법<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>그래프를 자료구조로 저장하고 표현하는 방법으로는 인접 행렬(Adjacency Matrix)와 인접 리스트(Adjacency List)가 있다.</p></li>
+</ul>
+<div class="section" id="id3">
+<h3>인접 행렬을 이용한 그래프 표현<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<ul>
+<li><p>N개의 정점을 가진 그래프를 인접 행렬로 표현하려면, 인접 행렬은 2차원 NxN 리스트 k를 만들고, 정점 i와 j사이에 간선이 있으면 k[i][j] = 1, 간선이 없으면 k[i][j] = 0으로 저장한다.</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph8.PNG" width=700></div>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 인접행렬 코드 작성해보기</span>
+<span class="k">def</span> <span class="nf">Adjacency_Matrix</span><span class="p">():</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-1-6803c9386a72&gt;&quot;</span><span class="gt">, line </span><span class="mi">2</span>
+    <span class="k">def</span> <span class="nf">Adjacency_Matrix</span><span class="p">():</span>
+                           <span class="o">^</span>
+<span class="ne">SyntaxError</span>: unexpected EOF while parsing
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>인접 리스트를 이용한 그래프 표현<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<ul>
+<li><p>인접 리스트는 각 정점에 대해 그 정점과 인접한 정점들의 목록을 저장하는 구조이다.</p></li>
+<li><p>각 정점마다 1개의 단순연결리스트를 이용하여 인접한 각 정점을 노드에 저장한다.</p></li>
+<li><p>n개의 연결 리스트로 그래프의 연결 관계를 효율적으로 표현한다.</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph9.PNG" width=700></div>  
+</li>
+<li><p>인접 리스트의 순서는 중요하지 않지만, 특정 알고리즘이나 문제 요구 사항에 따라 정렬이나 순서를 고려할 필요가 있을 수도 있다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 인접리스트 코드 작성해보기</span>
+<span class="k">def</span> <span class="nf">Adjacency_List</span><span class="p">():</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>그래프 탐색 알고리즘<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>그래프 탐색은 하나의 정점에서 시작하여 모든 정점을 한 번씩 방문하는 작업이다.</p>
+<ul>
+<li><p>예, 전자회로 연결 판단, 미로 출구 찾기</p></li>
+</ul>
+</li>
+<li><p>대표적인 그래프 탐색 알고리즘은 **깊이 우선 탐색(DFS, depth first search)**와 <strong>너비 우선 탐색(BFS, breath first search)</strong> 알고리즘이 있다.</p></li>
+</ul>
+<div class="section" id="dfs-depth-first-search">
+<h3>깊이 우선 탐색(DFS, depth first search)<a class="headerlink" href="#dfs-depth-first-search" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>그래프에서 깊이 탐색을 우선적으로 탐색하는 알고리즘</p></li>
+<li><p>동작과정</p>
+<ol class="arabic simple">
+<li><p>임의의 정점에서 시작하여 이웃하는 하나의 정점을 방문한다. 이때 방문한 정점은 반드시 방문되었다고 표시를 해야 한다.</p></li>
+<li><p>방금 방문한 정점의 이웃 정점을 방문하며, 이웃하는 정점을 모두 방문한 경우에는 이전 정점으로 되돌아 간다.</p></li>
+<li><p>거기서 다시 아직 방문하지 않은 인접 정점을 찾아 동일한 방법의 탐색을 수행하는 방식이다.</p></li>
+</ol>
+</li>
+<li><p>스택이나 재귀함수를 이용하여 구현 가능하다.</p>
+<ol class="arabic simple">
+<li><p>탐색 시작 노드를 스택에 삽입하고 방문 처리</p></li>
+<li><p>스택의 최상단 노드에 방문하지 않은 인접한 노드가 하나라도 있으면 그 노드를 스택에 넣고 방문 처리.방문하지 않은 인접 노드가 없으면 스택에서 최상단 노드를 꺼냄</p></li>
+<li><p>더 이상 2번의 과정을 수행할 수 없을 때까지 반복</p></li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p><strong>Step 0</strong>: 그래프를 준비(방문 기준: 번호가 낮은 인접 노드부터)</p>
+<ul class="simple">
+<li><p>시작 노드: 1</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph10.PNG" width=400></div>
+</li>
+<li><p><strong>Step 1</strong>: 시작 노드인 ‘1’를 스택에 삽입하고 방문 처리</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph11.PNG" width=400></div>
+</li>
+<li><p><strong>Step 2</strong>: ‘1’의 인접 노드 ‘2’, ‘3’, ‘8’ 가운데 가장 낮은 번호를 가진 노드 ‘2’를 스택에 삽입하고 방문 처리</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph12.PNG" width=400></div>    
+</li>
+</ul>
+<ul>
+<li><p><strong>Step 3</strong>: ‘2’의 인접 노드 ‘7’이 있음. 방문하지 않은 노드이므로 ‘7’를 스택에 삽입하고 방문 처리</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph13.PNG" width=400></div>  
+</li>
+<li><p><strong>Step 4</strong>: ‘7’의 방문하지 않은 인접 노드 ‘6’, ‘8’이 있음. 이 가운데 가장 낮은 번호를 가진 방문하지 않은 노드 ‘6’을 스택에 삽입하고 방문 처리</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph14.PNG" width=400></div>      </li>
+</ul>
+<ul>
+<li><p><strong>Step 5</strong>: 스택의 최상단 노드인 ‘6’에 방문하지 않은 인접 노드가 없음. 따라서 스택에서 ‘6’번 노드를 꺼냄</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph15.PNG" width=400></div>
+</li>
+<li><p><strong>Step 6</strong>: 스택의 최상단 노드인 ‘7’에 방문하지 않은 인접 노드 ‘8’이 있음. 따라서 ‘8’번 노드를 스택에 넣고 방문 처리</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph16.PNG" width=400></div>
+</li>
+<li><p>이러한 과정을 반복하였을 때 전체 노드의 탐색 순서(스택에 들어간 순서)가 된다.</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph17.PNG" width=400></div>     </li>
+</ul>
+<ul>
+<li><p>DFS 예제</p>
+  <div align="center"><img src="https://haesunbyun.github.io/common/images/graph19.PNG" width=200></div>
+<ul>
+<li><p>위와 같은 그래프가 있었을때 방문순서를 적어보세요. 시작노드 A</p>
+<ul class="simple">
+<li><p>연결리스트</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>A:B→C
+B:A→D
+C:A→D→E
+D:B→C→F
+E:C→G→H
+F:D
+G:E→H
+H:E→G
+</pre></div>
+</div>
+</li>
+<li><p>방문순서: <font color="white">A→B→D→C→E→G→H→F</font></p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="dfs">
+<h4>DFS 알고리즘: 스택을 활용한 구현<a class="headerlink" href="#dfs" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dfs_iterative</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+
+    <span class="c1"># 스택에서 꺼낸다. 방문하지 않은 노드이면 방문처리한다.</span>
+    <span class="c1"># 인접 정점들을 역순으로 스택에 추가한다.</span>
+    <span class="c1"># 이를 계속 반복한다.</span>
+
+
+
+
+<span class="c1"># 그래프 표현 (인접 리스트)</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">Adjacency_List</span><span class="p">()</span>
+
+<span class="c1"># DFS 호출, 시작노드 &#39;A&#39;</span>
+<span class="n">dfs_iterative</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">graph</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A B D C E G H F 
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p>초기 상태
+visited = {} (아직 아무것도 방문하지 않음)
+stack = [‘A’]</p></li>
+<li><p>첫 번째 반복 (현재 노드: ‘A’)</p></li>
+</ol>
+<ul class="simple">
+<li><p>‘A’를 스택에서 꺼냄: stack = []</p></li>
+<li><p>‘A’를 방문처리: visited = {‘A’}, 출력: A</p></li>
+<li><p>‘A’의 인접 정점 [‘B’, ‘C’]를 역순으로 추가: stack = [‘C’, ‘B’]</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>두 번째 반복 (현재 노드: ‘B’)</p></li>
+</ol>
+<ul class="simple">
+<li><p>‘B’를 스택에서 꺼냄: stack = [‘C’]</p></li>
+<li><p>‘B’를 방문처리: visited = {‘A’, ‘B’}, 출력: B</p></li>
+<li><p>‘B’의 인접 정점 [‘A’, ‘D’] 중 방문하지 않은 정점 [‘D’]를 역순으로 추가: stack = [‘C’, ‘D’]</p>
+<ul>
+<li><p>코드상으로는 [‘D’, ‘A’]로 모두 stack에 들어가지만 이후, 이후 스택에서 정점이 꺼내질 때 ‘A’는 이미 visited에 포함되어 있으므로 무시됨</p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>세 번째 반복 (현재 노드: ‘D’)</p></li>
+</ol>
+<ul class="simple">
+<li><p>‘D’를 스택에서 꺼냄: stack = [‘C’]</p></li>
+<li><p>‘D’를 방문처리: visited = {‘A’, ‘B’, ‘D’}, 출력: D</p></li>
+<li><p>‘D’의 인접 정점 [‘B’, ‘C’, ‘F’] 중 방문하지 않은 정점 [‘C’, ‘F’]를 역순으로 추가: stack = [‘C’, ‘F’, ‘C’]</p></li>
+</ul>
+<p>5… 이와 같이 반복 됨</p>
+</div>
+<div class="section" id="id6">
+<h4>DFS 알고리즘 재귀적 구현<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dfs_recursive</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">visited</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">visited</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">start</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">neighbor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+            <span class="n">dfs_recursive</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">neighbor</span><span class="p">,</span> <span class="n">visited</span><span class="p">)</span>
+
+<span class="c1"># 그래프 표현 (인접 리스트)</span>
+<span class="c1"># input으로 입력하기 귀찮아서 미리 넣어놓음</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;E&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># DFS 호출</span>
+<span class="n">dfs_recursive</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">graph</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A B D C E G H F 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="bfs-breath-first-search">
+<h3>너비 우선 탐색(BFS, breath first search)<a class="headerlink" href="#bfs-breath-first-search" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>그래프에서 가까운 노드부터 우선적으로 탐색하는 알고리즘</p></li>
+<li><p>시작 정점으로부터 가까운 정점을 먼저 방문하고 멀리 떨어져 있는 정점을 나중에 방문하는 순회 방법이다.</p></li>
+<li><p>가까운 거리에 있는 정점들을 차례대로 저장하고, 들어간 순서대로 꺼낼 수 있는 자료구조인 큐를 이용하여 구현이 가능하다.</p></li>
+<li><p>동작과정</p>
+<ol class="arabic simple">
+<li><p>탐색 시작 노드를 큐에 삽입하고 방문처리</p></li>
+<li><p>큐에서 노드를 꺼낸 뒤에 해당 노드의 인접 노드 중에서 방문하지 않은 노드를 모두 큐에 삽입하고 방문처리</p></li>
+<li><p>더 이상 2번의 과정을 수행할 수 없을 때까지 반복</p></li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p><strong>Step 0</strong>: 그래프를 준비(방문 기준: 번호가 낮은 인접 노드부터)</p>
+<ul class="simple">
+<li><p>시작 노드: 1</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph10.PNG" width=400></div>
+</li>
+<li><p><strong>Step 1</strong>: 시작 노드인 ‘1’를 큐에 삽입하고 방문 처리</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph11.PNG" width=400></div>  
+</li>
+<li><p><strong>Step 2</strong>: 큐에서 노드 ‘1’을 꺼내 방문하지 않은 인접 노드 ‘2’,’3’,’8’을 큐에 삽입하고 방문 처리</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph20.PNG" width=400></div>       </li>
+</ul>
+<ul>
+<li><p><strong>Step 3</strong>: 큐에서 노드 ‘2’를 꺼내 방문하지 않은 인접 노드 ‘7’을 큐에 삽입하고 방문 처리</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph21.PNG" width=400></div>
+</li>
+<li><p><strong>Step 4</strong>: 큐에서 노드 ‘3’을 꺼내 방문하지 않은 인접 노드 ‘4’, ‘5’를 큐에 삽입하고 방문 처리</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph22.PNG" width=400></div>  
+</li>
+<li><p><strong>Step 5</strong>: 큐에서 노드 ‘8’을 꺼내고 방문하지 않은 인접 노드가 없으므로 무시</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph23.PNG" width=400></div></li>
+</ul>
+<ul>
+<li><p>이러한 과정을 반복하여 전체 노드의 탐색 순서(큐에 들어간 순서)대로 방문</p>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph24.PNG" width=400></div></li>
+</ul>
+<ul>
+<li><p>BFS 예제</p>
+  <div align="center"><img src="https://haesunbyun.github.io/common/images/graph19.PNG" width=200></div>
+<ul>
+<li><p>위와 같은 그래프가 있었을때 방문순서를 적어보세요. 시작노드 A</p>
+<ul class="simple">
+<li><p>연결리스트</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>A:B→C
+B:A→D
+C:A→D→E
+D:B→C→F
+E:C→G→H
+F:D
+G:E→H
+H:E→G
+</pre></div>
+</div>
+</li>
+<li><p>방문순서: <font color="white">A→B→C→D→E→F→G→H</font></p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="bfs">
+<h4>BFS 알고리즘: 큐를 활용한 구현<a class="headerlink" href="#bfs" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+
+<span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="n">start</span><span class="p">])</span>
+
+    <span class="c1"># 큐에서 꺼낸다. 방문하지 않은 노드이면 방문처리한다.</span>
+    <span class="c1"># 인접 정점들을 큐에 추가한다.</span>
+    <span class="c1"># 이를 계속 반복한다.</span>
+
+
+
+
+<span class="c1"># 그래프 표현 (인접 리스트)</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;E&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># BFS 호출</span>
+<span class="n">bfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A B C D E F G H 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>그래프 탐색의 응용<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>하이퍼링크로 연결 된 사이트들 간의 관계를 방향 그래프로 표현하였을 때, 간선을 통해 사이트에서 사이트로의 영향력을 직간접적으로 분석할 수 있다.</p></li>
+<li><p>하이퍼링크를 통해 사이트의 영향력이나 중요도를 판단하는 방법을 페이지랭크(PageRank)라 한다.</p></li>
+<li><p>그림을 보면, 두 사이트 간의 하이퍼링크를 통해 영향력이 전달되는 것을 볼 수 있고, 이러한 관계가 복잡해지면서 전체 사이트들 간의 중요도를 크기로 표현하고 있다.</p></li>
+<li><p>간선의 흐름에 따라 노드를 추적해보면 거리가 멀어질수록 영향력이 떨어지는 것을 알 수 있다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/graph25.PNG" width=600></div>
+사이트들 간의 관계(방향 그래프)<div class="section" id="id8">
+<h3>스택을 이용한 DFS 크롤링 예제<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">request</span>
+<span class="kn">from</span> <span class="nn">requests.compat</span> <span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span> <span class="n">urljoin</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="c1"># 시작 URL 설정</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="s1">&#39;https://haesunbyun.github.io/Core-Computing-Ver.2/intro.html&#39;</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">seed</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 기본 도메인 추출</span>
+<span class="n">tovisit</span> <span class="o">=</span> <span class="p">[</span><span class="n">seed</span><span class="p">]</span>  <span class="c1"># 방문할 URL 리스트 초기화, 스택</span>
+<span class="n">visited</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># 방문한 URL 리스트 초기화</span>
+
+<span class="k">while</span> <span class="n">tovisit</span><span class="p">:</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">tovisit</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># 방문할 URL 리스트에서 마지막 URL을 가져옴</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>  <span class="c1"># 해당 URL에 GET 요청을 보냄</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>  <span class="c1"># 응답 내용을 BeautifulSoup을 사용해 파싱</span>
+    <span class="n">visited</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>  <span class="c1"># 현재 URL을 방문한 URL 리스트에 추가</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;a[href]&#39;</span><span class="p">):</span>  <span class="c1"># 페이지 내의 모든 링크를 순회</span>
+        <span class="n">new_url</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">_</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">])</span>  <span class="c1"># 절대 URL로 변환</span>
+        <span class="c1"># 링크가 페이지 내부 링크이거나 같은 도메인의 링크가 아닌 경우 건너뜀</span>
+        <span class="k">if</span> <span class="n">_</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span> <span class="ow">or</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">new_url</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">base</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="c1"># 새로운 URL이 방문 예정 또는 방문한 URL 리스트에 없는 경우에만 추가</span>
+        <span class="k">if</span> <span class="n">new_url</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span> <span class="o">+</span> <span class="n">tovisit</span> <span class="o">+</span> <span class="p">[</span><span class="n">seed</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="p">]:</span>
+            <span class="n">tovisit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_url</span><span class="p">)</span> <span class="c1"># 새 URL을 방문할 URL 리스트에 추가</span>
+
+<span class="c1"># 방문한 URL 리스트 출력</span>
+<span class="n">visited</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3>큐를 이용한 BFS 크롤링 예제<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">request</span>
+<span class="kn">from</span> <span class="nn">requests.compat</span> <span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span> <span class="n">urljoin</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="c1"># 시작 URL 설정</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="s1">&#39;https://haesunbyun.github.io/Core-Computing-Ver.2/intro.html&#39;</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">seed</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 기본 도메인 추출</span>
+<span class="n">tovisit</span> <span class="o">=</span> <span class="p">[</span><span class="n">seed</span><span class="p">]</span>  <span class="c1"># 방문할 URL 리스트 초기화</span>
+<span class="n">visited</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># 방문한 URL 리스트 초기화</span>
+
+<span class="k">while</span> <span class="n">tovisit</span><span class="p">:</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">tovisit</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># 방문할 URL 리스트에서 첫 번째 URL을 가져옴</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>  <span class="c1"># 해당 URL에 GET 요청을 보냄</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>  <span class="c1"># 응답 내용을 BeautifulSoup을 사용해 lxml문서로 파싱</span>
+    <span class="n">visited</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>  <span class="c1"># 현재 URL을 방문한 URL 리스트에 추가</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;a[href]&#39;</span><span class="p">):</span>  <span class="c1"># 페이지 내의 모든 링크를 순회</span>
+        <span class="n">new_url</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">_</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">])</span>  <span class="c1"># 절대 URL로 변환</span>
+        <span class="c1"># 링크가 페이지 내부 링크이거나 같은 도메인의 링크가 아닌 경우 건너뜀</span>
+        <span class="k">if</span> <span class="n">_</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span> <span class="ow">or</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">new_url</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">base</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="c1"># 새로운 URL을 방문 예정 또는 방문한 URL 리스트에 없는 경우에만 추가</span>
+        <span class="k">if</span> <span class="n">new_url</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span> <span class="o">+</span> <span class="n">tovisit</span> <span class="o">+</span> <span class="p">[</span><span class="n">seed</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="p">]:</span>
+            <span class="n">tovisit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_url</span><span class="p">)</span> <span class="c1"># 새 URL을 방문할 URL 리스트에 추가</span>
+
+<span class="c1"># 방문한 URL 리스트 출력</span>
+<span class="n">visited</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>스택을 이용한 DFS 시 탐색범위 제한<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>뉴스 사이트처럼 문서들이 관련 주제에
+따라 계층형 관계로 구성되어 있을 때, 특정 링크를 따라 계속해서 문서들을 추적하다 보면 결국 원래의 주제에서 멀리 떨어진 내용들을 다루게 된다.</p></li>
+<li><p>따라서 탐색 범위 제한을 통해 무한히 확장하는 인터넷 공간상에서 사이클에 빠지지 않도록 **비 순환성(Acyclic)**으로 만들거나, 시드로부터 너무 멀리 떨어져 있어서 발생할 수 있는 내용적 <strong>비 유사성</strong>을 사전에 방지하고 크롤러가 적당한 시점에 탈출 할 수 있도록 참조 범위를 기준으로 제한할 필요가 있다.</p></li>
+<li><p>아래의 코드는 스택을 이용한 깊이 우선 탐색 시, 시드를 0부터 시작하여 하이퍼링크를 통해 다음 페이지를 탐색할 때마다 순차적으로 1씩 증가하였고, 최대 참조
+범위가 2 미만일 때 까지 만으로 제한한 예이다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">request</span>
+<span class="kn">from</span> <span class="nn">requests.compat</span> <span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span> <span class="n">urljoin</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="c1"># 시작 URL 설정</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="s1">&#39;https://news.naver.com/&#39;</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">seed</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 기본 도메인 추출</span>
+<span class="n">tovisit</span> <span class="o">=</span> <span class="p">[(</span><span class="n">seed</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span>  <span class="c1"># 방문할 URL 리스트 초기화</span>
+<span class="n">visited</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># 방문한 URL 리스트 초기화</span>
+
+<span class="k">while</span> <span class="n">tovisit</span><span class="p">:</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">tovisit</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 방문할 URL 리스트에서 첫 번째 URL을 가져옴</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># 해당 URL에 GET 요청을 보냄</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>  <span class="c1"># 응답 내용을 BeautifulSoup을 사용해 lxml문서로 파싱</span>
+    <span class="n">visited</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>  <span class="c1"># 현재 URL을 방문한 URL 리스트에 추가</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;a[href]&#39;</span><span class="p">):</span>  <span class="c1"># 페이지 내의 모든 링크를 순회</span>
+        <span class="n">new_url</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">_</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">])</span>  <span class="c1"># 절대 URL로 변환</span>
+
+        <span class="c1"># 링크가 비어있거나, 링크가 페이지 내부 링크이거나 같은 도메인의 링크가 아닌 경우 건너뜀</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">_</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="n">_</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span> <span class="ow">or</span> <span class="n">new_url</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;http&#39;</span> <span class="ow">or</span> <span class="n">url</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+          <span class="k">continue</span>
+        <span class="c1"># 새로운 URL을 방문 예정 또는 방문한 URL 리스트에 없는 경우에만 추가</span>
+        <span class="k">if</span> <span class="n">new_url</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tovisit</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">seed</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="p">]:</span>
+          <span class="n">tovisit</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">new_url</span><span class="p">,</span> <span class="n">url</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="c1"># 오래 걸려서 10개까지만 제한</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">visited</span><span class="p">)</span><span class="o">&gt;=</span><span class="mi">10</span><span class="p">:</span>
+      <span class="k">break</span>
+
+<span class="c1"># 방문한 URL 리스트 출력</span>
+<span class="n">visited</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;https://news.naver.com/&#39;, 0),
+ (&#39;https://www.navercorp.com/&#39;, 1),
+ (&#39;https://www.youtube.com/user/playnaver&#39;, 2),
+ (&#39;https://twitter.com/official_naver&#39;, 2),
+ (&#39;https://www.facebook.com/naverofficial&#39;, 2),
+ (&#39;https://www.instagram.com/naver_official/&#39;, 2),
+ (&#39;https://tv.naver.com/playnaver&#39;, 2),
+ (&#39;https://blog.naver.com/naver_diary&#39;, 2),
+ (&#39;https://news.naver.com/policy/personal.html&#39;, 2),
+ (&#39;https://audit.navercorp.com/en/audit/auditProtection&#39;, 2)]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h3>큐를 이용한 BFS 시 탐색범위 제한<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>탐색한 도메인을 지정함으로서 탐색 범위를 제한한 예이다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">request</span>
+<span class="kn">from</span> <span class="nn">requests.compat</span> <span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span> <span class="n">urljoin</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="c1"># 시작 URL 설정</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="s1">&#39;https://haesunbyun.github.io/Core-Computing-Ver.2/intro.html&#39;</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="s1">&#39;https://news.naver.com/&#39;</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">seed</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 기본 도메인 추출</span>
+<span class="n">tovisit</span> <span class="o">=</span> <span class="p">[</span><span class="n">seed</span><span class="p">]</span>  <span class="c1"># 방문할 URL 리스트 초기화</span>
+<span class="n">visited</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># 방문한 URL 리스트 초기화</span>
+<span class="n">enabled</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_sources&#39;</span><span class="p">]</span> <span class="c1"># 탐색을 허용하는 도메인 서브</span>
+
+<span class="k">while</span> <span class="n">tovisit</span><span class="p">:</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">tovisit</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># 방문할 URL 리스트에서 첫 번째 URL을 가져옴</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>  <span class="c1"># 해당 URL에 GET 요청을 보냄</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>  <span class="c1"># 응답 내용을 BeautifulSoup을 사용해 lxml문서로 파싱</span>
+    <span class="n">visited</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>  <span class="c1"># 현재 URL을 방문한 URL 리스트에 추가</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;a[href]&#39;</span><span class="p">):</span>  <span class="c1"># 페이지 내의 모든 링크를 순회</span>
+        <span class="n">new_url</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">_</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">])</span>  <span class="c1"># 절대 URL로 변환</span>
+
+        <span class="c1"># 링크가 비어있거나, 링크가 페이지 내부 링크이거나 같은 도메인의 링크가 아닌 경우 건너뜀</span>
+        <span class="k">if</span> <span class="n">_</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>
+          <span class="k">continue</span>
+        <span class="k">if</span> <span class="kc">True</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span> <span class="ow">in</span> <span class="n">enabled</span><span class="p">,</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">new_url</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)):</span>
+          <span class="k">continue</span>
+        <span class="c1"># 새로운 URL을 방문 예정 또는 방문한 URL 리스트에 없는 경우에만 추가</span>
+        <span class="k">if</span> <span class="n">new_url</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span> <span class="o">+</span> <span class="n">tovisit</span> <span class="o">+</span> <span class="p">[</span><span class="n">seed</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="p">]:</span>
+          <span class="n">tovisit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_url</span><span class="p">)</span>
+
+<span class="c1"># 방문한 URL 리스트 출력</span>
+<span class="n">visited</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>마무리<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>DFS: 주어진 시작 정점에서 시작하여 가능한 깊이까지 탐색한 후, 더 이상 갈 수 없을 때 다른 경로로 되돌아가 탐색을 이어가는 방식이다.</p></li>
+<li><p>BFS: 주어진 시작 정점에서 시작하여 인접한 모든 정점을 먼저 탐색한 후, 그 다음 단계의 정점을 탐색하는 방식이다.</p></li>
+</ul>
+<hr class="docutils" />
+<font color='Grey' size="4">
+F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking with Computers)</font>
+<hr class="docutils" />
+<p>서울대학교 학부대학<br>
+교수 변해선</p>
 </div>
 </div>
 
@@ -447,7 +1132,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Chapter 10. 정렬 알고리즘</p>
+        <p class="prev-next-title">Chapter 10. 트리</p>
       </div>
     </a>
     <a class="right-next"
@@ -455,7 +1140,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Chapter 12. 그래프</p>
+        <p class="prev-next-title">Chapter 12. 가중치 그래프</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -465,6 +1150,45 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">그래프 용어</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">그래프 표현 방법</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">인접 행렬을 이용한 그래프 표현</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">인접 리스트를 이용한 그래프 표현</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">그래프 탐색 알고리즘</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfs-depth-first-search">깊이 우선 탐색(DFS, depth first search)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dfs">DFS 알고리즘: 스택을 활용한 구현</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">DFS 알고리즘 재귀적 구현</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bfs-breath-first-search">너비 우선 탐색(BFS, breath first search)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bfs">BFS 알고리즘: 큐를 활용한 구현</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">그래프 탐색의 응용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">스택을 이용한 DFS 크롤링 예제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">큐를 이용한 BFS 크롤링 예제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">스택을 이용한 DFS 시 탐색범위 제한</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">큐를 이용한 BFS 시 탐색범위 제한</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">마무리</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

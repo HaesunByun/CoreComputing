@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 9. 탐색 알고리즘 &#8212; Core Computing_Thinking with Computers</title>
+    <title>Chapter 9. 정렬 알고리즘 &#8212; Core Computing_Thinking with Computers</title>
   
   
   
@@ -93,11 +93,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'CC_chapter9';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Chapter 10. 정렬 알고리즘" href="CC_chapter10.html" />
-    <link rel="prev" title="중간고사" href="CC_chapter8.html" />
+    <link rel="next" title="Chapter 10. 트리" href="CC_chapter10.html" />
+    <link rel="prev" title="Chapter 8. 알고리즘의 효율성과 탐색" href="CC_chapter8.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -192,19 +194,21 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter0.html">Chapter 0. 프로그래밍 언어와 파이썬</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter1.html">Chapter 1. 기본자료형과 입출력</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter2.html">Chapter 2. 제어문과 복합자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter2.html">Chapter 2. 복합자료형과 제어문</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter3.html">Chapter 3. 모듈과 함수</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter4.html">Chapter 4. 재귀</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter4.html">Chapter 4. 재귀함수</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter5.html">Chapter 5. 클래스와 객체</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter6.html">Chapter 6. 자료구조와 추상화</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter7.html">Chapter 7. 파일입출력과 예외처리</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter8.html">중간고사</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 9. 탐색 알고리즘</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter10.html">Chapter 10. 정렬 알고리즘</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter11.html">Chapter 11. 트리</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter12.html">Chapter 12. 그래프</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter13.html">Chapter 13. 가중치 그래프</a></li>
-<li class="toctree-l1"><a class="reference internal" href="CC_chapter14.html">Chapter 14. 알고리즘 설계기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter7.html">중간평가</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter8.html">Chapter 8. 알고리즘의 효율성과 탐색</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 9. 정렬 알고리즘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter10.html">Chapter 10. 트리</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter11.html">Chapter 11. 그래프</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter12.html">Chapter 12. 가중치 그래프</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter13.html">Chapter 13. 알고리즘 설계 기법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter14.html">Chapter 14. 알고리즘 설계 기법 II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CC_chapter15.html">기말평가</a></li>
 </ul>
 
     </div>
@@ -377,7 +381,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -388,11 +394,48 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Chapter 9. 탐색 알고리즘</h1>
+    <h1>Chapter 9. 정렬 알고리즘</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">정렬</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">파이썬에서의 정렬함수</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sort">sort()함수</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sorted">sorted()함수</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">버블정렬</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">버블정렬 알고리즘</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">버블정렬 예제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">버블정렬 visualization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">버블정렬 구현</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">버블정렬의 시간측정</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">선택정렬</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">선택정렬 알고리즘</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">선택정렬 예제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">선택정렬 visualization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">선택정렬 구현</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">삽입정렬</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">삽입정렬 알고리즘</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">삽입정렬 예제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">삽입정렬 visualization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">삽입정렬 구현</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-vs">버블 vs. 선택 vs. 삽입</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">마무리</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -402,14 +445,737 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-9">
-<h1>Chapter 9. 탐색 알고리즘<a class="headerlink" href="#chapter-9" title="Permalink to this headline">#</a></h1>
+  <hr class="docutils" />
+<font color='Blue' size="4">
+F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking with Computers)</font>
+<hr class="docutils" />
+<div class="tex2jax_ignore mathjax_ignore section" id="chapter-9">
+<h1>Chapter 9. 정렬 알고리즘<a class="headerlink" href="#chapter-9" title="Permalink to this headline">#</a></h1>
 <div class="info admonition">
 <p class="admonition-title">학습목표와 기대효과</p>
 <ul class="simple">
-<li><p>학습목표</p></li>
-<li><p>기대효과</p></li>
+<li><p>학습목표</p>
+<ul>
+<li><p>파이썬의 정렬 기능을 알아본다.</p></li>
+<li><p>정렬 알고리즘으로 버블정렬, 선택정렬, 삽입정렬의 동작 방법을 이해하고 구현해보자.</p></li>
 </ul>
+</li>
+<li><p>기대효과</p>
+<ul>
+<li><p>알고리즘의 효율성을 고려하여 프로세스를 디자인해볼 수 있다.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>정렬<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>정렬(sorting)은 순서가 없는 데이터들을 특정 기준에 따라 재배열하는 것을 의미한다. 예를 들어, 이름을 가나다 순으로 정렬하거나 학생들을 키 순으로 정렬하거나 책을 제목, 저자명 등을 기준으로 오름차순이나 내림차순으로 정렬 할 수 있다.</p>
+</div>
+<div class="section" id="id2">
+<h2>파이썬에서의 정렬함수<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>파이썬에서도 정렬을 위한 함수가 존재한다.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">datalist</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=...</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="o">/</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">datalist</span><span class="p">,</span> <span class="n">key</span><span class="o">=...</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="o">/</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>datalist.sort()는 원본데이터의 아이템들을 정렬하여 datalist에 적용한다. 반환값은 없다.</p></li>
+<li><p>sorted(datalist)는 원본데이터의 정렬된 결과를 반환하나 원본데이터에 적용하지는 않는다.</p></li>
+</ul>
+<ul class="simple">
+<li><p>랜덤데이터를 만들어보고 정렬해보자.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">n</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 92, 73, 38, 78, 47, 56, 37, 62, 48]
+10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sort">
+<h3>sort()함수<a class="headerlink" href="#sort" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>data.sort()는 변수 data의 아이템들을 오름차순으로 정렬하여 data에 바로 적용시킨다.</p></li>
+<li><p>sort()함수는 반환이 없으므로 print(data.sort())와 같이 하면 None이 출력된다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sorted list:&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 92, 73, 38, 78, 47, 56, 37, 62, 48]
+Sorted list: [4, 37, 38, 47, 48, 56, 62, 73, 78, 92]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vowels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">]</span>
+<span class="n">vowels</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sorted list:&#39;</span><span class="p">,</span> <span class="n">vowels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sorted list: [&#39;a&#39;, &#39;e&#39;, &#39;i&#39;, &#39;o&#39;, &#39;u&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>내림차순으로 정렬하려면 reverse옵션을 True로 설정하면 된다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[92, 78, 73, 62, 56, 48, 47, 38, 37, 4]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="sorted">
+<h3>sorted()함수<a class="headerlink" href="#sorted" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>sorted(data)함수는 괄호안의 data를 정렬하여 반환한다.</p></li>
+<li><p>그러나 data에 정렬결과를 적용시키지 않으므로 주로 원본 데이터를 변경하지 않기를 원할 때 사용한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 37, 38, 47, 48, 56, 62, 73, 78, 92]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>마찬가지로 내림차순으로 정렬하려면 reverse옵션을 True로 설정하면 된다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[92, 78, 73, 62, 56, 48, 47, 38, 37, 4]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>파이썬 sort()와 sorted() 모두 key를 사용하여 정렬 기준을 명시해줄 수 있다.</p></li>
+<li><p>아래의 코드에서 key=len으로 주면 len()함수가 전달되어 단어의 길이순으로 정렬하라는 의미이다. 이때 괄호없이 함수명만 적어준다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vowels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;err&#39;</span><span class="p">,</span> <span class="s1">&#39;aetn&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;oo&#39;</span><span class="p">,</span> <span class="s1">&#39;iiiii&#39;</span><span class="p">]</span>
+<span class="n">vowels</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sorted list:&#39;</span><span class="p">,</span> <span class="n">vowels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sorted list: [&#39;u&#39;, &#39;oo&#39;, &#39;err&#39;, &#39;aetn&#39;, &#39;iiiii&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>기준으로 사용할 사용자 정의 함수를 만들어서 적용할 수도 있다.</p></li>
+<li><p>아래의 코드에서는 튜플의 인덱스 1의 값을 반환하는 함수 takeSecond()를 정의하고, 반환값을 기준으로 정렬하였다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+
+<span class="k">def</span> <span class="nf">takeSecond</span><span class="p">(</span><span class="n">elem</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">elem</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">random</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">takeSecond</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sorted list:&#39;</span><span class="p">,</span> <span class="n">random</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sorted list: [(4, 1), (2, 2), (1, 3), (3, 4)]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>딕셔너리의 값을 기준으로 삼아 정렬할 수도 있다.</p></li>
+<li><p>get_name()함수는 딕셔너리의 키와 매핑하는 value를 반환한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">employees</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span><span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="s1">&#39;Alan Turing&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s1">&#39;salary&#39;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">},</span>
+  <span class="p">{</span><span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="s1">&#39;Sharon Lin&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;salary&#39;</span><span class="p">:</span> <span class="mi">8000</span><span class="p">},</span>
+  <span class="p">{</span><span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="s1">&#39;John Hopkins&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;salary&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">},</span>
+  <span class="p">{</span><span class="s1">&#39;Name&#39;</span><span class="p">:</span> <span class="s1">&#39;Mikhail Tal&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;salary&#39;</span><span class="p">:</span> <span class="mi">15000</span><span class="p">},</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">employees</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Alan Turing&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>employee.get(‘Name’)은 이름을 반환한다. 즉 이름을 오름차순으로 정렬한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_name</span><span class="p">(</span><span class="n">employee</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">employee</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">)</span>
+
+<span class="n">employees</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">get_name</span><span class="p">)</span>
+<span class="n">employees</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;Name&#39;: &#39;Alan Turing&#39;, &#39;age&#39;: 25, &#39;salary&#39;: 10000},
+ {&#39;Name&#39;: &#39;John Hopkins&#39;, &#39;age&#39;: 18, &#39;salary&#39;: 1000},
+ {&#39;Name&#39;: &#39;Mikhail Tal&#39;, &#39;age&#39;: 40, &#39;salary&#39;: 15000},
+ {&#39;Name&#39;: &#39;Sharon Lin&#39;, &#39;age&#39;: 30, &#39;salary&#39;: 8000}]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>get_name()과 같은 함수를 정의하는 대신 lambda 키워드를 사용하여 익명함수를 정의하여 사용할 수 있다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">employees</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">))</span>
+<span class="n">employees</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;Name&#39;: &#39;Alan Turing&#39;, &#39;age&#39;: 25, &#39;salary&#39;: 10000},
+ {&#39;Name&#39;: &#39;John Hopkins&#39;, &#39;age&#39;: 18, &#39;salary&#39;: 1000},
+ {&#39;Name&#39;: &#39;Mikhail Tal&#39;, &#39;age&#39;: 40, &#39;salary&#39;: 15000},
+ {&#39;Name&#39;: &#39;Sharon Lin&#39;, &#39;age&#39;: 30, &#39;salary&#39;: 8000}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>😄 변수 employees 데이터에서 나이를 기준으로 오름차순으로 정렬하여 출력하시오.</p>
+<p>😄 변수 employees 데이터에서 연봉이 높은순부터 낮은순으로(내림차순) 정렬하여 출력하시오.</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>버블정렬<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<div class="section" id="id4">
+<h3>버블정렬 알고리즘<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><strong>버블정렬</strong>(Bubble Sort)은 인접한 2개의 원소(a, b)를 비교하여 크기가 순서대로 되어 있지 않으면 자리를 바꾸는 일을 정렬될때 까지 반복하는 정렬 방법이다. 오름차순으로 정렬할 때에는
+a&lt;b, 내림차순으로 정렬할 때에는 a&gt;b이면 정렬된 것으로 판단한다.
+위 알고리즘을 배열에 아무 변화가 없을 때까지 반복한다.</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3>버블정렬 예제<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>버블정렬을 그림으로 따라가보자.</p></li>
+<li><p>Step 0</p>
+<ul>
+<li><p>데이터가 5, 2, 4, 6, 1, 3의 순서로 있고 오름차순으로 정렬한다고 가정하자.</p></li>
+</ul>
+</li>
+<li><p>Step 1</p>
+<ul>
+<li><p>첫 번째 수인 5와 두 번째 수인 2를 비교하여 뒷 수가 작으므로 자리를 교환한다.</p></li>
+<li><p>두 번째 수인 5와 세 번째 수인 4를 비교하여 뒷 수가 작으므로 자리를 교환한다.</p></li>
+<li><p>세번째 수인 5와 네 번째 수인 6을 비교하는데 뒷 수가 크므로 자리 교환은 없다.</p></li>
+<li><p>네 번째 수인 6과 다섯 번째 수인 1을 비교하여 뒷 수가 작으므로 자리를 교환한다.</p></li>
+<li><p>다 섯번째 수인 6과 여섯 번째 수인 3을 비교하여 뒷 수가 작으므로 자리를 교환한다.</p></li>
+<li><p>버블정렬 첫 번째 스텝을 밟고 나면 가장 큰 수인 6이 가장 뒤로 간다.</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/sort1.png" height=300 style="width:600px;"></div><ul class="simple">
+<li><p>Step 2</p>
+<ul>
+<li><p>스텝 1의 결과인 2, 4, 5, 1, 3을 기준으로 시작한다. <strong>이때 6은 스텝 1에 의해서 이미 정렬되어 있으므로 범위에 포함되지 않는다.</strong></p></li>
+<li><p>첫 번째 수인 2와 두 번째 수인 4를 비교하여 뒷 수가 크므로 자리 교환은 없다.</p></li>
+<li><p>두 번째 수인 4와 세 번째 수인 5를 비교하여 뒷 수가 크므로 자리 교환은 없다.</p></li>
+<li><p>세번째 수인 5와 네 번째 수인 1을 비교하여 뒷 수가 작으므로 자리를 교환한다.</p></li>
+<li><p>네 번째 수인 5과 다섯 번째 수인 3을 비교하여 뒷 수가 작으므로 자리를 교환한다.</p></li>
+<li><p>버블정렬 두 번째 스텝을 밟고 나면 두 번째로 큰 수가 오른쪽에서 둘째 자리에 위치하게 된다.</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/sort2.png" height=300 style="width:600px;"></div><ul class="simple">
+<li><p>이러한 스텝과정을 길이가 <span class="math notranslate nohighlight">\(n\)</span>인 리스트에 대해 <span class="math notranslate nohighlight">\(n-1\)</span> 번 적용하면 최종적으로 오름차순으로 정렬된다.</p></li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/sort3.png" height=300 style="width:600px;"></div><div align="center"><img src="https://haesunbyun.github.io/common/images/sort4.png" height=300 style="width:600px;"></div><div align="center"><img src="https://haesunbyun.github.io/common/images/sort5.png" height=300 style="width:600px;"></div></div>
+<div class="section" id="visualization">
+<h3>버블정렬 visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>다음은 버블정렬을 그래픽으로 보이고 있는 그림이다.보고 있으면 은근히 빠져든다.^^ (위키피디아 제공)</p></li>
+</ul>
+<div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Sorting_bubblesort_anim.gif" height=300 style="width:600px;"></div>
+<ul class="simple">
+<li><p>다음은 2차원 랜덤 점들을 버블정렬로 정렬하고 있는 그림이다.(위키피디아 제공)</p></li>
+</ul>
+<div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Bubble_sort_animation.gif" height=300 style="width:600px;"></div>
+</div>
+<div class="section" id="id6">
+<h3>버블정렬 구현<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>버블정렬 알고리즘을 구현해보자.</p></li>
+<li><p>정렬을 위한 데이터 20개를 0부터 100 사이의 임의의 숫자로 만들어 변수 data에 저장하자.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">def</span> <span class="nf">randomData20</span><span class="p">():</span>
+  <span class="n">data</span><span class="o">=</span><span class="p">[]</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="p">)</span>
+  <span class="k">return</span> <span class="n">data</span>
+
+<span class="n">data</span><span class="o">=</span><span class="n">randomData20</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[85, 21, 90, 36, 52, 28, 82, 9, 5, 21, 63, 15, 26, 70, 100, 99, 48, 71, 5, 52]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mybubbleSort</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+
+  <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+  <span class="c1"># 전체 step은 n-1번 반복, n은 데이터 갯수</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="o">-</span><span class="n">i</span><span class="p">):</span> <span class="c1">#한 step마다 비교 횟수가 1씩 감소</span>
+      <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span> <span class="c1">#인접한 두 원소를 비교</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="c1">#자리바꿈</span>
+
+<span class="n">data</span><span class="o">=</span><span class="n">randomData20</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Before: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">mybubbleSort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;After: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before: [9, 85, 29, 51, 67, 61, 37, 42, 75, 86, 5, 44, 25, 43, 27, 47, 27, 82, 18, 33]
+After: [5, 9, 18, 25, 27, 27, 29, 33, 37, 42, 43, 44, 47, 51, 61, 67, 75, 82, 85, 86]
+</pre></div>
+</div>
+</div>
+</div>
+<p>버블 정렬에서 비교 횟수는 1부터 <span class="math notranslate nohighlight">\(n-1\)</span>까지의 합이다.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Step</p></th>
+<th class="text-center head"><p>비교 횟수</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(n-1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(n-2\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(3\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(n-3\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\cdots\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\cdots\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(n\)</span><span class="math notranslate nohighlight">\( - \)</span><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>따라서, 최악의 경우 총 비교 횟수는</p>
+<p><span class="math notranslate nohighlight">\( = (n-1)+(n-2)+\cdots+1\)</span></p>
+<p><span class="math notranslate nohighlight">\( = \frac{n(n-1)}{2} \)</span></p>
+<p><span class="math notranslate nohighlight">\( = O(n^2)\in \frac{n^2}{2} - \frac{n}{2}\)</span></p>
+</div>
+<div class="section" id="id7">
+<h3>버블정렬의 시간측정<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n\)</span>의 수가 100개, 1,000개, 10,000개, 100,000개일 때의 버블정렬 시간을 측정해보자.</p></li>
+<li><p>테스트해 본 결과 100개나 1,000개 데이터는 1초도 안걸린다. 10,000개 데이터는 10초 정도 걸린다. 그럼 100,000개는?  10배가 아니라 100배가 늘어나고, 1,000초(약 16분 40초) 거린다. 버블 정렬의 시간복잡도는 <span class="math notranslate nohighlight">\( O(n^2) \)</span>이므로 50억번의 비교가 이루어진다.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">def</span> <span class="nf">randomData</span><span class="p">():</span>
+  <span class="n">n</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+  <span class="n">data</span><span class="o">=</span><span class="p">[]</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10000</span><span class="p">)</span> <span class="p">)</span>
+  <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">def</span> <span class="nf">randomData</span><span class="p">():</span>
+  <span class="n">n</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+  <span class="n">data</span><span class="o">=</span><span class="p">[]</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10000</span><span class="p">)</span> <span class="p">)</span>
+  <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">timeit</span>
+<span class="k">def</span> <span class="nf">start</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">startTime</span>
+    <span class="n">startTime</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">stop</span><span class="p">():</span>
+    <span class="n">stopTime</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Time:&#39;</span><span class="p">,</span> <span class="n">stopTime</span> <span class="o">-</span> <span class="n">startTime</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="n">randomData</span><span class="p">()</span>
+<span class="n">start</span><span class="p">()</span>
+<span class="n">mybubbleSort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">stop</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>사실 데이터 100,000개는 그다지 큰 숫자가 아니다.</p></li>
+<li><p>그래서 버블정렬은 프로그래밍을 처음 배우는 사람들에게 교육용으로 설명하는 알고리즘일 뿐, 100,000개의 데이터를 정렬하는 것만으로 오랜 시간이 걸리는 이러한 알고리즘을 실제 코딩하는데 사용하면 <strong>절대</strong> 안된다.</p></li>
+<li><p>이게 바로 알고리즘을 잘 만들어야 하는 이유이다.</p></li>
+</ul>
+<ul class="simple">
+<li><p>그렇다면 파이썬의 sort()함수는 데이터 100,000개를 정렬하는데 몇 초나 걸릴까? 1,000,000개가 0.3초,  10,000,000개는 3초 정도 걸린다.</p></li>
+<li><p>일억 개의 데이터가 메모리에 올라갈지는 모르겠으나 메모리에 올라갈 정도까지는 데이터의 크기에 상관없이 아주 작은 시간이 걸린다.</p></li>
+<li><p>참고로 파이썬은 팀소트 알고리즘으로 구현되어 있다. 팀소트 알고리즘은 삽입정렬과 병합정렬 사이를 전환하는 적응형 알고리즘으로 파이썬 프로그래밍에 사용하기 위해 2002년에 팀 피터스가 구현했다.
+<a class="reference external" href="https://ko.wikipedia.org/wiki/%ED%8C%80%EC%86%8C%ED%8A%B8">https://ko.wikipedia.org/wiki/팀소트</a></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="n">randomData</span><span class="p">()</span>
+<span class="n">start</span><span class="p">()</span>
+<span class="n">data</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>선택정렬<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h2>
+<div class="section" id="id9">
+<h3>선택정렬 알고리즘<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>선택정렬은 말 그대로 최솟값 혹은 최댓값을 선택하여 정렬하는 알고리즘이다. 최솟값을 선택하면 오름차순 정렬이 이루어지고, 최댓값을 선택하면 내림차순 정렬이 이루어진다.</p></li>
+<li><p>여기에서는 최소값을 선택하는 정렬 방법으로 순서를 설명한다.</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>정렬되지 않은 숫자 중에 가장 작은 숫자를 선택한다.</p></li>
+<li><p>선택한 숫자를 정렬되지 않은 가장 앞의 숫자와 자리를 교환한다.</p></li>
+<li><p>모든 숫자를 옮길 때까지 1,2번 과정을 반복한다.</p></li>
+</ol>
+</div>
+<div class="section" id="id10">
+<h3>선택정렬 예제<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>선택정렬을 그림으로 따라가보자.</p></li>
+<li><p>Step 0</p>
+<ul>
+<li><p>데이터가 5, 2, 4, 6, 1, 3의 순서로 있고 최솟값을 선택하여 오름차순으로 정렬한다고 가정하자.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Step 1</p>
+<ul>
+<li><p>주어진 데이터에서 최솟값은 1이다. 1을 정렬되지 않은 가장 앞에 있는 숫자(현재는 정렬된 숫자가 없음)인 5와 자리를 교환한다.</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/sort6.png" height=300 style="width:600px;"></div><ul class="simple">
+<li><p>Step 2</p>
+<ul>
+<li><p>정렬되지 않은 숫자 중에서 최솟값은 2이다. 2를 정렬되지 않은 가장 앞에 있는 숫자 2와 자리를 교환한다.(같아서 그대로이다.)</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/sort7.png" height=300 style="width:600px;"></div><ul class="simple">
+<li><p>Step 3</p>
+<ul>
+<li><p>정렬되지 않은 숫자 중에서 최솟값은 3이다. 3를 정렬되지 않은 가장 앞에 있는 숫자 4와 자리를 교환한다.</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/sort8.png" height=300 style="width:600px;"></div><ul class="simple">
+<li><p>Step 4</p>
+<ul>
+<li><p>정렬되지 않은 숫자 중에서 최솟값은 4이다. 4를 정렬되지 않은 가장 앞에 있는 숫자 6과 자리를 교환한다.</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/sort9.png" height=300 style="width:600px;"></div><ul class="simple">
+<li><p>Step 5</p>
+<ul>
+<li><p>정렬되지 않은 숫자 중에서 최솟값은 5이다. 5를 정렬되지 않은 가장 앞에 있는 숫자 5과 자리를 교환한다.(같아서 그대로이다.)</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/sort10.png" height=300 style="width:600px;"></div></div>
+<div class="section" id="id11">
+<h3>선택정렬 visualization<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>다음은 선택정렬을 그래픽으로 보이고 있는 그림이다. 이것도 보고 있으면 은근히 빠져든다.^^ (위키피디아 제공)</p></li>
+</ul>
+<div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Sorting_selection_sort_anim.gif" height=300 style="width:600px;"></div>
+<ul class="simple">
+<li><p>다음은 2차원 랜덤 점들을 선택정렬로 정렬하고 있는 그림이다.(위키피디아 제공)</p></li>
+</ul>
+<div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Selection_sort_animation.gif" height=300 style="width:600px;"></div>
+</div>
+<div class="section" id="id12">
+<h3>선택정렬 구현<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>선택정렬 알고리즘을 구현해보자.</p></li>
+<li><p>정렬을 위한 데이터 20개를 0부터 100 사이의 임의의 숫자로 만들어 변수 data에 저장하자.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mySelectionSort</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span> <span class="c1"># 전체 step은 n-1번 반복</span>
+      <span class="n">idxMin</span><span class="o">=</span><span class="n">i</span>              <span class="c1"># 초기 최솟값</span>
+      <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">length</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> <span class="c1"># 한 step마다 비교 횟수가 1씩 감소</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">idxMin</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+          <span class="n">idxMin</span> <span class="o">=</span> <span class="n">j</span>                <span class="c1"># 최소값이면 그때의 인덱스를 저장</span>
+
+      <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="n">idxMin</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">idxMin</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="c1">#자리바꿈</span>
+
+<span class="n">data</span><span class="o">=</span><span class="n">randomData20</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Before: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">mySelectionSort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;After: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before: [42, 75, 45, 52, 57, 1, 78, 62, 67, 70, 56, 74, 12, 77, 70, 82, 100, 50, 64, 76]
+After: [1, 12, 42, 45, 50, 52, 56, 57, 62, 64, 67, 70, 70, 74, 75, 76, 77, 78, 82, 100]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>선택 정렬에서의 최선, 평균, 최악의 경우 소요되는 비교 횟수는<br />
+<span class="math notranslate nohighlight">\( = \frac{n(n-1)}{2} \)</span>
+<span class="math notranslate nohighlight">\( = O(n^2)\)</span>으로 버블정렬과 동일하다.</p></li>
+<li><p>즉, 선택정렬 알고리즘은 <span class="math notranslate nohighlight">\(n\)</span>회 반복되며 각 반복에서는 최소값을 찾는다. 최솟값을 찾는데 <span class="math notranslate nohighlight">\(O(n)\)</span>이고, <span class="math notranslate nohighlight">\(O(n)\)</span> 작업을 <span class="math notranslate nohighlight">\(n\)</span>번 수행하므로 시간복잡도는 <span class="math notranslate nohighlight">\(O(n^2)\)</span>이다.</p></li>
+<li><p>그러나 선택 정렬에서는 자리를 바꾸는 횟수가 <span class="math notranslate nohighlight">\(n-1\)</span>번 발생한다. 이로인해 선택정렬이 버블정렬보다 조금 더 빠르다.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>삽입정렬<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h2>
+<div class="section" id="id14">
+<h3>삽입정렬 알고리즘<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>삽입정렬은 Key와 정렬된 리스트가 주어졌을 때, key를 정렬된 리스트의 알맞은 위치에 삽입하는 정렬 방법이다.</p></li>
+<li><p>A[1..n]이 주어진 리스트라고 하면</p>
+<ul>
+<li><p>A[1]은 정렬되어 있다고 가정한다.</p></li>
+<li><p>첫 번째는 A[2]을 정렬된 배열 A[1]의 알맞는 위치에 삽입한다.</p></li>
+<li><p>두 번째는 A[3]을 정렬된 배열 A[1..2]의 알맞는 위치에 삽입한다.</p></li>
+<li><p>세 번째는 A[4]를 정렬된 배열 A[1..3]의 알맞는 위치에 삽입한다. <span class="math notranslate nohighlight">\(\cdots\)</span></p></li>
+<li><p>N-1번째는 A[n]을 정렬된 배열 A[1..n-1]의 알맞는 위치에 삽입한다.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id15">
+<h3>삽입정렬 예제<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>삽입정렬을 그림으로 따라가보자.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Step 1</p>
+<ul>
+<li><p>데이터가 5, 2, 4, 6, 1, 3의 순서로 있고 5는 정렬되어 있다고 가정한다.</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/sort11.png" height=300 style="width:600px;"></div><ul class="simple">
+<li><p>Step 2</p>
+<ul>
+<li><p>두 번째 수 2를 key로 정하고 정렬된 범위 [5]의 숫자와 key 2보다 작은 숫자가 나올때까지 차례대로 비교한다. 숫자 5와 비교하여 2가 더 작고 범위의 앞쪽 끝이므로 5 앞에 삽입한다.</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/sort12.png" height=300 style="width:600px;"></div><ul class="simple">
+<li><p>Step 3</p>
+<ul>
+<li><p>세 번째 값 4를 key로 정한다. 정렬된 범위 [2,5]의 왼쪽부터 오른쪽으로 4보다 작은 숫자가 나올때까지 비교한다. 4보다 작은 숫자가 나오면 그 다음 자리에 삽입한다.</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/sort13.png" height=300 style="width:600px;"></div><ul class="simple">
+<li><p>Step 4</p>
+<ul>
+<li><p>key가 되는 숫자 6을 정렬된 범위 [2,4,5]에 있는 숫자와 비교한다. 5는 6보다 작으므로 5 다음 자리에 삽입한다.</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/sort14.png" height=300 style="width:600px;"></div><ul class="simple">
+<li><p>Step 5</p>
+<ul>
+<li><p>key가 되는 숫자 1을 정렬된 범위 [2,4,5,6]에 있는 숫자를 차례대로 비교한다. 1은 가장 작은 수이므로 범위의 끝까지 가 맨 앞에 삽입된다.</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/sort15.png" height=300 style="width:600px;"></div><ul class="simple">
+<li><p>Step 6</p>
+<ul>
+<li><p>key가 되는 숫자 3을 정렬된 범위 [1,2,4,5,6]에 있는 숫자를 차례대로 6&gt;3, 5&gt;3, 4&gt;3 비교하다가 2는 3보다 작으므로 2 다음 자리에 삽입한다.</p></li>
+</ul>
+</li>
+</ul>
+<div align="center"><img src="https://haesunbyun.github.io/common/images/sort16.png" height=300 style="width:600px;"></div></div>
+<div class="section" id="id16">
+<h3>삽입정렬 visualization<a class="headerlink" href="#id16" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>다음은 삽입정렬을 그래픽으로 보이고 있는 그림이다. (위키피디아 제공)</p></li>
+</ul>
+<div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Insertion_sort.gif" height=300 style="width:600px;"></div>
+<ul class="simple">
+<li><p>다음은 2차원 랜덤 점들을 삽입정렬로 정렬하고 있는 그림이다.(위키피디아 제공)</p></li>
+</ul>
+<div align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Insertion_sort_animation.gif" height=300 style="width:600px;"></div>
+</div>
+<div class="section" id="id17">
+<h3>삽입정렬 구현<a class="headerlink" href="#id17" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>삽입정렬 알고리즘을 구현해보자.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myinsertionSort</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+  <span class="c1">#TODO</span>
+  <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span> <span class="c1"># 전체 step은 n-1번 반복</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>                <span class="c1"># 정렬된 범위의 끝 인덱스</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>            <span class="c1"># 정렬되지 않은 범위의 시작 데이터</span>
+    <span class="c1"># (정렬된 범위의 끝 데이터가 key보다 크고) and</span>
+    <span class="c1"># (정렬된 범위의 끝 인덱스가 0보다 크거나 같으면)</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">key</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">):</span>
+      <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="c1"># data[j]를 data[j+1]자리에 저장. 즉, 뒤로 밀어 저장</span>
+      <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>        <span class="c1"># key를 삽입</span>
+
+<span class="n">data</span><span class="o">=</span><span class="n">randomData20</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Before: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">myinsertionSort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;After: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before: [78, 56, 68, 58, 85, 97, 80, 37, 70, 40, 84, 51, 87, 1, 61, 83, 38, 90, 27, 21]
+After: [1, 21, 27, 37, 38, 40, 51, 56, 58, 61, 68, 70, 78, 80, 83, 84, 85, 87, 90, 97]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>삽입정렬에서는 n개의 데이터가 있을 때, 최악의 경우는 <span class="math notranslate nohighlight">\( 1 + 2 + 3 + \cdots + (n-1)\)</span><span class="math notranslate nohighlight">\( = \frac{n(n-1)}{2} \)</span>번 비교하므로 시간복잡도는 <span class="math notranslate nohighlight">\( O(n^2)\)</span>이다.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="vs-vs">
+<h2>버블 vs. 선택 vs. 삽입<a class="headerlink" href="#vs-vs" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="n">randomData</span><span class="p">()</span>
+<span class="n">start</span><span class="p">()</span>
+<span class="n">mybubbleSort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">stop</span><span class="p">()</span>
+<span class="n">start</span><span class="p">()</span>
+<span class="n">mySelectionSort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">stop</span><span class="p">()</span>
+<span class="n">start</span><span class="p">()</span>
+<span class="n">myinsertionSort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>세 알고리즘을 실행시켰을 때 실제 실행시간은 약간 다를지라도 세 알고리즘의 시간복잡도는 모두 <span class="math notranslate nohighlight">\( O(n^2)\)</span>이다.</p></li>
+<li><p>이를 <span class="math notranslate nohighlight">\( O(n^2)\)</span> 클래스에 속한다고 말한다.</p></li>
+</ul>
+</div>
+<div class="section" id="id18">
+<h2>마무리<a class="headerlink" href="#id18" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>버블정렬은 인접한 2개의 원소(a, b)를 비교하여 크기가 순서대로 되어 있지 않으면 자리를 바꾸는 일을 정렬될때 까지 반복하는 정렬 방법이다.</p></li>
+<li><p>선택정렬은 말 그대로 최솟값 혹은 최댓값을 선택하여 정렬하는 알고리즘이다. 최솟값을 선택하면 오름차순 정렬이 이루어지고, 최댓값을 선택하면 내림차순 정렬이 이루어진다.</p></li>
+<li><p>삽입정렬은 Key와 정렬된 리스트가 주어졌을 때, key를 정렬된 리스트의 알맞은 위치에 삽입하는 정렬 방법이다.</p></li>
+<li><p>세 알고리즘 모두다 시간복잡도는 <span class="math notranslate nohighlight">\( O(n^2)\)</span>이다.</p></li>
+</ul>
+<hr class="docutils" />
+<font color='Grey' size="4">
+F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking with Computers)</font>
+<hr class="docutils" />
+<p>서울대학교 학부대학<br>
+교수 변해선</p>
 </div>
 </div>
 
@@ -447,7 +1213,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">중간고사</p>
+        <p class="prev-next-title">Chapter 8. 알고리즘의 효율성과 탐색</p>
       </div>
     </a>
     <a class="right-next"
@@ -455,7 +1221,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Chapter 10. 정렬 알고리즘</p>
+        <p class="prev-next-title">Chapter 10. 트리</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -465,6 +1231,49 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">정렬</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">파이썬에서의 정렬함수</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sort">sort()함수</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sorted">sorted()함수</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">버블정렬</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">버블정렬 알고리즘</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">버블정렬 예제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">버블정렬 visualization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">버블정렬 구현</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">버블정렬의 시간측정</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">선택정렬</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">선택정렬 알고리즘</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">선택정렬 예제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">선택정렬 visualization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">선택정렬 구현</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">삽입정렬</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">삽입정렬 알고리즘</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">삽입정렬 예제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">삽입정렬 visualization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">삽입정렬 구현</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-vs">버블 vs. 선택 vs. 삽입</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">마무리</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
