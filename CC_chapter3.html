@@ -203,7 +203,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter10.html">Chapter 10. 트리</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter11.html">Chapter 11. 그래프</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter12.html">Chapter 12. 가중치 그래프</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter13.html">Chapter 13. 알고리즘 설계 기법</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter14.html">Chapter 14. 알고리즘 설계 기법 II</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter15.html">기말평가</a></li>
@@ -248,55 +247,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/HaesunByun/Core-Computing-Ver.2/blob/gh-pages/_sources/CC_chapter3.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -1250,9 +1200,6 @@ Global area: 800
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;2*1=2&#39;, &#39;2*2=4&#39;, &#39;2*3=6&#39;, &#39;2*4=8&#39;, &#39;2*5=10&#39;, &#39;2*6=12&#39;, &#39;2*7=14&#39;, &#39;2*8=16&#39;, &#39;2*9=18&#39;], [&#39;3*1=3&#39;, &#39;3*2=6&#39;, &#39;3*3=9&#39;, &#39;3*4=12&#39;, &#39;3*5=15&#39;, &#39;3*6=18&#39;, &#39;3*7=21&#39;, &#39;3*8=24&#39;, &#39;3*9=27&#39;], [&#39;4*1=4&#39;, &#39;4*2=8&#39;, &#39;4*3=12&#39;, &#39;4*4=16&#39;, &#39;4*5=20&#39;, &#39;4*6=24&#39;, &#39;4*7=28&#39;, &#39;4*8=32&#39;, &#39;4*9=36&#39;], [&#39;5*1=5&#39;, &#39;5*2=10&#39;, &#39;5*3=15&#39;, &#39;5*4=20&#39;, &#39;5*5=25&#39;, &#39;5*6=30&#39;, &#39;5*7=35&#39;, &#39;5*8=40&#39;, &#39;5*9=45&#39;], [&#39;6*1=6&#39;, &#39;6*2=12&#39;, &#39;6*3=18&#39;, &#39;6*4=24&#39;, &#39;6*5=30&#39;, &#39;6*6=36&#39;, &#39;6*7=42&#39;, &#39;6*8=48&#39;, &#39;6*9=54&#39;], [&#39;7*1=7&#39;, &#39;7*2=14&#39;, &#39;7*3=21&#39;, &#39;7*4=28&#39;, &#39;7*5=35&#39;, &#39;7*6=42&#39;, &#39;7*7=49&#39;, &#39;7*8=56&#39;, &#39;7*9=63&#39;], [&#39;8*1=8&#39;, &#39;8*2=16&#39;, &#39;8*3=24&#39;, &#39;8*4=32&#39;, &#39;8*5=40&#39;, &#39;8*6=48&#39;, &#39;8*7=56&#39;, &#39;8*8=64&#39;, &#39;8*9=72&#39;], [&#39;9*1=9&#39;, &#39;9*2=18&#39;, &#39;9*3=27&#39;, &#39;9*4=36&#39;, &#39;9*5=45&#39;, &#39;9*6=54&#39;, &#39;9*7=63&#39;, &#39;9*8=72&#39;, &#39;9*9=81&#39;]]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -1321,7 +1268,9 @@ Global area: 800
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3, 4]
-[6, 7, 8, 9]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6, 7, 8, 9]
 </pre></div>
 </div>
 </div>
@@ -1461,8 +1410,8 @@ F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking wit
     {
         requestKernel: true,
         binderOptions: {
-            repo: "HaesunByun/Core-Computing-Ver.2",
-            ref: "gh-pages",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",

@@ -205,7 +205,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter10.html">Chapter 10. 트리</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter11.html">Chapter 11. 그래프</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter12.html">Chapter 12. 가중치 그래프</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter13.html">Chapter 13. 알고리즘 설계 기법</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter14.html">Chapter 14. 알고리즘 설계 기법 II</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter15.html">기말평가</a></li>
@@ -250,55 +249,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/HaesunByun/Core-Computing-Ver.2/blob/gh-pages/_sources/CC_chapter2.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -827,7 +777,7 @@ F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking wit
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;qux&#39;, &#39;baz&#39;, &#39;bar&#39;, &#39;foo&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;baz&#39;, &#39;bar&#39;, &#39;qux&#39;, &#39;foo&#39;}
 set()
 {1, 2, 3, 4, 6, 7, 8, 10}
 </pre></div>
@@ -1097,7 +1047,9 @@ set()
  [ 3  4  5]
  [ 6  7  8]
  [ 9 10 11]]
-========
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========
 [0 1 2]
 </pre></div>
 </div>
@@ -2220,8 +2172,8 @@ F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking wit
     {
         requestKernel: true,
         binderOptions: {
-            repo: "HaesunByun/Core-Computing-Ver.2",
-            ref: "gh-pages",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",

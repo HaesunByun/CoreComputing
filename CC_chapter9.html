@@ -205,7 +205,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter10.html">Chapter 10. 트리</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter11.html">Chapter 11. 그래프</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter12.html">Chapter 12. 가중치 그래프</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter13.html">Chapter 13. 알고리즘 설계 기법</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter14.html">Chapter 14. 알고리즘 설계 기법 II</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CC_chapter15.html">기말평가</a></li>
@@ -250,55 +249,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/HaesunByun/Core-Computing-Ver.2/blob/gh-pages/_sources/CC_chapter9.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -499,7 +449,7 @@ F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking wit
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 92, 73, 38, 78, 47, 56, 37, 62, 48]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[50, 32, 38, 78, 22, 28, 15, 0, 61, 16]
 10
 </pre></div>
 </div>
@@ -520,8 +470,8 @@ F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking wit
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 92, 73, 38, 78, 47, 56, 37, 62, 48]
-Sorted list: [4, 37, 38, 47, 48, 56, 62, 73, 78, 92]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[50, 32, 38, 78, 22, 28, 15, 0, 61, 16]
+Sorted list: [0, 15, 16, 22, 28, 32, 38, 50, 61, 78]
 </pre></div>
 </div>
 </div>
@@ -551,7 +501,7 @@ Sorted list: [4, 37, 38, 47, 48, 56, 62, 73, 78, 92]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[92, 78, 73, 62, 56, 48, 47, 38, 37, 4]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[78, 61, 50, 38, 32, 28, 22, 16, 15, 0]
 </pre></div>
 </div>
 </div>
@@ -570,7 +520,7 @@ Sorted list: [4, 37, 38, 47, 48, 56, 62, 73, 78, 92]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 37, 38, 47, 48, 56, 62, 73, 78, 92]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 15, 16, 22, 28, 32, 38, 50, 61, 78]
 </pre></div>
 </div>
 </div>
@@ -585,7 +535,7 @@ Sorted list: [4, 37, 38, 47, 48, 56, 62, 73, 78, 92]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[92, 78, 73, 62, 56, 48, 47, 38, 37, 4]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[78, 61, 50, 38, 32, 28, 22, 16, 15, 0]
 </pre></div>
 </div>
 </div>
@@ -783,10 +733,7 @@ a&lt;b, 내림차순으로 정렬할 때에는 a&gt;b이면 정렬된 것으로 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[85, 21, 90, 36, 52, 28, 82, 9, 5, 21, 63, 15, 26, 70, 100, 99, 48, 71, 5, 52]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[36, 91, 95, 100, 29, 97, 47, 70, 29, 47, 6, 64, 46, 7, 44, 3, 54, 99, 46, 15]
 </pre></div>
 </div>
 </div>
@@ -810,8 +757,8 @@ a&lt;b, 내림차순으로 정렬할 때에는 a&gt;b이면 정렬된 것으로 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before: [9, 85, 29, 51, 67, 61, 37, 42, 75, 86, 5, 44, 25, 43, 27, 47, 27, 82, 18, 33]
-After: [5, 9, 18, 25, 27, 27, 29, 33, 37, 42, 43, 44, 47, 51, 61, 67, 75, 82, 85, 86]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before: [33, 73, 96, 33, 20, 83, 17, 90, 62, 46, 35, 72, 18, 86, 40, 43, 24, 81, 11, 100]
+After: [11, 17, 18, 20, 24, 33, 33, 35, 40, 43, 46, 62, 72, 73, 81, 83, 86, 90, 96, 100]
 </pre></div>
 </div>
 </div>
@@ -1013,8 +960,8 @@ After: [5, 9, 18, 25, 27, 27, 29, 33, 37, 42, 43, 44, 47, 51, 61, 67, 75, 82, 85
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before: [42, 75, 45, 52, 57, 1, 78, 62, 67, 70, 56, 74, 12, 77, 70, 82, 100, 50, 64, 76]
-After: [1, 12, 42, 45, 50, 52, 56, 57, 62, 64, 67, 70, 70, 74, 75, 76, 77, 78, 82, 100]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before: [13, 93, 96, 37, 51, 21, 82, 34, 5, 54, 59, 50, 32, 74, 99, 11, 1, 46, 21, 67]
+After: [1, 5, 11, 13, 21, 21, 32, 34, 37, 46, 50, 51, 54, 59, 67, 74, 82, 93, 96, 99]
 </pre></div>
 </div>
 </div>
@@ -1132,8 +1079,8 @@ After: [1, 12, 42, 45, 50, 52, 56, 57, 62, 64, 67, 70, 70, 74, 75, 76, 77, 78, 8
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before: [78, 56, 68, 58, 85, 97, 80, 37, 70, 40, 84, 51, 87, 1, 61, 83, 38, 90, 27, 21]
-After: [1, 21, 27, 37, 38, 40, 51, 56, 58, 61, 68, 70, 78, 80, 83, 84, 85, 87, 90, 97]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before: [23, 35, 49, 66, 28, 9, 16, 64, 77, 73, 45, 91, 58, 72, 100, 66, 75, 5, 0, 66]
+After: [0, 5, 9, 16, 23, 28, 35, 45, 49, 58, 64, 66, 66, 66, 72, 73, 75, 77, 91, 100]
 </pre></div>
 </div>
 </div>
@@ -1183,8 +1130,8 @@ F37.204 컴퓨팅 핵심: 컴퓨터로 생각하기(Core Computing: Thinking wit
     {
         requestKernel: true,
         binderOptions: {
-            repo: "HaesunByun/Core-Computing-Ver.2",
-            ref: "gh-pages",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",
